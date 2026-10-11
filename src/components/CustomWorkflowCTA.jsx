@@ -33,7 +33,7 @@ export default function CustomWorkflowCTA({ themeMode = 'light' }) {
         {/* Engineer Identity & CTAs */}
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
           <a
-            href="https://wa.me/919771783048?text=Hi%20Mangal,%20I%20want%20to%20discuss%20mapping%20out%20a%20custom%20lead%20automation%20workflow%20for%20my%20business"
+            href="https://wa.me/917979816557?text=Hi%20Mangal,%20I%20want%20to%20discuss%20mapping%20out%20a%20custom%20lead%20automation%20workflow%20for%20my%20business"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full sm:w-auto px-6 py-3 rounded text-xs font-mono-telemetry font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md bg-[#059669] hover:bg-[#047857] text-white"
@@ -44,7 +44,7 @@ export default function CustomWorkflowCTA({ themeMode = 'light' }) {
           </a>
 
           <a
-            href="mailto:mangal.soren@trackkaroai.com?subject=Custom%20Workflow%20Consultation%20Inquiry"
+            href="mailto:mangalsoren2025@dbe-du.org?subject=Custom%20Workflow%20Consultation%20Inquiry"
             className={`w-full sm:w-auto px-6 py-3 rounded text-xs font-mono-telemetry font-bold flex items-center justify-center gap-2 transition-all cursor-pointer border ${
               isLight 
                 ? 'bg-white hover:bg-[#F1F5F9] text-[#0F172A] border-[#CBD5E1]' 

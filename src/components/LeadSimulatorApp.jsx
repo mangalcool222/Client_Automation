@@ -247,7 +247,7 @@ export default function LeadSimulatorApp() {
           </div>
 
           <a
-            href="https://wa.me/919771783048?text=Hi%20Mangal,%20I%20want%20to%20setup%20the%203-Second%20WhatsApp%20Lead%20Engine%20for%20my%20business"
+            href="https://wa.me/917979816557?text=Hi%20Mangal,%20I%20want%20to%20setup%20the%203-Second%20WhatsApp%20Lead%20Engine%20for%20my%20business"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 px-3.5 py-1.5 rounded text-xs font-mono-telemetry font-bold transition-all cursor-pointer bg-[#059669] hover:bg-[#047857] text-white shadow-sm"
@@ -257,7 +257,7 @@ export default function LeadSimulatorApp() {
           </a>
 
           <a
-            href="mailto:mangal.soren@trackkaroai.com?subject=Inquiry%20about%20GTM%20Lead%20Infrastructure"
+            href="mailto:mangalsoren2025@dbe-du.org?subject=Inquiry%20about%20GTM%20Lead%20Infrastructure"
             className={`hidden md:flex items-center gap-2 border px-3.5 py-1.5 rounded text-xs font-mono-telemetry cursor-pointer transition-all ${
               isLight 
                 ? 'bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border-[#CBD5E1]' 
