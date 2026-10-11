@@ -92,10 +92,10 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
           <div className={`p-6 sm:p-8 rounded-lg text-center space-y-4 border ${
             isLight ? 'bg-[#ECFDF5] border-[#A7F3D0] text-[#065F46]' : 'bg-[#064E3B]/20 border-[#10B981]/40 text-[#10B981]'
           }`}>
-            <CheckCircle2 className="w-12 h-12 mx-auto text-[#059669]" />
-            <h4 className="text-xl font-bold font-mono-telemetry">Inquiry Successfully Dispatched!</h4>
-            <p className="text-xs sm:text-sm max-w-md mx-auto font-mono-telemetry">
-              Your details have been logged in our Master CRM and routed to <strong>Mangal Soren (Systems Architect)</strong> via Telegram SLA alert. We will contact you within 15 minutes!
+            <CheckCircle2 className="w-10 h-10 mx-auto text-[#059669]" />
+            <h4 className="text-lg sm:text-xl font-bold font-mono-telemetry">Thank You! Inquiry Received</h4>
+            <p className="text-xs sm:text-sm max-w-sm mx-auto font-mono-telemetry opacity-90">
+              We've received your details and will connect with you shortly on WhatsApp.
             </p>
             <button
               onClick={() => setStatus('idle')}
