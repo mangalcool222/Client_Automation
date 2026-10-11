@@ -110,25 +110,7 @@ export default function LeadSimulatorApp() {
 
     const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
 
-    // Fire REAL Inbound Webhook POST to n8n production engine in background
-    try {
-      fetch('https://n8n.trackkaroai.com/webhook/real-estate-lead-inbound', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          lead_name: formData.name,
-          full_name: formData.name,
-          lead_phone: formData.phone,
-          phone_number: formData.phone,
-          email: formData.email || 'prospect@trackkaroai.com',
-          property_interest: formData.project || 'Client Growth Service',
-          budget: currencyMode === 'USD' ? formData.budgetUSD : formData.budgetINR,
-          status: 'LIVE_DEMO_INGEST'
-        })
-      }).catch(err => console.log('Live webhook background dispatch:', err));
-    } catch (e) {
-      console.log('Webhook error:', e);
-    }
+    // Simulation purely executes on-screen visual telemetry (zero external webhook pings)
 
     // Step 1: Webhook Ingest (0.21s)
     setTimeout(() => {
