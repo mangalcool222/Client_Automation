@@ -3,7 +3,7 @@ import { Zap, Cpu, MessageSquare, Bell, Database } from 'lucide-react';
 
 const NODES = [
   { id: 'n1', title: 'Webhook Ingest', subtitle: 'HTTP Inbound Endpoint', icon: Zap, time: 'STAGE 1' },
-  { id: 'n2', title: 'Lead Normalization', subtitle: 'Format Phone, Date & Region', icon: Cpu, time: 'STAGE 2' },
+  { id: 'n2', title: 'Lead Validation', subtitle: 'Auto-format Phone (+91/+971) & Region', icon: Cpu, time: 'STAGE 2' },
   { id: 'n3', title: 'WhatsApp Integration', subtitle: 'Brochure Auto-Reply (Configurable)', icon: MessageSquare, time: 'STAGE 3' },
   { id: 'n4', title: 'Telegram Alert', subtitle: 'Instant Team Sound Alert', icon: Bell, time: 'STAGE 4' },
   { id: 'n5', title: 'Google Sheets CRM', subtitle: 'Structured Lead Row Append', icon: Database, time: 'STAGE 5' },
@@ -23,7 +23,7 @@ export default function N8nCanvasFlow({ activeStep = 0, isExecuting = false, the
           </span>
         </div>
         <div className={`font-mono-telemetry text-[11px] ${isLight ? 'text-[#64748B]' : 'text-[#64748B]'}`}>
-          Engine: n8n Runtime (Self-Hosted on Linux VPS)
+          Engine: Managed Cloud Workflow Runtime
         </div>
       </div>
 

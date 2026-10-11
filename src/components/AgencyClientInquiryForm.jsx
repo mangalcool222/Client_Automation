@@ -218,7 +218,7 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
                   <option value="Instant Sales Alerts (Telegram / Mobile)">Instant Sales Alerts (Telegram / Mobile)</option>
                   <option value="Centralized Google Sheets / CRM Sync">Centralized Google Sheets / CRM Sync</option>
                   <option value="WhatsApp Auto-Response & Brochure Dispatch">WhatsApp Auto-Response &amp; Brochure Setup</option>
-                  <option value="End-to-End Workflow Audit & Architecture">End-to-End Workflow Audit &amp; Custom Setup</option>
+                  <option value="Complete Automated Setup (WhatsApp + Telegram + Sheets)">Complete Automated Setup (WhatsApp + Telegram + Sheets)</option>
                 </select>
               </div>
             </div>

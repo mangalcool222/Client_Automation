@@ -118,12 +118,12 @@ export default function LeadSimulatorApp() {
       setLogs((prev) => [...prev, `[${timestamp}] INGEST (SIMULATED): Inbound lead payload received at webhook endpoint`]);
     }, 200);
 
-    // Step 2: Lead Normalization
+    // Step 2: Lead Validation
     setTimeout(() => {
       setActiveNodeStep(2);
       setLogs((prev) => [
         ...prev,
-        `[${timestamp}] NORMALIZATION: Validating contact info, timezone & budget tier`,
+        `[${timestamp}] VALIDATION: Auto-formatted phone (+91/+971), cleaned region & generated timestamps`,
       ]);
     }, 600);
 
@@ -199,9 +199,9 @@ export default function LeadSimulatorApp() {
               </span>
             </div>
             <p className="text-[11px] text-[#64748B] font-mono-telemetry flex items-center gap-1.5 mt-0.5">
-              <span>TrackKaro Lead Dispatch Telemetry Console</span>
+              <span>TrackKaro Lead Routing Console</span>
               <span>•</span>
-              <span className={isLight ? 'text-[#059669]' : 'text-[#10B981]'}>Self-Hosted Linux VPS • n8n Workflow Engine</span>
+              <span className={isLight ? 'text-[#059669]' : 'text-[#10B981]'}>Fully Managed Cloud Infrastructure</span>
             </p>
           </div>
         </div>
@@ -292,18 +292,11 @@ export default function LeadSimulatorApp() {
           Stop Losing Ad Leads to Slow Follow-Ups.
         </h2>
 
-        {/* Relatable Problem Statement */}
+        {/* Punchy Client-First Hero Statement */}
         <p className={`text-xs sm:text-base font-mono-telemetry max-w-2xl mx-auto leading-relaxed ${
           isLight ? 'text-[#334155]' : 'text-[#CBD5E1]'
         }`}>
-          When a new enquiry comes in, your sales team shouldn't have to keep checking forms, spreadsheets, or messages to know who needs a callback.
-        </p>
-
-        {/* Grounded Solution Copy */}
-        <p className={`text-xs sm:text-sm font-mono-telemetry max-w-2xl mx-auto leading-relaxed ${
-          isLight ? 'text-[#64748B]' : 'text-[#94A3B8]'
-        }`}>
-          TrackKaro helps businesses streamline lead routing, sales-team alerts, and lead tracking through automated workflows. Connect incoming lead data to a workflow that can process enquiries, notify your sales team on Telegram, and log lead details in Google Sheets.
+          When paid ad leads arrive, your sales team shouldn't be manually checking spreadsheets. TrackKaro automatically routes every enquiry into instant Telegram sound alerts (with 1-click call links), Google Sheets CRM, and automated WhatsApp brochures.
         </p>
 
         {/* Simulation Callout & Action CTAs */}
@@ -334,9 +327,9 @@ export default function LeadSimulatorApp() {
             </a>
           </div>
 
-          {/* Subtle Technical Proof */}
+          {/* Subtle Infrastructure Proof */}
           <div className={`text-[11px] font-mono-telemetry pt-2 ${isLight ? 'text-[#94A3B8]' : 'text-[#64748B]'}`}>
-            Self-hosted on a Linux VPS · Built with n8n, APIs and webhooks
+            Fully managed cloud infrastructure · Automated webhook &amp; API routing
           </div>
         </div>
 

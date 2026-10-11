@@ -11,11 +11,11 @@ export default function App() {
         <div className="max-w-7xl mx-auto flex items-center justify-between text-xs font-mono-telemetry">
           <div className="flex items-center gap-2.5">
             <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
-            <span className="text-[#10B981] font-bold uppercase tracking-wider">SYSTEM STATUS: SIMULATION READY</span>
+            <span className="text-[#10B981] font-bold uppercase tracking-wider">SYSTEM STATUS: SIMULATION ACTIVE</span>
             <span className="text-[#64748B] hidden sm:inline">•</span>
-            <span className="text-[#767E8F] hidden sm:inline">PIPELINE: N8N AUTOMATION ENGINE</span>
+            <span className="text-[#767E8F] hidden sm:inline">FULLY MANAGED CLOUD ENGINE</span>
             <span className="text-[#64748B] hidden md:inline">•</span>
-            <span className="text-[#3B82F6] hidden md:inline">HOSTED ON LINUX VPS</span>
+            <span className="text-[#3B82F6] hidden md:inline">SECURE DISPATCH PIPELINE</span>
           </div>
 
           <div className="flex items-center gap-3">
