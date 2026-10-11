@@ -112,45 +112,45 @@ export default function LeadSimulatorApp() {
 
     // Simulation purely executes on-screen visual telemetry (zero external webhook pings)
 
-    // Step 1: Webhook Ingest (0.21s)
+    // Step 1: Webhook Ingest
     setTimeout(() => {
       setActiveNodeStep(1);
-      setLogs((prev) => [...prev, `[${timestamp}.210] INGEST: Received POST payload from Meta Ad Form (Source: Meta_Luxury_V4)`]);
-    }, 210);
+      setLogs((prev) => [...prev, `[${timestamp}] INGEST (SIMULATED): Inbound lead payload received at webhook endpoint`]);
+    }, 200);
 
-    // Step 2: Lead Qualification (0.68s)
+    // Step 2: Lead Normalization
     setTimeout(() => {
       setActiveNodeStep(2);
       setLogs((prev) => [
         ...prev,
-        `[${timestamp}.680] QUALIFICATION: Budget validated (${currencyMode === 'USD' ? formData.budgetUSD : formData.budgetINR}). Lead Score: TIER_1_HOT`,
+        `[${timestamp}] NORMALIZATION: Validating contact info, timezone & budget tier`,
       ]);
-    }, 680);
+    }, 600);
 
-    // Step 3: WATI / WhatsApp API (1.38s)
+    // Step 3: WhatsApp Module
     setTimeout(() => {
       setActiveNodeStep(3);
       setLogs((prev) => [
         ...prev,
-        `[${timestamp}.380] DISPATCH: WhatsApp Cloud template "vip_brochure_v2" delivered to ${formData.phone} (Status: 200 OK)`,
+        `[${timestamp}] WHATSAPP PREVIEW: Formatted auto-reply payload (requires provider configuration for Meta / AiSensy)`,
       ]);
-    }, 1380);
+    }, 1200);
 
-    // Step 4: Telegram SLA Alert (1.82s)
+    // Step 4: Telegram SLA Alert
     setTimeout(() => {
       setActiveNodeStep(4);
       setLogs((prev) => [
         ...prev,
-        `[${timestamp}.820] TELEGRAM: Alert routed to broker group "Miami Waterfront Sales Desk"`,
+        `[${timestamp}] TELEGRAM ALERT: Generated instant notification layout for sales channel`,
       ]);
-    }, 1820);
+    }, 1700);
 
-    // Step 5: CRM Sync (2.14s)
+    // Step 5: CRM Sync
     setTimeout(() => {
       setActiveNodeStep(5);
       setLogs((prev) => [
         ...prev,
-        `[${timestamp}.140] CRM: Appended row #4182 to Google Sheets Master CRM. Total Latency: 2.14s`,
+        `[${timestamp}] GOOGLE SHEETS: Prepared structured 10-column CRM row data`,
       ]);
       setPipelineState('complete');
 
@@ -163,7 +163,7 @@ export default function LeadSimulatorApp() {
       } catch (e) {
         // ignore
       }
-    }, 2140);
+    }, 2100);
   };
 
   const handleReset = () => {
@@ -195,7 +195,7 @@ export default function LeadSimulatorApp() {
               <span className={`text-[10px] font-mono-telemetry px-2 py-0.5 rounded border uppercase tracking-wider ${
                 isLight ? 'bg-[#F1F5F9] text-[#475569] border-[#CBD5E1]' : 'bg-[#1E222D] text-[#94A3B8] border-[#2E3648]'
               }`}>
-                Systems Architect | GTM Infrastructure
+                Lead Automation &amp; GTM Workflows
               </span>
             </div>
             <p className="text-[11px] text-[#64748B] font-mono-telemetry flex items-center gap-1.5 mt-0.5">
@@ -247,7 +247,7 @@ export default function LeadSimulatorApp() {
           </div>
 
           <a
-            href="https://wa.me/917979816557?text=Hi%20Mangal,%20I%20want%20to%20setup%20the%203-Second%20WhatsApp%20Lead%20Engine%20for%20my%20business"
+            href="https://wa.me/917979816557?text=Hi%20Mangal,%20I%20want%20to%20discuss%20a%20lead%20automation%20workflow%20for%20my%20business"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 px-3.5 py-1.5 rounded text-xs font-mono-telemetry font-bold transition-all cursor-pointer bg-[#059669] hover:bg-[#047857] text-white shadow-sm"
@@ -257,7 +257,7 @@ export default function LeadSimulatorApp() {
           </a>
 
           <a
-            href="mailto:mangalsoren2025@dbe-du.org?subject=Inquiry%20about%20GTM%20Lead%20Infrastructure"
+            href="mailto:mangalsoren2025@dbe-du.org?subject=Inquiry%20about%20Lead%20Automation%20Workflows"
             className={`hidden md:flex items-center gap-2 border px-3.5 py-1.5 rounded text-xs font-mono-telemetry cursor-pointer transition-all ${
               isLight 
                 ? 'bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border-[#CBD5E1]' 
@@ -265,35 +265,80 @@ export default function LeadSimulatorApp() {
             }`}
           >
             <User className={`w-3.5 h-3.5 ${isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}`} />
-            Direct Engineer Contact
+            Direct Email
           </a>
         </div>
       </header>
 
-      {/* Hero Telemetry Container */}
-      <div className={`telemetry-card p-6 sm:p-8 text-center space-y-4 transition-all ${
-        isLight ? 'bg-white border-[#E2E8F0]' : 'bg-[#0E1015] border-[#1E222D]'
+      {/* Hero Container */}
+      <div className={`telemetry-card p-6 sm:p-10 text-center space-y-6 transition-all border rounded-xl ${
+        isLight ? 'bg-white border-[#E2E8F0] shadow-sm' : 'bg-[#0E1015] border-[#1E222D] shadow-xl'
       }`}>
         
-        {/* Simplified Advertiser Positioning Pill Tag */}
-        <div className={`inline-flex items-center gap-2 px-3.5 py-1.2 rounded font-mono-telemetry text-xs border ${
+        {/* Positioning Pill Tag */}
+        <div className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded font-mono-telemetry text-xs border ${
           isLight 
             ? 'bg-[#ECFDF5] border-[#A7F3D0] text-[#059669]' 
             : 'bg-[#12161F] border-[#1E222D] text-[#10B981]'
         }`}>
           <span className={`w-2 h-2 rounded-full animate-pulse ${isLight ? 'bg-[#059669]' : 'bg-[#10B981]'}`}></span>
-          <span className="font-bold uppercase tracking-wider">AUTOMATED LEAD CONVERSION INFRASTRUCTURE FOR ADVERTISERS</span>
+          <span className="font-bold uppercase tracking-wider">AUTOMATED LEAD ROUTING &amp; SALES ALERTS</span>
         </div>
 
-        {/* Simplified Conversion Headline */}
-        <h2 className={`text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
+        {/* Problem-First Headline */}
+        <h2 className={`text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight max-w-3xl mx-auto ${
+          isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'
+        }`}>
           Stop Losing Ad Leads to Slow Follow-Ups.
         </h2>
 
-        {/* Simplified Conversion Sub-headline */}
-        <p className={`text-xs sm:text-sm font-mono-telemetry max-w-2xl mx-auto leading-relaxed ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
-          We link your Meta &amp; Google ad forms directly to WhatsApp brochures (&lt;1.4s) and instant sales phone alerts. Eliminate the 2-hour response lag before your buyer books with a competitor.
+        {/* Relatable Problem Statement */}
+        <p className={`text-xs sm:text-base font-mono-telemetry max-w-2xl mx-auto leading-relaxed ${
+          isLight ? 'text-[#334155]' : 'text-[#CBD5E1]'
+        }`}>
+          When a new enquiry comes in, your sales team shouldn't have to keep checking forms, spreadsheets, or messages to know who needs a callback.
         </p>
+
+        {/* Grounded Solution Copy */}
+        <p className={`text-xs sm:text-sm font-mono-telemetry max-w-2xl mx-auto leading-relaxed ${
+          isLight ? 'text-[#64748B]' : 'text-[#94A3B8]'
+        }`}>
+          TrackKaro helps businesses streamline lead routing, sales-team alerts, and lead tracking through automated workflows. Connect incoming lead data to a workflow that can process enquiries, notify your sales team on Telegram, and log lead details in Google Sheets.
+        </p>
+
+        {/* Simulation Callout & Action CTAs */}
+        <div className="pt-2 space-y-4">
+          <p className={`text-xs font-mono-telemetry ${isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}`}>
+            Start with a live pipeline simulation below to see how the workflow is structured.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href="#demo-section"
+              className="w-full sm:w-auto px-6 py-3 rounded text-xs font-mono-telemetry font-bold transition-all cursor-pointer shadow-sm bg-[#0284C7] hover:bg-[#0369A1] text-white flex items-center justify-center gap-2"
+            >
+              <Play className="w-3.5 h-3.5 fill-current" />
+              <span>Test the Demo</span>
+            </a>
+
+            <a
+              href="#contact-form"
+              className={`w-full sm:w-auto px-6 py-3 rounded text-xs font-mono-telemetry font-bold transition-all cursor-pointer border flex items-center justify-center gap-2 ${
+                isLight 
+                  ? 'bg-white hover:bg-[#F1F5F9] text-[#0F172A] border-[#CBD5E1]' 
+                  : 'bg-[#141720] hover:bg-[#1E222D] text-[#F1F3F7] border-[#2E3648]'
+              }`}
+            >
+              <MessageSquare className="w-3.5 h-3.5 text-[#059669]" />
+              <span>Discuss Your Lead Workflow</span>
+            </a>
+          </div>
+
+          {/* Subtle Technical Proof */}
+          <div className={`text-[11px] font-mono-telemetry pt-2 ${isLight ? 'text-[#94A3B8]' : 'text-[#64748B]'}`}>
+            Self-hosted on a Linux VPS · Built with n8n, APIs and webhooks
+          </div>
+        </div>
 
         {/* Sample Preset Selector */}
         <div className="pt-2 max-w-xl mx-auto">
@@ -335,10 +380,10 @@ export default function LeadSimulatorApp() {
               <div>
                 <span className={`text-xs font-bold flex items-center gap-2 font-mono-telemetry ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
                   <Zap className={`w-4 h-4 ${isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}`} />
-                  INTERACTIVE PIPELINE SIMULATOR
+                  INTERACTIVE PIPELINE SIMULATION
                 </span>
                 <span className={`text-[10px] font-mono-telemetry block mt-0.5 leading-tight ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
-                  Test our &lt;1.4s backend logic live. See how incoming leads trigger WhatsApp dispatches, Telegram sales alerts, and CRM sync in real time.
+                  Simulate lead routing on-screen. See how incoming lead data triggers normalization, sales alerts, and CRM sync.
                 </span>
               </div>
               <button
@@ -417,7 +462,7 @@ export default function LeadSimulatorApp() {
                   }`}
                 >
                   <RefreshCw className="w-4 h-4 text-[#D97706] animate-spin" />
-                  Executing Pipeline...
+                  Simulating Pipeline Flow...
                 </button>
               ) : pipelineState === 'complete' ? (
                 <button
@@ -426,7 +471,7 @@ export default function LeadSimulatorApp() {
                     isLight ? 'bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border-[#CBD5E1]' : 'bg-[#141720] hover:bg-[#1E222D] text-white border-[#2E3648]'
                   }`}
                 >
-                  Reset Telemetry Session
+                  Reset Simulation Session
                 </button>
               ) : (
                 <button
@@ -436,7 +481,7 @@ export default function LeadSimulatorApp() {
                   }`}
                 >
                   <Play className="w-4 h-4 fill-current" />
-                  Run Live Pipeline Simulation
+                  Run Pipeline Simulation
                 </button>
               )}
             </div>
@@ -460,10 +505,10 @@ export default function LeadSimulatorApp() {
                   </div>
                   <div>
                     <div className={`text-[11px] font-bold truncate max-w-[100px] ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>TrackKaro Systems</div>
-                    <div className="text-[9px] text-[#059669]">WhatsApp API</div>
+                    <div className="text-[9px] text-[#059669]">WhatsApp Integration</div>
                   </div>
                 </div>
-                <span className={`text-[8px] px-1.5 py-0.5 rounded ${isLight ? 'bg-[#F1F5F9] text-[#64748B]' : 'bg-[#141720] text-[#767E8F]'}`}>WATI</span>
+                <span className={`text-[8px] px-1.5 py-0.5 rounded ${isLight ? 'bg-[#F1F5F9] text-[#64748B]' : 'bg-[#141720] text-[#767E8F]'}`}>Configurable Module</span>
               </div>
 
               <div className="space-y-2 py-1 flex-1 flex flex-col justify-end">
@@ -471,7 +516,7 @@ export default function LeadSimulatorApp() {
                   isLight ? 'bg-[#DCF8C6] border border-[#BBF7D0] text-[#0F172A]' : 'bg-[#0b141a] border border-[#10B981]/30 text-[#F1F3F7]'
                 }`}>
                   <div className="leading-tight">
-                    Hello <span className="font-bold text-[#059669]">{formData.name}</span>! PDF brochure dispatched.
+                    Hello <span className="font-bold text-[#059669]">{formData.name}</span>! Here is your requested brochure.
                   </div>
 
                   <div className={`rounded p-2 flex items-center justify-between gap-1.5 font-mono-telemetry ${
@@ -481,16 +526,22 @@ export default function LeadSimulatorApp() {
                       <FileText className="w-3.5 h-3.5 text-[#059669] shrink-0" />
                       <div>
                         <div className={`text-[10px] font-bold truncate max-w-[90px] ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>Brochure.pdf</div>
-                        <div className="text-[8px] text-[#64748B]">2.4 MB</div>
+                        <div className="text-[8px] text-[#64748B]">Digital Floorplan</div>
                       </div>
                     </div>
                     <span className="text-[8px] text-[#059669] bg-[#059669]/15 px-1.5 py-0.5 rounded font-bold">PDF</span>
                   </div>
 
                   <div className="flex items-center justify-between text-[8px] text-[#64748B] font-mono-telemetry pt-0.5">
-                    <span>13:28:03</span>
-                    <span className="text-[#059669]">Simulated Dispatch (~1.38s)</span>
+                    <span>Simulated Dispatch</span>
+                    <span className="text-[#059669]">Configurable API</span>
                   </div>
+                </div>
+
+                <div className={`text-[9px] text-center font-mono-telemetry p-1.5 rounded ${
+                  isLight ? 'bg-white/80 text-[#64748B]' : 'bg-[#0E1015]/80 text-[#94A3B8]'
+                }`}>
+                  Requires Meta / AiSensy WABA Setup
                 </div>
               </div>
             </div>
@@ -503,16 +554,16 @@ export default function LeadSimulatorApp() {
                 <div className={`flex items-center justify-between border-b pb-2 font-mono-telemetry ${isLight ? 'border-[#E2E8F0]' : 'border-[#1E222D]'}`}>
                   <div className="flex items-center gap-1.5">
                     <Radio className={`w-3.5 h-3.5 animate-pulse ${isLight ? 'text-[#D97706]' : 'text-[#F59E0B]'}`} />
-                    <span className={`text-[11px] font-bold ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>Telegram SLA Alert</span>
+                    <span className={`text-[11px] font-bold ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>Telegram Sales Alert</span>
                   </div>
-                  <span className={`text-[8px] px-1.5 py-0.5 rounded ${isLight ? 'bg-[#F1F5F9] text-[#64748B]' : 'bg-[#141720] text-[#767E8F]'}`}>Bot</span>
+                  <span className={`text-[8px] px-1.5 py-0.5 rounded font-bold ${isLight ? 'bg-[#059669]/15 text-[#059669]' : 'bg-[#10B981]/15 text-[#10B981]'}`}>Sample Alert</span>
                 </div>
 
                 <div className={`mt-2.5 p-2.5 rounded border space-y-1 font-mono-telemetry text-[10px] ${
                   isLight ? 'bg-[#F8FAFC] border-[#E2E8F0]' : 'bg-[#08090C] border-[#1E222D]'
                 }`}>
                   <div className={`font-bold border-b pb-1 ${isLight ? 'text-[#0284C7] border-[#E2E8F0]' : 'text-[#3B82F6] border-[#1E222D]'}`}>
-                    NEW LEAD DISPATCH
+                    NEW LEAD INBOUND
                   </div>
                   <div className={`space-y-0.5 ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
                     <div>NAME: <span className={`font-bold truncate block ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>{formData.name}</span></div>
@@ -522,12 +573,17 @@ export default function LeadSimulatorApp() {
                 </div>
               </div>
 
-              <button className={`w-full font-extrabold py-2 rounded text-[11px] font-mono-telemetry flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-sm text-white ${
-                isLight ? 'bg-[#059669] hover:bg-[#047857]' : 'bg-[#10B981] hover:bg-[#059669] text-[#08090C]'
-              }`}>
-                <PhoneCall className="w-3 h-3 fill-current" />
-                <span>Call Lead (Instant SLA)</span>
-              </button>
+              <div className="space-y-1.5">
+                <button className={`w-full font-extrabold py-2 rounded text-[11px] font-mono-telemetry flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-sm text-white ${
+                  isLight ? 'bg-[#059669] hover:bg-[#047857]' : 'bg-[#10B981] hover:bg-[#059669] text-[#08090C]'
+                }`}>
+                  <PhoneCall className="w-3 h-3 fill-current" />
+                  <span>Call Lead (1-Click Link)</span>
+                </button>
+                <div className={`text-[9px] text-center font-mono-telemetry ${isLight ? 'text-[#64748B]' : 'text-[#767E8F]'}`}>
+                  Live alert verified in bottom form
+                </div>
+              </div>
             </div>
 
             {/* Card 3: Google Sheets Live CRM Auto-Sync Panel */}
@@ -540,7 +596,7 @@ export default function LeadSimulatorApp() {
                     <Database className={`w-3.5 h-3.5 ${isLight ? 'text-[#059669]' : 'text-[#10B981]'}`} />
                     <span className={`text-[11px] font-bold ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>Google Sheets CRM</span>
                   </div>
-                  <span className={`text-[8px] px-1.5 py-0.5 rounded font-bold ${isLight ? 'bg-[#059669]/15 text-[#059669]' : 'bg-[#10B981]/15 text-[#10B981]'}`}>Auto CRM</span>
+                  <span className={`text-[8px] px-1.5 py-0.5 rounded font-bold ${isLight ? 'bg-[#059669]/15 text-[#059669]' : 'bg-[#10B981]/15 text-[#10B981]'}`}>Structured Row</span>
                 </div>
 
                 <div className={`mt-2.5 p-2.5 rounded border space-y-1 font-mono-telemetry text-[10px] ${
@@ -549,22 +605,27 @@ export default function LeadSimulatorApp() {
                   <div className={`font-bold border-b pb-1 flex items-center justify-between ${
                     isLight ? 'text-[#059669] border-[#E2E8F0]' : 'text-[#10B981] border-[#1E222D]'
                   }`}>
-                    <span>CRM ROW #4182</span>
-                    <span className="text-[8px] text-[#64748B]">2.14s SYNC</span>
+                    <span>SAMPLE 10-COLUMN ROW</span>
+                    <span className="text-[8px] text-[#64748B]">Auto Fields</span>
                   </div>
                   <div className={`space-y-0.5 ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
-                    <div>TIMESTAMP: <span className={isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}>13:28:04</span></div>
+                    <div>DATE / TIME: <span className={isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}>Auto-formatted (IST)</span></div>
                     <div>NAME: <span className={`font-bold truncate block ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>{formData.name}</span></div>
                     <div>PHONE: <span className="text-[#64748B]">{formData.phone}</span></div>
-                    <div>STATUS: <span className={`font-bold ${isLight ? 'text-[#059669]' : 'text-[#10B981]'}`}>200 OK</span></div>
+                    <div>STATUS: <span className={`font-bold ${isLight ? 'text-[#059669]' : 'text-[#10B981]'}`}>NEW_INQUIRY</span></div>
                   </div>
                 </div>
               </div>
 
-              <div className={`p-2 rounded text-[9px] font-mono-telemetry text-center ${
-                isLight ? 'bg-[#F1F5F9] border border-[#E2E8F0] text-[#64748B]' : 'bg-[#141720] border border-[#1E222D] text-[#94A3B8]'
-              }`}>
-                Google Sheets Auto-Sync (~2.14s)
+              <div className="space-y-1">
+                <div className={`p-2 rounded text-[9px] font-mono-telemetry text-center ${
+                  isLight ? 'bg-[#F1F5F9] border border-[#E2E8F0] text-[#64748B]' : 'bg-[#141720] border border-[#1E222D] text-[#94A3B8]'
+                }`}>
+                  10 Columns: Date, Day, Time, Contact &amp; Region
+                </div>
+                <div className={`text-[9px] text-center font-mono-telemetry ${isLight ? 'text-[#64748B]' : 'text-[#767E8F]'}`}>
+                  Live Sheet sync verified in bottom form
+                </div>
               </div>
             </div>
 

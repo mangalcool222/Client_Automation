@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, Building2, Phone, Mail, User, ShieldCheck, Zap, RefreshCw } from 'lucide-react';
+import { Send, CheckCircle2, Building2, Phone, Mail, User, ShieldCheck, Zap, RefreshCw, Sliders } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
@@ -10,7 +10,8 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
     company: '',
     phone: '',
     email: '',
-    adSpend: '₹50,000 - ₹2,000,000 / month'
+    adSpend: '₹50,000 - ₹2,00,000 / month',
+    workflowGoal: 'Instant Sales Alerts (Telegram / Mobile)'
   });
 
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
@@ -36,8 +37,8 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
           phone_number: formData.phone,
           lead_email: formData.email,
           email: formData.email,
-          property_interest: `GTM AGENCY CLIENT SETUP: ${formData.company || 'Direct Inquiry'}`,
-          budget: formData.adSpend,
+          property_interest: `GTM AGENCY SETUP: ${formData.company || 'Direct Inquiry'} (${formData.workflowGoal})`,
+          budget: `${formData.adSpend} • Goal: ${formData.workflowGoal}`,
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Kolkata',
           locale: typeof navigator !== 'undefined' ? (navigator.language || 'en-IN') : 'en-IN',
           status: 'REAL_AGENCY_CLIENT_INQUIRY'
@@ -76,15 +77,15 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
             isLight ? 'bg-[#ECFDF5] border-[#A7F3D0] text-[#059669]' : 'bg-[#12161F] border-[#1E222D] text-[#10B981]'
           }`}>
             <Zap className="w-3.5 h-3.5 fill-current" />
-            <span className="font-bold uppercase tracking-wider">BOOK GTM INFRASTRUCTURE SETUP</span>
+            <span className="font-bold uppercase tracking-wider">WORKFLOW CONSULTATION &amp; SETUP</span>
           </div>
 
           <h3 className={`text-xl sm:text-3xl font-extrabold tracking-tight ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
             Ready to Automate Lead Conversion in Your Business?
           </h3>
 
-          <p className={`text-xs sm:text-sm font-mono-telemetry max-w-xl mx-auto ${isLight ? 'text-[#64748B]' : 'text-[#94A3B8]'}`}>
-            Fill out your details below to discuss an instant lead response setup for your business.
+          <p className={`text-xs sm:text-sm font-mono-telemetry max-w-xl mx-auto leading-relaxed ${isLight ? 'text-[#64748B]' : 'text-[#94A3B8]'}`}>
+            Fill out your details below to discuss a tailored lead response setup for your business.
           </p>
         </div>
 
@@ -117,7 +118,7 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Rahul Sharma"
+                  placeholder="e.g. Ramesh Kumar"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
@@ -126,15 +127,15 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
                 />
               </div>
 
-              {/* Company Name */}
+              {/* Company / Brand Name */}
               <div>
                 <label className={`text-xs font-bold block mb-1 flex items-center gap-1.5 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
-                  <Building2 className="w-3.5 h-3.5 text-[#0284C7]" />
+                  <Building2 className="w-3.5 h-3.5 text-[#64748B]" />
                   Company / Brand Name
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g. Apex Realty / Global SaaS"
+                  placeholder="e.g. Apex Realty / Growth Agency"
                   value={formData.company}
                   onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                   className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
@@ -179,23 +180,47 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
               </div>
             </div>
 
-            {/* Monthly Ad Spend / Requirement */}
-            <div>
-              <label className={`text-xs font-bold block mb-1 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
-                Est. Monthly Ad Spend / Lead Volume
-              </label>
-              <select
-                value={formData.adSpend}
-                onChange={(e) => setFormData({ ...formData, adSpend: e.target.value })}
-                className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
-                  isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
-                }`}
-              >
-                <option value="₹50,000 - ₹200,000 / month">₹50,000 - ₹2,00,000 / month (Standard)</option>
-                <option value="₹200,000 - ₹1,000,000 / month">₹2,00,000 - ₹10,00,000 / month (High Growth)</option>
-                <option value="₹1,000,000+ / month">₹10,00,000+ / month (Enterprise Scale)</option>
-                <option value="One-Time Setup Only">One-Time Infrastructure Setup ($1,500 - $2,000)</option>
-              </select>
+            {/* Separated Dropdowns: Monthly Ad Spend & Consultation / Workflow Goal */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Field 1: Monthly Ad Spend */}
+              <div>
+                <label className={`text-xs font-bold block mb-1 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
+                  Est. Monthly Ad Spend / Volume
+                </label>
+                <select
+                  value={formData.adSpend}
+                  onChange={(e) => setFormData({ ...formData, adSpend: e.target.value })}
+                  className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
+                    isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
+                  }`}
+                >
+                  <option value="₹50,000 - ₹2,00,000 / month">₹50,000 - ₹2,00,000 / month (Standard)</option>
+                  <option value="₹2,00,000 - ₹10,00,000 / month">₹2,00,000 - ₹10,00,000 / month (High Growth)</option>
+                  <option value="₹10,00,000+ / month">₹10,00,000+ / month (Enterprise Scale)</option>
+                  <option value="< ₹50,000 / month">&lt; ₹50,000 / month (Early Stage)</option>
+                  <option value="Not Running Paid Ads Yet">Not Running Paid Ads Yet</option>
+                </select>
+              </div>
+
+              {/* Field 2: Consultation / Workflow Goal */}
+              <div>
+                <label className={`text-xs font-bold block mb-1 flex items-center gap-1.5 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
+                  <Sliders className="w-3.5 h-3.5 text-[#0284C7]" />
+                  Primary Workflow Goal
+                </label>
+                <select
+                  value={formData.workflowGoal}
+                  onChange={(e) => setFormData({ ...formData, workflowGoal: e.target.value })}
+                  className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
+                    isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
+                  }`}
+                >
+                  <option value="Instant Sales Alerts (Telegram / Mobile)">Instant Sales Alerts (Telegram / Mobile)</option>
+                  <option value="Centralized Google Sheets / CRM Sync">Centralized Google Sheets / CRM Sync</option>
+                  <option value="WhatsApp Auto-Response & Brochure Dispatch">WhatsApp Auto-Response &amp; Brochure Setup</option>
+                  <option value="End-to-End Workflow Audit & Architecture">End-to-End Workflow Audit &amp; Custom Setup</option>
+                </select>
+              </div>
             </div>
 
             {/* Submit Button */}
@@ -219,7 +244,7 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
                 ) : (
                   <>
                     <Send className="w-4 h-4 fill-current" />
-                    <span>Book Automation Setup</span>
+                    <span>Request Workflow Consultation</span>
                   </>
                 )}
               </button>

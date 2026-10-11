@@ -7,8 +7,8 @@ export default function TelemetryDrawer({ logs = [], formData = {}, currencyMode
   const isLight = themeMode === 'light';
 
   const rawJsonPayload = {
-    event: "meta_lead_webhook_ingest",
-    ingest_timestamp: new Date().toISOString(),
+    event: "lead_inbound_simulation",
+    timestamp: new Date().toISOString(),
     prospect: {
       name: formData.name || "Alexander Wright (Sample Lead)",
       phone: formData.phone || "+971 50 000 9999",
@@ -16,21 +16,15 @@ export default function TelemetryDrawer({ logs = [], formData = {}, currencyMode
       project_enquiry: formData.project || "Dubai Marina Luxury Off-Plan Penthouse",
       budget: currencyMode === 'USD' ? (formData.budgetUSD || "$850,000 - $1.5M") : (formData.budgetINR || "₹7.0 Cr - ₹12.5 Cr")
     },
-    routing_metadata: {
-      source_channel: "Meta_IG_Luxury_V4",
-      intent_score: "TIER_1_HIGH_INTENT",
-      whatsapp_dispatcher: "WATI_Cloud_API_v2",
-      telegram_alert_channel: "Miami_Waterfront_Sales_Desk",
-      sheets_crm_row_id: 4182
+    routing_architecture: {
+      ingest_node: "n8n_webhook_receiver",
+      sales_alert_target: "Telegram_Team_Channel",
+      crm_destination: "Google_Sheets_CRM",
+      messaging_module: "WhatsApp_Business_API (Configurable)"
     },
-    execution_sla: {
-      webhook_latency_ms: 210,
-      qualification_ms: 470,
-      whatsapp_dispatch_ms: 1380,
-      telegram_alert_ms: 1820,
-      crm_sync_ms: 2140,
-      total_latency_seconds: 2.14,
-      status: "200_OK"
+    simulation_status: {
+      mode: "Interactive_On_Screen_Simulation",
+      workflow_valid: true
     }
   };
 

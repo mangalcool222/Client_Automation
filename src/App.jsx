@@ -11,9 +11,9 @@ export default function App() {
         <div className="max-w-7xl mx-auto flex items-center justify-between text-xs font-mono-telemetry">
           <div className="flex items-center gap-2.5">
             <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
-            <span className="text-[#10B981] font-bold uppercase tracking-wider">SYSTEM STATUS: SIMULATION &amp; TELEMETRY READY</span>
+            <span className="text-[#10B981] font-bold uppercase tracking-wider">SYSTEM STATUS: SIMULATION READY</span>
             <span className="text-[#64748B] hidden sm:inline">•</span>
-            <span className="text-[#767E8F] hidden sm:inline">BENCHMARK SLA: &lt;1.4s TARGET</span>
+            <span className="text-[#767E8F] hidden sm:inline">PIPELINE: N8N AUTOMATION ENGINE</span>
             <span className="text-[#64748B] hidden md:inline">•</span>
             <span className="text-[#3B82F6] hidden md:inline">HOSTED ON LINUX VPS</span>
           </div>
@@ -24,7 +24,7 @@ export default function App() {
               href="#demo-section"
               className="bg-[#3B82F6] hover:bg-[#2563EB] text-white font-bold px-3 py-1 rounded text-[11px] transition-all cursor-pointer shadow-sm"
             >
-              Test Ingest Pipeline
+              Test Pipeline Demo
             </a>
           </div>
         </div>
@@ -39,11 +39,11 @@ export default function App() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono-telemetry">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#10B981]"></span>
-            <span className="font-bold text-[#F1F3F7]">MANGAL SOREN</span> • Systems Architect | GTM Infrastructure
+            <span className="font-bold text-[#F1F3F7]">MANGAL SOREN</span> • Lead Automation &amp; GTM Workflows
           </div>
           <div className="text-[#3B82F6] font-bold bg-[#141720] px-3 py-1 rounded border border-[#1E222D] flex items-center gap-1.5">
             <Zap className="w-3.5 h-3.5 text-[#3B82F6]" />
-            <span>Automated Lead Dispatch Infrastructure (v1.68)</span>
+            <span>Automated Lead Dispatch Workflows</span>
           </div>
         </div>
       </footer>

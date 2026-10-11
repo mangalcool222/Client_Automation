@@ -58,7 +58,7 @@ export default function CustomWorkflowCTA({ themeMode = 'light' }) {
 
         <div className="text-[11px] text-[#64748B] font-mono-telemetry flex items-center justify-center gap-1.5 pt-1">
           <UserCheck className="w-3.5 h-3.5 text-[#059669]" />
-          <span>Mangal Soren • Systems Architect | GTM Infrastructure</span>
+          <span>Mangal Soren • Lead Automation &amp; GTM Workflows</span>
         </div>
 
       </div>

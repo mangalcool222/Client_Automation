@@ -2,11 +2,11 @@ import React from 'react';
 import { Zap, Cpu, MessageSquare, Bell, Database } from 'lucide-react';
 
 const NODES = [
-  { id: 'n1', title: 'Webhook Ingest', subtitle: 'Meta / Google Lead Ads (POST)', icon: Zap, time: '+0.21s' },
-  { id: 'n2', title: 'Lead Qualification', subtitle: 'Name, Phone & Budget Filter', icon: Cpu, time: '+0.68s' },
-  { id: 'n3', title: 'WATI / WhatsApp API', subtitle: 'Auto PDF Brochure Dispatch', icon: MessageSquare, time: '+1.38s' },
-  { id: 'n4', title: 'Telegram SLA Bot', subtitle: 'Sound Alert & Click-to-Call', icon: Bell, time: '+1.82s' },
-  { id: 'n5', title: 'CRM Sync (Sheets)', subtitle: 'Master Row Append Log', icon: Database, time: '+2.14s' },
+  { id: 'n1', title: 'Webhook Ingest', subtitle: 'HTTP Inbound Endpoint', icon: Zap, time: 'STAGE 1' },
+  { id: 'n2', title: 'Lead Normalization', subtitle: 'Format Phone, Date & Region', icon: Cpu, time: 'STAGE 2' },
+  { id: 'n3', title: 'WhatsApp Integration', subtitle: 'Brochure Auto-Reply (Configurable)', icon: MessageSquare, time: 'STAGE 3' },
+  { id: 'n4', title: 'Telegram Alert', subtitle: 'Instant Team Sound Alert', icon: Bell, time: 'STAGE 4' },
+  { id: 'n5', title: 'Google Sheets CRM', subtitle: 'Structured Lead Row Append', icon: Database, time: 'STAGE 5' },
 ];
 
 export default function N8nCanvasFlow({ activeStep = 0, isExecuting = false, themeMode = 'dark' }) {
