@@ -16,7 +16,7 @@ export default function RevenueLeakAudit({ themeMode = 'dark' }) {
             </h3>
           </div>
           <p className={`text-xs font-mono-telemetry mt-1 ${isLight ? 'text-[#64748B]' : 'text-[#767E8F]'}`}>
-            Industry benchmark data based on speed-to-lead response studies.
+            Speed-to-lead benchmarks referenced from published sales response research (e.g. Lead Response Management Study).
           </p>
         </div>
         <span className={`text-[10px] font-mono-telemetry px-2.5 py-1 rounded w-fit ${
@@ -24,7 +24,7 @@ export default function RevenueLeakAudit({ themeMode = 'dark' }) {
             ? 'text-[#D97706] bg-[#FEF3C7] border border-[#FDE68A]' 
             : 'text-[#F59E0B] bg-[#F59E0B]/10 border border-[#F59E0B]/30'
         }`}>
-          SPEED-TO-LEAD BENCHMARK AUDIT
+          INDUSTRY BENCHMARK AUDIT
         </span>
       </div>
 
@@ -32,17 +32,17 @@ export default function RevenueLeakAudit({ themeMode = 'dark' }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Metric 1 */}
         <div className={`p-4.5 rounded border space-y-1.5 font-mono-telemetry ${isLight ? 'bg-[#F8FAFC] border-[#E2E8F0]' : 'bg-[#08090C] border-[#1E222D]'}`}>
-          <div className={`text-3xl font-extrabold ${isLight ? 'text-[#059669]' : 'text-[#10B981]'}`}>391%</div>
+          <div className={`text-3xl font-extrabold ${isLight ? 'text-[#059669]' : 'text-[#10B981]'}`}>Up to 391%</div>
           <div className={`text-xs leading-relaxed ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
-            Higher contact-to-conversion rate when leads receive a response within 60 seconds vs. 1 hour.
+            Higher qualification rate documented when online leads receive an immediate response within minutes vs. hours.
           </div>
         </div>
 
         {/* Metric 2 */}
         <div className={`p-4.5 rounded border space-y-1.5 font-mono-telemetry ${isLight ? 'bg-[#F8FAFC] border-[#E2E8F0]' : 'bg-[#08090C] border-[#1E222D]'}`}>
-          <div className={`text-3xl font-extrabold ${isLight ? 'text-[#D97706]' : 'text-[#F59E0B]'}`}>~40%</div>
+          <div className={`text-3xl font-extrabold ${isLight ? 'text-[#D97706]' : 'text-[#F59E0B]'}`}>~40% Drop</div>
           <div className={`text-xs leading-relaxed ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
-            Average drop in response rate when inbound luxury ad leads wait more than 30 minutes for a catalog.
+            Estimated decay in prospect engagement when luxury ad enquiries wait over 30 minutes for a brochure.
           </div>
         </div>
       </div>
@@ -107,7 +107,7 @@ export default function RevenueLeakAudit({ themeMode = 'dark' }) {
           <span>ROI Perspective:</span>
         </div>
         <div className={`font-bold text-left sm:text-right ${isLight ? 'text-[#059669]' : 'text-[#10B981]'}`}>
-          A one-time $1,500 – $2,000 infrastructure setup typically pays for itself by recovering just 1–2 high-intent leads that would otherwise be missed.
+          Illustrative Framework: For high-ticket transactions, preventing even 1 lost high-intent inquiry can substantially outweigh workflow infrastructure setup costs.
         </div>
       </div>
     </div>

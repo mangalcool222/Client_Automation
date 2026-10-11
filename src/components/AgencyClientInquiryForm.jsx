@@ -223,11 +223,11 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
               </button>
             </div>
 
-            <div className="flex items-center justify-between text-[10px] text-[#64748B] pt-1">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[10px] text-[#64748B] pt-1 gap-1">
               <span className="flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#059669]" /> 100% Confidential • Direct Engineer SLA Alert
+                <ShieldCheck className="w-3.5 h-3.5 text-[#059669]" /> Privacy Notice: Submissions are confidential and used solely for direct workflow consultation.
               </span>
-              <span>n8n Webhook: Active (24/7)</span>
+              <span>n8n Engine: Ready</span>
             </div>
           </form>
         )}

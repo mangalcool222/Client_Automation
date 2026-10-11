@@ -23,7 +23,7 @@ export default function N8nCanvasFlow({ activeStep = 0, isExecuting = false, the
           </span>
         </div>
         <div className={`font-mono-telemetry text-[11px] ${isLight ? 'text-[#64748B]' : 'text-[#64748B]'}`}>
-          Infrastructure: 24/7 Monitored • 99.9% Uptime
+          Engine: n8n Runtime (Self-Hosted on Linux VPS)
         </div>
       </div>
 

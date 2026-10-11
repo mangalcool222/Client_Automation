@@ -219,7 +219,7 @@ export default function LeadSimulatorApp() {
             <p className="text-[11px] text-[#64748B] font-mono-telemetry flex items-center gap-1.5 mt-0.5">
               <span>TrackKaro Lead Dispatch Telemetry Console</span>
               <span>•</span>
-              <span className={isLight ? 'text-[#059669]' : 'text-[#10B981]'}>Cloud Infrastructure: 24/7 Monitored • 99.9% Uptime</span>
+              <span className={isLight ? 'text-[#059669]' : 'text-[#10B981]'}>Self-Hosted Linux VPS • n8n Workflow Engine</span>
             </p>
           </div>
         </div>
@@ -507,7 +507,7 @@ export default function LeadSimulatorApp() {
 
                   <div className="flex items-center justify-between text-[8px] text-[#64748B] font-mono-telemetry pt-0.5">
                     <span>13:28:03</span>
-                    <span className="text-[#059669]">Delivered (~1.38s)</span>
+                    <span className="text-[#059669]">Simulated Dispatch (~1.38s)</span>
                   </div>
                 </div>
               </div>

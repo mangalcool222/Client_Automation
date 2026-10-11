@@ -11,11 +11,11 @@ export default function App() {
         <div className="max-w-7xl mx-auto flex items-center justify-between text-xs font-mono-telemetry">
           <div className="flex items-center gap-2.5">
             <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
-            <span className="text-[#10B981] font-bold uppercase tracking-wider">SYSTEM STATUS: ALL PIPELINES OPERATIONAL</span>
+            <span className="text-[#10B981] font-bold uppercase tracking-wider">SYSTEM STATUS: SIMULATION &amp; TELEMETRY READY</span>
             <span className="text-[#64748B] hidden sm:inline">•</span>
-            <span className="text-[#767E8F] hidden sm:inline">FOLLOW-UP SLA: &lt;1.4s</span>
+            <span className="text-[#767E8F] hidden sm:inline">BENCHMARK SLA: &lt;1.4s TARGET</span>
             <span className="text-[#64748B] hidden md:inline">•</span>
-            <span className="text-[#3B82F6] hidden md:inline">24/7 ACTIVE PIPELINE</span>
+            <span className="text-[#3B82F6] hidden md:inline">HOSTED ON LINUX VPS</span>
           </div>
 
           <div className="flex items-center gap-3">
