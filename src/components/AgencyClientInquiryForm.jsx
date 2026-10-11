@@ -39,6 +39,7 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
           property_interest: `GTM AGENCY CLIENT SETUP: ${formData.company || 'Direct Inquiry'}`,
           budget: formData.adSpend,
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Kolkata',
+          locale: typeof navigator !== 'undefined' ? (navigator.language || 'en-IN') : 'en-IN',
           status: 'REAL_AGENCY_CLIENT_INQUIRY'
         })
       });
