@@ -295,7 +295,7 @@ export default function LeadSimulatorApp() {
           </a>
 
           <a
-            href="mailto:mangalsoren2025@dbe-du.org?subject=Inquiry%20about%20Lead%20Automation%20Workflows"
+            href="mailto:mangal@trackkaroai.com?subject=Inquiry%20about%20Lead%20Automation%20Workflows"
             className={`hidden md:flex items-center gap-2 border px-3.5 py-1.5 rounded text-xs font-mono-telemetry cursor-pointer transition-all ${
               isLight 
                 ? 'bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border-[#CBD5E1]' 
@@ -334,7 +334,7 @@ export default function LeadSimulatorApp() {
         <p className={`text-xs sm:text-base font-mono-telemetry max-w-3xl mx-auto leading-relaxed ${
           isLight ? 'text-[#334155]' : 'text-[#CBD5E1]'
         }`}>
-          Whether your leads come from Meta &amp; Google Ads, Website Forms, or Listing Portals (Magicbricks, 99acres, Housing) — your sales team shouldn't be manually checking spreadsheets. TrackKaro automatically routes every inquiry into instant Telegram sound alerts (with 1-click call links), Google Sheets CRM, and automated WhatsApp brochures in seconds.
+          Connect your paid ads, website forms, and listing portals directly to your sales reps' phones. Instant Telegram audio alerts with 1-click dial buttons, automated WhatsApp brochure delivery, and centralized Google Sheets sync. Zero spreadsheet checking.
         </p>
 
         {/* Simulation Callout & Action CTAs */}
@@ -557,7 +557,7 @@ export default function LeadSimulatorApp() {
                       <FileText className="w-3.5 h-3.5 text-[#059669] shrink-0" />
                       <div>
                         <div className={`text-[10px] font-bold truncate max-w-[90px] ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
-                          {(formData.project || '').includes('Solar') ? 'Solar_Quote.pdf' : (formData.project || '').includes('Hair') || (formData.project || '').includes('Clinic') ? 'Procedure_Guide.pdf' : (formData.project || '').includes('Audit') ? 'Pipeline_Spec.pdf' : 'VIP_Brochure.pdf'}
+                          {(formData.project || '').includes('Solar') ? 'Solar_Quote.pdf' : (formData.project || '').includes('Hair') || (formData.project || '').includes('Clinic') ? 'Procedure_Guide.pdf' : (formData.project || '').includes('Audit') ? 'Pipeline_Spec.pdf' : 'Project_Brochure.pdf'}
                         </div>
                         <div className="text-[8px] text-[#64748B]">
                           {(formData.project || '').includes('Solar') ? 'System Assessment' : (formData.project || '').includes('Hair') || (formData.project || '').includes('Clinic') ? 'Treatment Pricing' : (formData.project || '').includes('Audit') ? 'Architecture Spec' : 'Digital Floorplan'}

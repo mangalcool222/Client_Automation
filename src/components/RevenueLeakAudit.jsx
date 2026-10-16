@@ -20,7 +20,7 @@ export default function RevenueLeakAudit({ themeMode = 'dark' }) {
             </h3>
           </div>
           <p className={`text-xs sm:text-sm font-mono-telemetry mt-1.5 leading-relaxed ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
-            The longer a new enquiry waits for a response, the greater the chance that your sales team misses the opportunity to connect while the prospect is interested.
+            Harvard Business Review research shows leads contacted in under 5 minutes are 21x more likely to qualify. After 30 minutes, 80%+ of high-ticket buyers go cold.
           </p>
         </div>
         <span className={`text-[10px] font-mono-telemetry px-2.5 py-1 rounded w-fit font-bold shrink-0 ${

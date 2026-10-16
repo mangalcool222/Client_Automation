@@ -59,7 +59,7 @@ export default function CustomWorkflowCTA({ themeMode = 'light' }) {
           </a>
 
           <a
-            href="mailto:mangalsoren2025@dbe-du.org?subject=Custom%20Workflow%20Consultation%20Inquiry"
+            href="mailto:mangal@trackkaroai.com?subject=Custom%20Workflow%20Consultation%20Inquiry"
             className={`w-full sm:w-auto px-5 py-3 rounded text-xs font-mono-telemetry font-bold flex items-center justify-center gap-2 transition-all cursor-pointer border ${
               isLight 
                 ? 'bg-white hover:bg-[#F1F5F9] text-[#0F172A] border-[#CBD5E1]' 
