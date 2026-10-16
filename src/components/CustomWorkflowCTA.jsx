@@ -1,5 +1,6 @@
 import React from 'react';
 import { MessageSquare, Mail, Sparkles, ArrowRight, UserCheck } from 'lucide-react';
+import LinkedInIcon from './LinkedInIcon';
 
 export default function CustomWorkflowCTA({ themeMode = 'light' }) {
   const isLight = themeMode === 'light';
@@ -36,29 +37,51 @@ export default function CustomWorkflowCTA({ themeMode = 'light' }) {
             href="https://wa.me/917979816557?text=Hi%20Mangal,%20I%20want%20to%20discuss%20mapping%20out%20a%20custom%20lead%20automation%20workflow%20for%20my%20business"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-6 py-3 rounded text-xs font-mono-telemetry font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md bg-[#059669] hover:bg-[#047857] text-white"
+            className="w-full sm:w-auto px-5 py-3 rounded text-xs font-mono-telemetry font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md bg-[#059669] hover:bg-[#047857] text-white"
           >
             <MessageSquare className="w-4 h-4 fill-current" />
-            <span>Discuss Your Workflow (WhatsApp)</span>
+            <span>Discuss on WhatsApp</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </a>
 
           <a
+            href="https://www.linkedin.com/in/mangal-soren-1312ba31a/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`w-full sm:w-auto px-5 py-3 rounded text-xs font-mono-telemetry font-bold flex items-center justify-center gap-2 transition-all cursor-pointer border ${
+              isLight 
+                ? 'bg-white hover:bg-[#F1F5F9] text-[#0A66C2] border-[#CBD5E1]' 
+                : 'bg-[#0E1015] hover:bg-[#1E222D] text-[#0A66C2] border-[#2E3648]'
+            }`}
+          >
+            <LinkedInIcon className="w-4 h-4 fill-[#0A66C2]" />
+            <span>Connect on LinkedIn</span>
+          </a>
+
+          <a
             href="mailto:mangalsoren2025@dbe-du.org?subject=Custom%20Workflow%20Consultation%20Inquiry"
-            className={`w-full sm:w-auto px-6 py-3 rounded text-xs font-mono-telemetry font-bold flex items-center justify-center gap-2 transition-all cursor-pointer border ${
+            className={`w-full sm:w-auto px-5 py-3 rounded text-xs font-mono-telemetry font-bold flex items-center justify-center gap-2 transition-all cursor-pointer border ${
               isLight 
                 ? 'bg-white hover:bg-[#F1F5F9] text-[#0F172A] border-[#CBD5E1]' 
                 : 'bg-[#0E1015] hover:bg-[#1E222D] text-[#F1F3F7] border-[#2E3648]'
             }`}
           >
             <Mail className="w-4 h-4 text-[#0284C7]" />
-            <span>Direct Email Inquiry</span>
+            <span>Direct Email</span>
           </a>
         </div>
 
         <div className="text-[11px] text-[#64748B] font-mono-telemetry flex items-center justify-center gap-1.5 pt-1">
           <UserCheck className="w-3.5 h-3.5 text-[#059669]" />
-          <span>Mangal Soren • Lead Automation &amp; GTM Workflows</span>
+          <a
+            href="https://www.linkedin.com/in/mangal-soren-1312ba31a/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline hover:text-[#0A66C2] font-semibold"
+          >
+            Mangal Soren
+          </a>
+          <span>• Lead Automation &amp; GTM Workflows</span>
         </div>
 
       </div>

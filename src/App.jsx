@@ -1,5 +1,6 @@
 import React from 'react';
 import LeadSimulatorApp from './components/LeadSimulatorApp';
+import LinkedInIcon from './components/LinkedInIcon';
 import { Zap } from 'lucide-react';
 
 export default function App() {
@@ -19,7 +20,16 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-[#94A3B8] font-bold hidden sm:inline">MANGAL SOREN</span>
+            <a
+              href="https://www.linkedin.com/in/mangal-soren-1312ba31a/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#94A3B8] hover:text-[#38BDF8] font-bold hidden sm:flex items-center gap-1.5 transition-colors"
+              title="Mangal Soren on LinkedIn"
+            >
+              <LinkedInIcon className="w-3.5 h-3.5 fill-[#0A66C2]" />
+              <span>MANGAL SOREN</span>
+            </a>
             <a
               href="#demo-section"
               className="bg-[#3B82F6] hover:bg-[#2563EB] text-white font-bold px-3 py-1 rounded text-[11px] transition-all cursor-pointer shadow-sm"
@@ -39,7 +49,16 @@ export default function App() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono-telemetry">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#10B981]"></span>
-            <span className="font-bold text-[#F1F3F7]">MANGAL SOREN</span> • Lead Automation &amp; GTM Workflows
+            <a
+              href="https://www.linkedin.com/in/mangal-soren-1312ba31a/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-[#F1F3F7] hover:text-[#38BDF8] flex items-center gap-1.5 transition-colors"
+            >
+              <LinkedInIcon className="w-3.5 h-3.5 fill-[#0A66C2]" />
+              <span>MANGAL SOREN</span>
+            </a>
+            <span>• Lead Automation &amp; GTM Workflows</span>
           </div>
           <div className="text-[#3B82F6] font-bold bg-[#141720] px-3 py-1 rounded border border-[#1E222D] flex items-center gap-1.5">
             <Zap className="w-3.5 h-3.5 text-[#3B82F6]" />

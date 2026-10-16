@@ -6,6 +6,7 @@ import {
   FileText, ExternalLink, PhoneCall, CheckCheck, Building2, Building, Briefcase, Sun, Moon, Stethoscope
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import LinkedInIcon from './LinkedInIcon';
 import N8nCanvasFlow from './N8nCanvasFlow';
 import TelemetryDrawer from './TelemetryDrawer';
 import RevenueLeakAudit from './RevenueLeakAudit';
@@ -268,6 +269,21 @@ export default function LeadSimulatorApp() {
           >
             <MessageSquare className="w-3.5 h-3.5 fill-current" />
             <span>Chat on WhatsApp</span>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/mangal-soren-1312ba31a/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`hidden sm:flex items-center gap-1.5 border px-3 py-1.5 rounded text-xs font-mono-telemetry cursor-pointer transition-all ${
+              isLight 
+                ? 'bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0A66C2] border-[#CBD5E1]' 
+                : 'bg-[#141720] hover:bg-[#1E222D] text-[#0A66C2] border-[#2E3648]'
+            }`}
+            title="View Mangal Soren on LinkedIn"
+          >
+            <LinkedInIcon className="w-3.5 h-3.5 fill-[#0A66C2]" />
+            <span>LinkedIn</span>
           </a>
 
           <a
