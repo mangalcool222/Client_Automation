@@ -65,6 +65,14 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
 
       if (response.ok) {
         setStatus('success');
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'generate_lead', {
+            event_category: 'consultation_form',
+            event_label: formData.company || 'Client Inquiry',
+            industry: formData.industry,
+            value: 500
+          });
+        }
         try {
           confetti({
             particleCount: 70,
@@ -75,6 +83,14 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
       } else {
         // Fallback success if webhook accepts CORS/200
         setStatus('success');
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'generate_lead', {
+            event_category: 'consultation_form',
+            event_label: formData.company || 'Client Inquiry',
+            industry: formData.industry,
+            value: 500
+          });
+        }
       }
     } catch (err) {
       console.log('Inquiry dispatch error:', err);

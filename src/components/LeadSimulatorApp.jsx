@@ -123,6 +123,14 @@ export default function LeadSimulatorApp() {
     setActiveNodeStep(1);
     setLogs([]);
 
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'test_simulator', {
+        event_category: 'engagement',
+        event_label: activeTemplate.name || 'Simulator Test',
+        template_id: activeTemplate.id
+      });
+    }
+
     const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
 
     // Simulation purely executes on-screen visual telemetry (zero external webhook pings)
