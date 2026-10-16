@@ -129,7 +129,7 @@ export default function LeadSimulatorApp() {
     // Step 1: Webhook Ingest
     setTimeout(() => {
       setActiveNodeStep(1);
-      setLogs((prev) => [...prev, `[${timestamp}] INGEST (SIMULATED): Inbound lead payload received at webhook endpoint`]);
+      setLogs((prev) => [...prev, `[${timestamp}] INGEST (SIMULATED): Inbound lead payload received (Meta Ads / Web Form / Portal Email Parser)`]);
     }, 200);
 
     // Step 2: Lead Validation
@@ -296,21 +296,21 @@ export default function LeadSimulatorApp() {
             : 'bg-[#12161F] border-[#1E222D] text-[#10B981]'
         }`}>
           <span className={`w-2 h-2 rounded-full animate-pulse ${isLight ? 'bg-[#059669]' : 'bg-[#10B981]'}`}></span>
-          <span className="font-bold uppercase tracking-wider">AUTOMATED LEAD ROUTING &amp; SALES ALERTS</span>
+          <span className="font-bold uppercase tracking-wider">OMNICHANNEL LEAD ROUTING &amp; INSTANT SALES DISPATCH</span>
         </div>
 
         {/* Problem-First Headline */}
         <h2 className={`text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight max-w-3xl mx-auto ${
           isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'
         }`}>
-          Stop Losing Ad Leads to Slow Follow-Ups.
+          Stop Losing Inbound Leads to Slow Follow-Ups.
         </h2>
 
         {/* Punchy Client-First Hero Statement */}
         <p className={`text-xs sm:text-base font-mono-telemetry max-w-3xl mx-auto leading-relaxed ${
           isLight ? 'text-[#334155]' : 'text-[#CBD5E1]'
         }`}>
-          Whether you're selling luxury real estate, aesthetic clinical treatments, solar installations, or high-ticket services, your sales team shouldn't be manually checking spreadsheets. TrackKaro automatically routes every Meta/Google ad lead into instant Telegram sound alerts (with 1-click call links), Google Sheets CRM, and automated WhatsApp brochures in seconds.
+          Whether your leads come from Meta &amp; Google Ads, Website Forms, or Listing Portals (Magicbricks, 99acres, Housing) — your sales team shouldn't be manually checking spreadsheets. TrackKaro automatically routes every inquiry into instant Telegram sound alerts (with 1-click call links), Google Sheets CRM, and automated WhatsApp brochures in seconds.
         </p>
 
         {/* Simulation Callout & Action CTAs */}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, Building2, Phone, Mail, User, ShieldCheck, Zap, RefreshCw, Sliders } from 'lucide-react';
+import { Send, CheckCircle2, Building2, Phone, Mail, User, ShieldCheck, Zap, RefreshCw, Sliders, Globe } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
@@ -12,6 +12,7 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
     email: '',
     adSpend: '₹50,000 - ₹2,00,000 / month',
     industry: 'Luxury Real Estate & Property Developers',
+    leadSource: 'Meta & Instagram Ads',
     workflowGoal: 'Instant Sales Alerts (Telegram / Mobile)'
   });
 
@@ -39,8 +40,9 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
           lead_email: formData.email,
           email: formData.email,
           industry: formData.industry || 'Luxury Real Estate',
-          property_interest: `GTM SETUP: ${formData.company || 'Direct Inquiry'} [${formData.industry}] (${formData.workflowGoal})`,
-          budget: `${formData.adSpend} • Industry: ${formData.industry} • Goal: ${formData.workflowGoal}`,
+          lead_source: formData.leadSource || 'Meta & Instagram Ads',
+          property_interest: `GTM SETUP: ${formData.company || 'Direct Inquiry'} [${formData.industry}] (Source: ${formData.leadSource}) (${formData.workflowGoal})`,
+          budget: `${formData.adSpend} • Industry: ${formData.industry} • Source: ${formData.leadSource} • Goal: ${formData.workflowGoal}`,
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Kolkata',
           locale: typeof navigator !== 'undefined' ? (navigator.language || 'en-IN') : 'en-IN',
           status: 'REAL_AGENCY_CLIENT_INQUIRY'
@@ -182,26 +184,49 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
               </div>
             </div>
 
-            {/* Industry / Niche Selection */}
-            <div>
-              <label className={`text-xs font-bold block mb-1 flex items-center gap-1.5 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
-                <Building2 className="w-3.5 h-3.5 text-[#0284C7]" />
-                Primary Industry / Niche
-              </label>
-              <select
-                value={formData.industry}
-                onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
-                className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
-                  isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
-                }`}
-              >
-                <option value="Luxury Real Estate & Property Developers">Luxury Real Estate &amp; Property Developers</option>
-                <option value="Aesthetic Clinics, MedSpas & Hair Restoration">Aesthetic Clinics, MedSpas &amp; Hair Restoration</option>
-                <option value="Solar, Roofing & High-Ticket Home Services (US)">Solar, Roofing &amp; High-Ticket Home Services (US)</option>
-                <option value="Performance Marketing & Lead-Gen Agencies">Performance Marketing &amp; Lead-Gen Agencies</option>
-                <option value="B2B SaaS / High-Ticket Consulting">B2B SaaS / High-Ticket Consulting</option>
-                <option value="Other High-Ticket Services">Other High-Ticket Services</option>
-              </select>
+            {/* Industry / Niche Selection & Primary Lead Source */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className={`text-xs font-bold block mb-1 flex items-center gap-1.5 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
+                  <Building2 className="w-3.5 h-3.5 text-[#0284C7]" />
+                  Primary Industry / Niche
+                </label>
+                <select
+                  value={formData.industry}
+                  onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
+                  className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
+                    isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
+                  }`}
+                >
+                  <option value="Luxury Real Estate & Property Developers">Luxury Real Estate &amp; Property Developers</option>
+                  <option value="Aesthetic Clinics, MedSpas & Hair Restoration">Aesthetic Clinics, MedSpas &amp; Hair Restoration</option>
+                  <option value="Solar, Roofing & High-Ticket Home Services (US)">Solar, Roofing &amp; High-Ticket Home Services (US)</option>
+                  <option value="Performance Marketing & Lead-Gen Agencies">Performance Marketing &amp; Lead-Gen Agencies</option>
+                  <option value="B2B SaaS / High-Ticket Consulting">B2B SaaS / High-Ticket Consulting</option>
+                  <option value="Other High-Ticket Services">Other High-Ticket Services</option>
+                </select>
+              </div>
+
+              <div>
+                <label className={`text-xs font-bold block mb-1 flex items-center gap-1.5 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
+                  <Globe className="w-3.5 h-3.5 text-[#059669]" />
+                  Primary Lead Source
+                </label>
+                <select
+                  value={formData.leadSource}
+                  onChange={(e) => setFormData({ ...formData, leadSource: e.target.value })}
+                  className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
+                    isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
+                  }`}
+                >
+                  <option value="Meta & Instagram Ads">Meta &amp; Instagram Ads</option>
+                  <option value="Google Search & Performance Max">Google Search &amp; Performance Max</option>
+                  <option value="Real Estate Portals (Magicbricks, 99acres, Housing)">Real Estate Portals (Magicbricks, 99acres, Housing)</option>
+                  <option value="Clinic / Healthcare Directories (Practo, Justdial)">Clinic / Healthcare Directories (Practo, Justdial)</option>
+                  <option value="Website & Landing Page Forms">Website &amp; Landing Page Forms</option>
+                  <option value="Multiple / Omnichannel Sources">Multiple / Omnichannel Sources</option>
+                </select>
+              </div>
             </div>
 
             {/* Separated Dropdowns: Monthly Ad Spend & Consultation / Workflow Goal */}

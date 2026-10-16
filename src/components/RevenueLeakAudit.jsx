@@ -45,15 +45,15 @@ export default function RevenueLeakAudit({ themeMode = 'dark' }) {
           <ul className="space-y-2.5 text-xs text-[#991B1B] leading-relaxed">
             <li className="flex items-start gap-2">
               <span className="text-[#DC2626] font-bold shrink-0">•</span>
-              <span>New enquiries arrive across different forms, ad managers, and platforms.</span>
+              <span>Leads arrive scattered across Meta Ad Manager, website inboxes, and Magicbricks/99acres notification emails.</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#DC2626] font-bold shrink-0">•</span>
-              <span>Sales teams have to check, assign, and follow up manually without instant prompts.</span>
+              <span>Sitting unread for hours: Sales reps check manually without instant audio alerts or 1-click call prompts.</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#DC2626] font-bold shrink-0">•</span>
-              <span>Lead records can become scattered across spreadsheets, personal inboxes, and chat apps.</span>
+              <span>High-intent prospects slip away to competing brokers or providers who respond within minutes.</span>
             </li>
           </ul>
         </div>
@@ -69,15 +69,15 @@ export default function RevenueLeakAudit({ themeMode = 'dark' }) {
           <ul className="space-y-2.5 text-xs text-[#065F46] leading-relaxed">
             <li className="flex items-start gap-2">
               <span className="text-[#059669] font-bold shrink-0">•</span>
-              <span>Incoming lead data enters a defined, centralized automated webhook.</span>
+              <span>One Centralized Ingestion Engine: Ad webhooks, landing page forms, and portal email parsers all funnel into 1 pipeline.</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#059669] font-bold shrink-0">•</span>
-              <span>Sales teams receive instant alerts through configured channels (Telegram sound alerts).</span>
+              <span>Instant sales alerts with 1-click direct call buttons trigger to your team via Telegram in seconds.</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#059669] font-bold shrink-0">•</span>
-              <span>Lead details are immediately recorded in Google Sheets CRM for organized tracking and follow-up.</span>
+              <span>Lead details auto-append into Google Sheets CRM alongside instant WhatsApp brochure confirmation to the buyer.</span>
             </li>
           </ul>
         </div>

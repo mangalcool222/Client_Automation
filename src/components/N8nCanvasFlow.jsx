@@ -2,7 +2,7 @@ import React from 'react';
 import { Zap, Cpu, MessageSquare, Bell, Database } from 'lucide-react';
 
 const NODES = [
-  { id: 'n1', title: 'Webhook Ingest', subtitle: 'HTTP Inbound Endpoint', icon: Zap, time: 'STAGE 1' },
+  { id: 'n1', title: 'Omnichannel Ingest', subtitle: 'Ads, Forms & Portal Emails', icon: Zap, time: 'STAGE 1' },
   { id: 'n2', title: 'Lead Validation', subtitle: 'Auto-format Phone (+91/+971) & Region', icon: Cpu, time: 'STAGE 2' },
   { id: 'n3', title: 'WhatsApp Integration', subtitle: 'Brochure Auto-Reply (Configurable)', icon: MessageSquare, time: 'STAGE 3' },
   { id: 'n4', title: 'Telegram Alert', subtitle: 'Instant Team Sound Alert', icon: Bell, time: 'STAGE 4' },
@@ -16,10 +16,15 @@ export default function N8nCanvasFlow({ activeStep = 0, isExecuting = false, the
     <div className={`telemetry-card p-5 relative overflow-hidden my-6 transition-all ${isLight ? 'bg-white border-[#E2E8F0]' : 'bg-[#0E1015] border-[#1E222D]'}`}>
       {/* Header Bar */}
       <div className={`flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b gap-2 ${isLight ? 'border-[#E2E8F0]' : 'border-[#1E222D]'}`}>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <span className={`w-2 h-2 rounded-full ${isExecuting ? 'bg-[#F59E0B] animate-ping' : 'bg-[#059669]'}`}></span>
           <span className={`font-mono-telemetry text-xs uppercase tracking-wider ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
             Topology: Pipeline Execution Graph ({isExecuting ? 'Processing' : 'Active'})
+          </span>
+          <span className={`hidden lg:inline text-[10px] font-mono-telemetry px-2 py-0.5 rounded border ${
+            isLight ? 'bg-[#F0FDF4] text-[#059669] border-[#BBF7D0]' : 'bg-[#12161F] text-[#10B981] border-[#1E222D]'
+          }`}>
+            Multi-Source: Meta/Google Ads • Web Forms • Magicbricks / 99acres Parsers
           </span>
         </div>
         <div className={`font-mono-telemetry text-[11px] ${isLight ? 'text-[#64748B]' : 'text-[#64748B]'}`}>
