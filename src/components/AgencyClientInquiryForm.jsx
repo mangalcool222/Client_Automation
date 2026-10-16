@@ -11,6 +11,7 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
     phone: '',
     email: '',
     adSpend: '₹50,000 - ₹2,00,000 / month',
+    industry: 'Luxury Real Estate & Property Developers',
     workflowGoal: 'Instant Sales Alerts (Telegram / Mobile)'
   });
 
@@ -37,8 +38,9 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
           phone_number: formData.phone,
           lead_email: formData.email,
           email: formData.email,
-          property_interest: `GTM AGENCY SETUP: ${formData.company || 'Direct Inquiry'} (${formData.workflowGoal})`,
-          budget: `${formData.adSpend} • Goal: ${formData.workflowGoal}`,
+          industry: formData.industry || 'Luxury Real Estate',
+          property_interest: `GTM SETUP: ${formData.company || 'Direct Inquiry'} [${formData.industry}] (${formData.workflowGoal})`,
+          budget: `${formData.adSpend} • Industry: ${formData.industry} • Goal: ${formData.workflowGoal}`,
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Kolkata',
           locale: typeof navigator !== 'undefined' ? (navigator.language || 'en-IN') : 'en-IN',
           status: 'REAL_AGENCY_CLIENT_INQUIRY'
@@ -178,6 +180,28 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
                   }`}
                 />
               </div>
+            </div>
+
+            {/* Industry / Niche Selection */}
+            <div>
+              <label className={`text-xs font-bold block mb-1 flex items-center gap-1.5 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
+                <Building2 className="w-3.5 h-3.5 text-[#0284C7]" />
+                Primary Industry / Niche
+              </label>
+              <select
+                value={formData.industry}
+                onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
+                className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
+                  isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
+                }`}
+              >
+                <option value="Luxury Real Estate & Property Developers">Luxury Real Estate &amp; Property Developers</option>
+                <option value="Aesthetic Clinics, MedSpas & Hair Restoration">Aesthetic Clinics, MedSpas &amp; Hair Restoration</option>
+                <option value="Solar, Roofing & High-Ticket Home Services (US)">Solar, Roofing &amp; High-Ticket Home Services (US)</option>
+                <option value="Performance Marketing & Lead-Gen Agencies">Performance Marketing &amp; Lead-Gen Agencies</option>
+                <option value="B2B SaaS / High-Ticket Consulting">B2B SaaS / High-Ticket Consulting</option>
+                <option value="Other High-Ticket Services">Other High-Ticket Services</option>
+              </select>
             </div>
 
             {/* Separated Dropdowns: Monthly Ad Spend & Consultation / Workflow Goal */}

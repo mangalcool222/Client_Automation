@@ -3,7 +3,7 @@ import {
   ArrowRight, Bot, CheckCircle2, Clock, Cpu, MessageSquare, Play, Send, 
   ShieldCheck, Sparkles, UserCheck, Zap, Radio, Database, Layers, 
   LayoutTemplate, Smartphone, RefreshCw, AlertCircle, Mail, User, Check, 
-  FileText, ExternalLink, PhoneCall, CheckCheck, Building2, Building, Briefcase, Sun, Moon
+  FileText, ExternalLink, PhoneCall, CheckCheck, Building2, Building, Briefcase, Sun, Moon, Stethoscope
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import N8nCanvasFlow from './N8nCanvasFlow';
@@ -16,7 +16,7 @@ export default function LeadSimulatorApp() {
   const templates = [
     {
       id: 'dubai-usd',
-      name: 'Real Estate Lead ($ USD)',
+      name: 'Real Estate Lead ($ / ₹)',
       icon: Building2,
       currency: 'USD',
       data: {
@@ -24,36 +24,50 @@ export default function LeadSimulatorApp() {
         phone: '+971 50 000 9999',
         email: 'alexander.sample@example.com',
         project: 'Dubai Marina Luxury Off-Plan Penthouse',
-        budgetUSD: '$850,000 - $1.5M',
-        budgetINR: '₹7.0 Cr - ₹12.5 Cr',
+        budgetUSD: '$1,250,000 Penthouse',
+        budgetINR: '₹10.5 Crore Penthouse',
       }
     },
     {
-      id: 'india-inr',
-      name: 'Real Estate Lead (₹ INR)',
-      icon: Building,
-      currency: 'INR',
+      id: 'solar-us',
+      name: 'Solar & Roofing ($ USD)',
+      icon: Sun,
+      currency: 'USD',
       data: {
-        name: 'Rajesh Malhotra (Sample Lead)',
-        phone: '+91 98000 00000',
-        email: 'rajesh.sample@example.com',
-        project: 'Golf Course Road Luxury Penthouse (Gurugram)',
-        budgetUSD: '$1.5 Million',
-        budgetINR: '₹12.5 Crore',
+        name: 'David Miller (Sample Lead)',
+        phone: '+1 (555) 018-9472',
+        email: 'david.miller@example.com',
+        project: 'Single-Family Solar + Battery Quote (Austin, TX)',
+        budgetUSD: '$28,500 System Contract',
+        budgetINR: '₹23.5 Lakhs Contract',
+      }
+    },
+    {
+      id: 'clinic-high-ticket',
+      name: 'Aesthetic Clinic & MedSpa',
+      icon: Stethoscope,
+      currency: 'USD',
+      data: {
+        name: 'Priya Sharma (Sample Lead)',
+        phone: '+91 98000 11223',
+        email: 'priya.clinic@example.com',
+        project: 'FUE Hair Restoration & Density Consultation',
+        budgetUSD: '$4,200 Procedure',
+        budgetINR: '₹2,50,000 Procedure',
       }
     },
     {
       id: 'b2b-saas',
-      name: 'B2B SaaS / Agency Lead',
+      name: 'Agency & B2B SaaS',
       icon: Briefcase,
       currency: 'USD',
       data: {
         name: 'Julian Thorne (Sample Lead)',
         phone: '+1 (555) 019-2831',
         email: 'julian.sample@example.com',
-        project: 'Meta Ad Lead Automation Engine Audit',
-        budgetUSD: '$3,000 / month Retainer',
-        budgetINR: '₹2.5 Lakh / month Retainer',
+        project: 'Meta Ad Lead Ingestion & Webhook Pipeline Audit',
+        budgetUSD: '$3,500 / month Retainer',
+        budgetINR: '₹2.8 Lakh / month Retainer',
       }
     }
   ];
@@ -293,10 +307,10 @@ export default function LeadSimulatorApp() {
         </h2>
 
         {/* Punchy Client-First Hero Statement */}
-        <p className={`text-xs sm:text-base font-mono-telemetry max-w-2xl mx-auto leading-relaxed ${
+        <p className={`text-xs sm:text-base font-mono-telemetry max-w-3xl mx-auto leading-relaxed ${
           isLight ? 'text-[#334155]' : 'text-[#CBD5E1]'
         }`}>
-          When paid ad leads arrive, your sales team shouldn't be manually checking spreadsheets. TrackKaro automatically routes every enquiry into instant Telegram sound alerts (with 1-click call links), Google Sheets CRM, and automated WhatsApp brochures.
+          Whether you're selling luxury real estate, aesthetic clinical treatments, solar installations, or high-ticket services, your sales team shouldn't be manually checking spreadsheets. TrackKaro automatically routes every Meta/Google ad lead into instant Telegram sound alerts (with 1-click call links), Google Sheets CRM, and automated WhatsApp brochures in seconds.
         </p>
 
         {/* Simulation Callout & Action CTAs */}
@@ -334,25 +348,25 @@ export default function LeadSimulatorApp() {
         </div>
 
         {/* Sample Preset Selector */}
-        <div className="pt-2 max-w-xl mx-auto">
+        <div className="pt-2 max-w-4xl mx-auto">
           <div className={`text-[10px] font-mono-telemetry uppercase tracking-wider mb-2 ${isLight ? 'text-[#64748B]' : 'text-[#64748B]'}`}>
             Select Sample Preset Payload:
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
             {templates.map((tpl) => {
               const TplIcon = tpl.icon;
               return (
                 <button
                   key={tpl.id}
                   onClick={() => handleSelectTemplate(tpl)}
-                  className={`px-3 py-2 rounded text-xs font-mono-telemetry font-bold transition-all border cursor-pointer flex items-center justify-center gap-1.5 ${
+                  className={`px-3 py-2.5 rounded text-xs font-mono-telemetry font-bold transition-all border cursor-pointer flex items-center justify-center gap-1.5 ${
                     activeTemplate === tpl.id
                       ? isLight ? 'bg-[#F1F5F9] text-[#0F172A] border-[#0284C7]' : 'bg-[#141720] text-[#F1F3F7] border-[#3B82F6]'
                       : isLight ? 'bg-[#F8FAFC] text-[#64748B] border-[#E2E8F0] hover:text-[#0F172A]' : 'bg-[#0E1015] text-[#64748B] border-[#1E222D] hover:border-[#2E3648] hover:text-[#F1F3F7]'
                   }`}
                 >
                   <TplIcon className={`w-3.5 h-3.5 ${isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}`} />
-                  <span>{tpl.name}</span>
+                  <span className="truncate">{tpl.name}</span>
                 </button>
               );
             })}
@@ -518,8 +532,12 @@ export default function LeadSimulatorApp() {
                     <div className="flex items-center gap-1.5">
                       <FileText className="w-3.5 h-3.5 text-[#059669] shrink-0" />
                       <div>
-                        <div className={`text-[10px] font-bold truncate max-w-[90px] ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>Brochure.pdf</div>
-                        <div className="text-[8px] text-[#64748B]">Digital Floorplan</div>
+                        <div className={`text-[10px] font-bold truncate max-w-[90px] ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
+                          {(formData.project || '').includes('Solar') ? 'Solar_Quote.pdf' : (formData.project || '').includes('Hair') || (formData.project || '').includes('Clinic') ? 'Procedure_Guide.pdf' : (formData.project || '').includes('Audit') ? 'Pipeline_Spec.pdf' : 'VIP_Brochure.pdf'}
+                        </div>
+                        <div className="text-[8px] text-[#64748B]">
+                          {(formData.project || '').includes('Solar') ? 'System Assessment' : (formData.project || '').includes('Hair') || (formData.project || '').includes('Clinic') ? 'Treatment Pricing' : (formData.project || '').includes('Audit') ? 'Architecture Spec' : 'Digital Floorplan'}
+                        </div>
                       </div>
                     </div>
                     <span className="text-[8px] text-[#059669] bg-[#059669]/15 px-1.5 py-0.5 rounded font-bold">PDF</span>
