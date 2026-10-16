@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   ArrowRight, Bot, CheckCircle2, Clock, Cpu, MessageSquare, Play, Send, 
   ShieldCheck, Sparkles, UserCheck, Zap, Radio, Database, Layers, 
-  LayoutTemplate, Smartphone, RefreshCw, AlertCircle, Mail, User, Check, 
+  LayoutTemplate, Smartphone, RefreshCw, AlertCircle, Mail, User, Check, Copy,
   FileText, ExternalLink, PhoneCall, CheckCheck, Building2, Building, Briefcase, Sun, Moon, Stethoscope
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -80,6 +80,15 @@ export default function LeadSimulatorApp() {
   const [pipelineState, setPipelineState] = useState('idle'); // idle | processing | complete
   const [activeNodeStep, setActiveNodeStep] = useState(0);
   const [logs, setLogs] = useState([]);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleCopyHeaderEmail = () => {
+    try {
+      navigator.clipboard.writeText('mangal@trackkaroai.com');
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2500);
+    } catch (err) {}
+  };
 
   // Sync theme attribute to document body for global background transition
   useEffect(() => {
@@ -296,14 +305,26 @@ export default function LeadSimulatorApp() {
 
           <a
             href="mailto:mangal@trackkaroai.com?subject=Inquiry%20about%20Lead%20Automation%20Workflows"
+            onClick={handleCopyHeaderEmail}
             className={`hidden md:flex items-center gap-2 border px-3.5 py-1.5 rounded text-xs font-mono-telemetry cursor-pointer transition-all ${
               isLight 
                 ? 'bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border-[#CBD5E1]' 
                 : 'bg-[#141720] hover:bg-[#1E222D] text-[#F1F3F7] border-[#2E3648]'
             }`}
+            title="Click to email or copy: mangal@trackkaroai.com"
           >
-            <User className={`w-3.5 h-3.5 ${isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}`} />
-            Direct Email
+            {copiedEmail ? (
+              <>
+                <Check className="w-3.5 h-3.5 text-emerald-500" />
+                <span className="text-emerald-500 font-bold">mangal@trackkaroai.com (Copied!)</span>
+              </>
+            ) : (
+              <>
+                <Mail className={`w-3.5 h-3.5 ${isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}`} />
+                <span>mangal@trackkaroai.com</span>
+                <Copy className="w-3 h-3 text-zinc-400 ml-0.5" />
+              </>
+            )}
           </a>
         </div>
       </header>

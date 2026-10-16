@@ -1,9 +1,18 @@
-import React from 'react';
-import { MessageSquare, Mail, Sparkles, ArrowRight, UserCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { MessageSquare, Mail, Sparkles, ArrowRight, UserCheck, Copy, Check } from 'lucide-react';
 import LinkedInIcon from './LinkedInIcon';
 
 export default function CustomWorkflowCTA({ themeMode = 'light' }) {
   const isLight = themeMode === 'light';
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = (e) => {
+    try {
+      navigator.clipboard.writeText('mangal@trackkaroai.com');
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch (err) {}
+  };
 
   return (
     <div className={`telemetry-card p-6 sm:p-8 rounded-xl transition-all border ${
@@ -60,14 +69,26 @@ export default function CustomWorkflowCTA({ themeMode = 'light' }) {
 
           <a
             href="mailto:mangal@trackkaroai.com?subject=Custom%20Workflow%20Consultation%20Inquiry"
+            onClick={handleCopyEmail}
             className={`w-full sm:w-auto px-5 py-3 rounded text-xs font-mono-telemetry font-bold flex items-center justify-center gap-2 transition-all cursor-pointer border ${
               isLight 
                 ? 'bg-white hover:bg-[#F1F5F9] text-[#0F172A] border-[#CBD5E1]' 
                 : 'bg-[#0E1015] hover:bg-[#1E222D] text-[#F1F3F7] border-[#2E3648]'
             }`}
+            title="Click to email or copy: mangal@trackkaroai.com"
           >
-            <Mail className="w-4 h-4 text-[#0284C7]" />
-            <span>Direct Email</span>
+            {copied ? (
+              <>
+                <Check className="w-4 h-4 text-emerald-500" />
+                <span className="text-emerald-500">mangal@trackkaroai.com (Copied!)</span>
+              </>
+            ) : (
+              <>
+                <Mail className="w-4 h-4 text-[#0284C7]" />
+                <span>mangal@trackkaroai.com</span>
+                <Copy className="w-3.5 h-3.5 text-zinc-400 ml-0.5" />
+              </>
+            )}
           </a>
         </div>
 
