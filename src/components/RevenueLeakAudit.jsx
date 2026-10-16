@@ -79,6 +79,10 @@ export default function RevenueLeakAudit({ themeMode = 'dark' }) {
               <span className="text-[#059669] font-bold shrink-0">•</span>
               <span>Lead details auto-append into Google Sheets CRM alongside instant WhatsApp brochure confirmation to the buyer.</span>
             </li>
+            <li className="flex items-start gap-2">
+              <span className="text-[#059669] font-bold shrink-0">•</span>
+              <span><strong>Zero Disruption to Existing Setup:</strong> Connects parallel alongside your current CRM (HubSpot, Salesforce, Zoho, or Excel) — nothing gets replaced or paused.</span>
+            </li>
           </ul>
         </div>
       </div>

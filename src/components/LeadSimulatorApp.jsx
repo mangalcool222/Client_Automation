@@ -366,8 +366,8 @@ export default function LeadSimulatorApp() {
           </div>
 
           {/* Subtle Infrastructure Proof */}
-          <div className={`text-[11px] font-mono-telemetry pt-2 ${isLight ? 'text-[#94A3B8]' : 'text-[#64748B]'}`}>
-            Fully managed cloud infrastructure · Automated webhook &amp; API routing
+          <div className={`text-[11px] font-mono-telemetry pt-2 flex items-center justify-center gap-1.5 ${isLight ? 'text-[#0369A1]' : 'text-[#38BDF8]'}`}>
+            <span>🛡️ Non-Invasive Integration: Connects parallel to your existing CRM &amp; Ads · Zero downtime · Nothing replaced</span>
           </div>
         </div>
 
