@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <rect width="100" height="100" rx="24" fill="#0A0C12" />
+  <rect x="2" y="2" width="96" height="96" rx="22" stroke="#10B981" stroke-width="3" stroke-opacity="0.3" />
+  <circle cx="50" cy="50" r="34" stroke="#10B981" stroke-width="2" stroke-dasharray="4 4" stroke-opacity="0.5" />
+  <!-- Lightning bolt / Speed-to-lead icon -->
+  <path d="M54 18L28 54H48L44 82L72 46H52L54 18Z" fill="#10B981" />
+  <circle cx="50" cy="50" r="6" fill="#38BDF8" opacity="0.8" />
+</svg>
