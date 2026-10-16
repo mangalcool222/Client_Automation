@@ -20,9 +20,23 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone) {
-      alert('Please enter your Name and WhatsApp Phone Number.');
+    if (!formData.name.trim()) {
+      alert('Please enter your Full Name.');
       return;
+    }
+
+    const cleanDigits = formData.phone.replace(/[^0-9]/g, '');
+    if (!formData.phone.trim() || cleanDigits.length < 10 || cleanDigits.length > 15) {
+      alert('Please enter a valid WhatsApp Phone Number (10 to 15 digits, e.g. +91 98765 43210 or 9876543210).');
+      return;
+    }
+
+    // Auto-normalize phone if 10-digit Indian or standard format
+    let phoneToSend = formData.phone.trim();
+    if (cleanDigits.length === 10) {
+      phoneToSend = `+91 ${cleanDigits.slice(0, 5)} ${cleanDigits.slice(5)}`;
+    } else if (cleanDigits.length === 12 && cleanDigits.startsWith('91')) {
+      phoneToSend = `+91 ${cleanDigits.slice(2, 7)} ${cleanDigits.slice(7)}`;
     }
 
     setStatus('submitting');
@@ -35,8 +49,8 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
           lead_name: formData.name,
           full_name: formData.name,
           company: formData.company || 'Direct Client Inquiry',
-          lead_phone: formData.phone,
-          phone_number: formData.phone,
+          lead_phone: phoneToSend,
+          phone_number: phoneToSend,
           lead_email: formData.email,
           email: formData.email,
           industry: formData.industry || 'Luxury Real Estate',
@@ -155,15 +169,23 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
                   WhatsApp Phone Number *
                 </label>
                 <input
-                  type="text"
+                  type="tel"
                   required
+                  maxLength={18}
                   placeholder="e.g. +91 98765 43210"
                   value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  onChange={(e) => {
+                    // Only allow numbers, +, space, hyphen, and parentheses
+                    const sanitized = e.target.value.replace(/[^0-9+\s\-()]/g, '');
+                    setFormData({ ...formData, phone: sanitized });
+                  }}
                   className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
                     isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
                   }`}
                 />
+                <p className={`text-[10px] mt-1 ${isLight ? 'text-[#64748B]' : 'text-[#8E9AA8]'}`}>
+                  10-digit mobile number (with or without +91)
+                </p>
               </div>
 
               {/* Email Address */}
