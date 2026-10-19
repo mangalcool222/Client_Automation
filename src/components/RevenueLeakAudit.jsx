@@ -1,11 +1,12 @@
-import React from 'react';
-import { Layers, AlertCircle, CheckCircle2, Info } from 'lucide-react';
+import React, { useState } from 'react';
+import { Layers, AlertCircle, CheckCircle2, Info, Zap } from 'lucide-react';
 
 export default function RevenueLeakAudit({ themeMode = 'dark' }) {
   const isLight = themeMode === 'light';
+  const [mobileTab, setMobileTab] = useState('automated'); // 'automated' | 'manual'
 
   return (
-    <div className={`telemetry-card p-6 sm:p-8 space-y-6 mt-8 transition-all border rounded-xl ${
+    <div id="revenue-audit" className={`telemetry-card p-6 sm:p-8 space-y-6 mt-8 transition-all border rounded-xl scroll-mt-24 ${
       isLight ? 'bg-white border-[#E2E8F0] shadow-sm' : 'bg-[#0E1015] border-[#1E222D] shadow-xl'
     }`}>
       {/* Section Header */}
@@ -32,8 +33,35 @@ export default function RevenueLeakAudit({ themeMode = 'dark' }) {
         </span>
       </div>
 
-      {/* Side-by-Side Comparison Matrix */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {/* Mobile Tab Switcher */}
+      <div className="flex md:hidden p-1 rounded-lg border font-mono-telemetry text-xs font-bold bg-[#141720] border-[#1E222D]">
+        <button
+          onClick={() => setMobileTab('automated')}
+          className={`flex-1 py-2 px-2 rounded-md transition-all flex items-center justify-center gap-1.5 ${
+            mobileTab === 'automated'
+              ? 'bg-[#059669] text-white shadow-sm'
+              : 'text-[#94A3B8] hover:text-white'
+          }`}
+        >
+          <Zap className="w-3.5 h-3.5" />
+          <span>Automated (15s)</span>
+        </button>
+        <button
+          onClick={() => setMobileTab('manual')}
+          className={`flex-1 py-2 px-2 rounded-md transition-all flex items-center justify-center gap-1.5 ${
+            mobileTab === 'manual'
+              ? 'bg-[#DC2626] text-white shadow-sm'
+              : 'text-[#94A3B8] hover:text-white'
+          }`}
+        >
+          <AlertCircle className="w-3.5 h-3.5" />
+          <span>Manual Delay (2hr+)</span>
+        </button>
+      </div>
+
+      {/* Comparison Matrix */}
+      {/* Desktop: Side-by-Side (2 cols) */}
+      <div className="hidden md:grid md:grid-cols-2 gap-5">
         {/* Left Side: The Manual Workflow */}
         <div className={`border rounded-lg p-5 space-y-3 font-mono-telemetry ${
           isLight ? 'bg-[#FEF2F2] border-[#FCA5A5]' : 'bg-[#1A1114] border-[#EF4444]/30'
@@ -85,6 +113,61 @@ export default function RevenueLeakAudit({ themeMode = 'dark' }) {
             </li>
           </ul>
         </div>
+      </div>
+
+      {/* Mobile: Single Active Card */}
+      <div className="block md:hidden">
+        {mobileTab === 'manual' ? (
+          <div className={`border rounded-lg p-4 space-y-2.5 font-mono-telemetry ${
+            isLight ? 'bg-[#FEF2F2] border-[#FCA5A5]' : 'bg-[#1A1114] border-[#EF4444]/30'
+          }`}>
+            <div className="flex items-center gap-2 text-[#DC2626] font-bold text-xs border-b border-[#FCA5A5]/40 pb-2">
+              <AlertCircle className="w-4 h-4 shrink-0" />
+              <span>The Manual Workflow (Slow Follow-Up)</span>
+            </div>
+            <ul className="space-y-2 text-xs text-[#991B1B] leading-relaxed">
+              <li className="flex items-start gap-2">
+                <span className="text-[#DC2626] font-bold shrink-0">•</span>
+                <span>Leads arrive scattered across Meta Ad Manager, website inboxes, and listing emails.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#DC2626] font-bold shrink-0">•</span>
+                <span>Sitting unread for hours: Sales reps check manually without audio alerts or 1-click dial.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#DC2626] font-bold shrink-0">•</span>
+                <span>High-intent prospects move on to competing brokers who respond immediately.</span>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <div className={`border rounded-lg p-4 space-y-2.5 font-mono-telemetry ${
+            isLight ? 'bg-[#ECFDF5] border-[#6EE7B7]' : 'bg-[#0D1914] border-[#10B981]/30'
+          }`}>
+            <div className="flex items-center gap-2 text-[#059669] font-bold text-xs border-b border-[#6EE7B7]/40 pb-2">
+              <CheckCircle2 className="w-4 h-4 shrink-0" />
+              <span>The Automated Workflow (15s Dispatch)</span>
+            </div>
+            <ul className="space-y-2 text-xs text-[#065F46] leading-relaxed">
+              <li className="flex items-start gap-2">
+                <span className="text-[#059669] font-bold shrink-0">•</span>
+                <span><strong>Centralized Ingest:</strong> Ad webhooks & forms funnel into 1 single pipeline.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#059669] font-bold shrink-0">•</span>
+                <span><strong>Instant Sound Alerts:</strong> Telegram alerts with 1-click call links trigger in 15s.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#059669] font-bold shrink-0">•</span>
+                <span><strong>WhatsApp Asset Delivery:</strong> Lead gets brochure before closing Instagram.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#059669] font-bold shrink-0">•</span>
+                <span><strong>Zero Disruption:</strong> Connects parallel alongside your existing CRM.</span>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
 
       {/* Transparent Disclaimer Box */}

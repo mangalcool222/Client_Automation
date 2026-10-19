@@ -1,7 +1,7 @@
 import React from 'react';
 import LeadSimulatorApp from './components/LeadSimulatorApp';
 import LinkedInIcon from './components/LinkedInIcon';
-import { Zap } from 'lucide-react';
+import { Zap, Play, Layers, MessageSquare } from 'lucide-react';
 
 export default function App() {
   return (
@@ -40,7 +40,7 @@ export default function App() {
         </div>
       </div>
 
-      <main className="py-4">
+      <main className="py-4 pb-24 md:pb-6">
         <LeadSimulatorApp />
       </main>
 
@@ -66,6 +66,45 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Mobile Sticky Navigation Dock */}
+      <nav aria-label="Mobile Navigation" className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#0E1015]/95 backdrop-blur-md border-t border-[#1E222D] px-4 py-2.5 shadow-2xl">
+        <div className="flex items-center justify-between max-w-sm mx-auto font-mono-telemetry">
+          <a
+            href="#demo-section"
+            className="flex flex-col items-center gap-1 text-[#3B82F6] hover:text-[#60A5FA] px-2 py-0.5 transition-all"
+          >
+            <Play className="w-4 h-4 fill-current" />
+            <span className="text-[10px] font-bold">Simulator</span>
+          </a>
+
+          <a
+            href="#revenue-audit"
+            className="flex flex-col items-center gap-1 text-[#94A3B8] hover:text-white px-2 py-0.5 transition-all"
+          >
+            <Layers className="w-4 h-4" />
+            <span className="text-[10px] font-bold">Speed ROI</span>
+          </a>
+
+          <a
+            href="#contact-form"
+            className="flex flex-col items-center gap-1 text-[#94A3B8] hover:text-white px-2 py-0.5 transition-all"
+          >
+            <Zap className="w-4 h-4" />
+            <span className="text-[10px] font-bold">Book GTM</span>
+          </a>
+
+          <a
+            href="https://wa.me/917979816557?text=Hi%20Mangal,%20I%20want%20to%20discuss%20a%20lead%20automation%20workflow%20for%20my%20business"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 bg-[#059669] hover:bg-[#047857] text-white px-3 py-1.5 rounded-full text-[11px] font-bold shadow-md transition-all active:scale-95"
+          >
+            <MessageSquare className="w-3.5 h-3.5 fill-current" />
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </nav>
     </div>
   );
 }

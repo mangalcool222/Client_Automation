@@ -81,6 +81,7 @@ export default function LeadSimulatorApp() {
   const [activeNodeStep, setActiveNodeStep] = useState(0);
   const [logs, setLogs] = useState([]);
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [mobileActiveChannel, setMobileActiveChannel] = useState('whatsapp'); // 'whatsapp' | 'telegram' | 'sheets'
 
   const handleCopyHeaderEmail = () => {
     try {
@@ -106,6 +107,7 @@ export default function LeadSimulatorApp() {
     setPipelineState('idle');
     setActiveNodeStep(0);
     setLogs([]);
+    setMobileActiveChannel('whatsapp');
   };
 
   const handleClearForm = () => {
@@ -120,6 +122,7 @@ export default function LeadSimulatorApp() {
     setPipelineState('idle');
     setActiveNodeStep(0);
     setLogs([]);
+    setMobileActiveChannel('whatsapp');
   };
 
   const handleTriggerPipeline = async () => {
@@ -131,6 +134,14 @@ export default function LeadSimulatorApp() {
     setPipelineState('processing');
     setActiveNodeStep(1);
     setLogs([]);
+    setMobileActiveChannel('whatsapp');
+
+    // On mobile screen, smoothly scroll to output deck so user watches live dispatch
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      setTimeout(() => {
+        document.getElementById('demo-outputs')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 150);
+    }
 
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'test_simulator', {
@@ -141,8 +152,6 @@ export default function LeadSimulatorApp() {
     }
 
     const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-
-    // Simulation purely executes on-screen visual telemetry (zero external webhook pings)
 
     // Step 1: Webhook Ingest
     setTimeout(() => {
@@ -162,6 +171,7 @@ export default function LeadSimulatorApp() {
     // Step 3: WhatsApp Module
     setTimeout(() => {
       setActiveNodeStep(3);
+      setMobileActiveChannel('whatsapp');
       setLogs((prev) => [
         ...prev,
         `[${timestamp}] WHATSAPP PREVIEW: Formatted auto-reply payload (requires provider configuration for Meta / AiSensy)`,
@@ -171,6 +181,7 @@ export default function LeadSimulatorApp() {
     // Step 4: Telegram SLA Alert
     setTimeout(() => {
       setActiveNodeStep(4);
+      setMobileActiveChannel('telegram');
       setLogs((prev) => [
         ...prev,
         `[${timestamp}] TELEGRAM ALERT: Generated instant notification layout for sales channel`,
@@ -180,6 +191,7 @@ export default function LeadSimulatorApp() {
     // Step 5: CRM Sync
     setTimeout(() => {
       setActiveNodeStep(5);
+      setMobileActiveChannel('sheets');
       setLogs((prev) => [
         ...prev,
         `[${timestamp}] GOOGLE SHEETS: Prepared structured 10-column CRM row data`,
@@ -205,6 +217,151 @@ export default function LeadSimulatorApp() {
   };
 
   const isLight = themeMode === 'light';
+
+  // Output Mockup Card Renderers
+  const renderWhatsAppCard = () => (
+    <div className={`p-3.5 space-y-2.5 flex flex-col justify-between min-h-[360px] rounded border ${
+      isLight ? 'bg-[#E5DDD5] border-[#CBD5E1]' : 'phone-glass-frame'
+    }`}>
+      <div className={`rounded p-2 border flex items-center justify-between font-mono-telemetry ${
+        isLight ? 'bg-white border-[#E2E8F0] shadow-sm' : 'bg-[#0E1015] border-[#1E222D]'
+      }`}>
+        <div className="flex items-center gap-1.5">
+          <div className="w-6 h-6 rounded bg-[#059669]/20 border border-[#059669]/30 flex items-center justify-center text-[#059669] font-bold text-[10px]">
+            TK
+          </div>
+          <div>
+            <div className={`text-[11px] font-bold truncate max-w-[100px] ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>TrackKaro Systems</div>
+            <div className="text-[9px] text-[#059669]">WhatsApp Integration</div>
+          </div>
+        </div>
+        <span className={`text-[8px] px-1.5 py-0.5 rounded ${isLight ? 'bg-[#F1F5F9] text-[#64748B]' : 'bg-[#141720] text-[#767E8F]'}`}>Configurable Module</span>
+      </div>
+
+      <div className="space-y-2 py-1 flex-1 flex flex-col justify-end">
+        <div className={`rounded p-2.5 text-[11px] space-y-2 shadow-sm ${
+          isLight ? 'bg-[#DCF8C6] border border-[#BBF7D0] text-[#0F172A]' : 'bg-[#0b141a] border border-[#10B981]/30 text-[#F1F3F7]'
+        }`}>
+          <div className="leading-tight">
+            Hello <span className="font-bold text-[#059669]">{formData.name}</span>! Here is your requested brochure.
+          </div>
+
+          <div className={`rounded p-2 flex items-center justify-between gap-1.5 font-mono-telemetry ${
+            isLight ? 'bg-white border border-[#E2E8F0]' : 'bg-[#0E1015] border border-[#10B981]/40'
+          }`}>
+            <div className="flex items-center gap-1.5">
+              <FileText className="w-3.5 h-3.5 text-[#059669] shrink-0" />
+              <div>
+                <div className={`text-[10px] font-bold truncate max-w-[90px] ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
+                  {(formData.project || '').includes('Solar') ? 'Solar_Quote.pdf' : (formData.project || '').includes('Hair') || (formData.project || '').includes('Clinic') ? 'Procedure_Guide.pdf' : (formData.project || '').includes('Audit') ? 'Pipeline_Spec.pdf' : 'Project_Brochure.pdf'}
+                </div>
+                <div className="text-[8px] text-[#64748B]">
+                  {(formData.project || '').includes('Solar') ? 'System Assessment' : (formData.project || '').includes('Hair') || (formData.project || '').includes('Clinic') ? 'Treatment Pricing' : (formData.project || '').includes('Audit') ? 'Architecture Spec' : 'Digital Floorplan'}
+                </div>
+              </div>
+            </div>
+            <span className="text-[8px] text-[#059669] bg-[#059669]/15 px-1.5 py-0.5 rounded font-bold">PDF</span>
+          </div>
+
+          <div className="flex items-center justify-between text-[8px] text-[#64748B] font-mono-telemetry pt-0.5">
+            <span>Simulated Dispatch</span>
+            <span className="text-[#059669]">Configurable API</span>
+          </div>
+        </div>
+
+        <div className={`text-[9px] text-center font-mono-telemetry p-1.5 rounded ${
+          isLight ? 'bg-white/80 text-[#64748B]' : 'bg-[#0E1015]/80 text-[#94A3B8]'
+        }`}>
+          Requires Meta / AiSensy WABA Setup
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderTelegramCard = () => (
+    <div className={`p-3.5 space-y-2.5 flex flex-col justify-between min-h-[360px] rounded border ${
+      isLight ? 'bg-white border-[#E2E8F0] shadow-sm' : 'telegram-desktop-frame'
+    }`}>
+      <div>
+        <div className={`flex items-center justify-between border-b pb-2 font-mono-telemetry ${isLight ? 'border-[#E2E8F0]' : 'border-[#1E222D]'}`}>
+          <div className="flex items-center gap-1.5">
+            <Radio className={`w-3.5 h-3.5 animate-pulse ${isLight ? 'text-[#D97706]' : 'text-[#F59E0B]'}`} />
+            <span className={`text-[11px] font-bold ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>Telegram Sales Alert</span>
+          </div>
+          <span className={`text-[8px] px-1.5 py-0.5 rounded font-bold ${isLight ? 'bg-[#059669]/15 text-[#059669]' : 'bg-[#10B981]/15 text-[#10B981]'}`}>Sample Alert</span>
+        </div>
+
+        <div className={`mt-2.5 p-2.5 rounded border space-y-1 font-mono-telemetry text-[10px] ${
+          isLight ? 'bg-[#F8FAFC] border-[#E2E8F0]' : 'bg-[#08090C] border-[#1E222D]'
+        }`}>
+          <div className={`font-bold border-b pb-1 ${isLight ? 'text-[#0284C7] border-[#E2E8F0]' : 'text-[#3B82F6] border-[#1E222D]'}`}>
+            NEW LEAD INBOUND
+          </div>
+          <div className={`space-y-0.5 ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
+            <div>NAME: <span className={`font-bold truncate block ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>{formData.name}</span></div>
+            <div>PHONE: <span className={isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}>{formData.phone}</span></div>
+            <div>BUDGET: <span className={`font-bold ${isLight ? 'text-[#059669]' : 'text-[#10B981]'}`}>{currencyMode === 'USD' ? formData.budgetUSD : formData.budgetINR}</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-1.5">
+        <button className={`w-full font-extrabold py-2.5 rounded text-[11px] font-mono-telemetry flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-sm text-white ${
+          isLight ? 'bg-[#059669] hover:bg-[#047857]' : 'bg-[#10B981] hover:bg-[#059669] text-[#08090C]'
+        }`}>
+          <PhoneCall className="w-3.5 h-3.5 fill-current" />
+          <span>Call Lead (1-Click Link)</span>
+        </button>
+        <div className={`text-[9px] text-center font-mono-telemetry ${isLight ? 'text-[#64748B]' : 'text-[#767E8F]'}`}>
+          Live alert verified in bottom form
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderSheetsCard = () => (
+    <div className={`p-3.5 space-y-2.5 flex flex-col justify-between min-h-[360px] rounded border ${
+      isLight ? 'bg-white border-[#E2E8F0] shadow-sm' : 'telegram-desktop-frame'
+    }`}>
+      <div>
+        <div className={`flex items-center justify-between border-b pb-2 font-mono-telemetry ${isLight ? 'border-[#E2E8F0]' : 'border-[#1E222D]'}`}>
+          <div className="flex items-center gap-1.5">
+            <Database className={`w-3.5 h-3.5 ${isLight ? 'text-[#059669]' : 'text-[#10B981]'}`} />
+            <span className={`text-[11px] font-bold ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>Google Sheets CRM</span>
+          </div>
+          <span className={`text-[8px] px-1.5 py-0.5 rounded font-bold ${isLight ? 'bg-[#059669]/15 text-[#059669]' : 'bg-[#10B981]/15 text-[#10B981]'}`}>Structured Row</span>
+        </div>
+
+        <div className={`mt-2.5 p-2.5 rounded border space-y-1 font-mono-telemetry text-[10px] ${
+          isLight ? 'bg-[#F8FAFC] border-[#E2E8F0]' : 'bg-[#08090C] border-[#1E222D]'
+        }`}>
+          <div className={`font-bold border-b pb-1 flex items-center justify-between ${
+            isLight ? 'text-[#059669] border-[#E2E8F0]' : 'text-[#10B981] border-[#1E222D]'
+          }`}>
+            <span>SAMPLE 10-COLUMN ROW</span>
+            <span className="text-[8px] text-[#64748B]">Auto Fields</span>
+          </div>
+          <div className={`space-y-0.5 ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
+            <div>DATE / TIME: <span className={isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}>Auto-formatted (IST)</span></div>
+            <div>NAME: <span className={`font-bold truncate block ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>{formData.name}</span></div>
+            <div>PHONE: <span className="text-[#64748B]">{formData.phone}</span></div>
+            <div>STATUS: <span className={`font-bold ${isLight ? 'text-[#059669]' : 'text-[#10B981]'}`}>NEW_INQUIRY</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-1">
+        <div className={`p-2 rounded text-[9px] font-mono-telemetry text-center ${
+          isLight ? 'bg-[#F1F5F9] border border-[#E2E8F0] text-[#64748B]' : 'bg-[#141720] border border-[#1E222D] text-[#94A3B8]'
+        }`}>
+          10 Columns: Date, Day, Time, Contact &amp; Region
+        </div>
+        <div className={`text-[9px] text-center font-mono-telemetry ${isLight ? 'text-[#64748B]' : 'text-[#767E8F]'}`}>
+          Live Sheet sync verified in bottom form
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 space-y-6">
@@ -397,7 +554,7 @@ export default function LeadSimulatorApp() {
           <div className={`text-[10px] font-mono-telemetry uppercase tracking-wider mb-2 ${isLight ? 'text-[#64748B]' : 'text-[#64748B]'}`}>
             Select Sample Preset Payload:
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
             {templates.map((tpl) => {
               const TplIcon = tpl.icon;
               return (
@@ -542,149 +699,80 @@ export default function LeadSimulatorApp() {
 
         {/* Right Column: 3 Live Output Channels + Telemetry Drawer */}
         <div className="lg:col-span-8 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            
-            {/* Card 1: WhatsApp Business Chat Mockup */}
-            <div className={`p-3.5 space-y-2.5 flex flex-col justify-between min-h-[380px] rounded border ${
-              isLight ? 'bg-[#E5DDD5] border-[#CBD5E1]' : 'phone-glass-frame'
+          {/* Desktop 3-Channel Grid */}
+          <div className="hidden md:grid md:grid-cols-3 gap-4">
+            {renderWhatsAppCard()}
+            {renderTelegramCard()}
+            {renderSheetsCard()}
+          </div>
+
+          {/* Mobile Segmented Channel Deck */}
+          <div id="demo-outputs" className="block md:hidden space-y-3 scroll-mt-24">
+            {/* Segmented Switcher */}
+            <div className={`flex items-center p-1 rounded-xl border font-mono-telemetry text-xs font-bold ${
+              isLight ? 'bg-[#F1F5F9] border-[#E2E8F0]' : 'bg-[#141720] border-[#1E222D]'
             }`}>
-              <div className={`rounded p-2 border flex items-center justify-between font-mono-telemetry ${
-                isLight ? 'bg-white border-[#E2E8F0] shadow-sm' : 'bg-[#0E1015] border-[#1E222D]'
-              }`}>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-6 h-6 rounded bg-[#059669]/20 border border-[#059669]/30 flex items-center justify-center text-[#059669] font-bold text-[10px]">
-                    TK
-                  </div>
-                  <div>
-                    <div className={`text-[11px] font-bold truncate max-w-[100px] ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>TrackKaro Systems</div>
-                    <div className="text-[9px] text-[#059669]">WhatsApp Integration</div>
-                  </div>
-                </div>
-                <span className={`text-[8px] px-1.5 py-0.5 rounded ${isLight ? 'bg-[#F1F5F9] text-[#64748B]' : 'bg-[#141720] text-[#767E8F]'}`}>Configurable Module</span>
-              </div>
-
-              <div className="space-y-2 py-1 flex-1 flex flex-col justify-end">
-                <div className={`rounded p-2.5 text-[11px] space-y-2 shadow-sm ${
-                  isLight ? 'bg-[#DCF8C6] border border-[#BBF7D0] text-[#0F172A]' : 'bg-[#0b141a] border border-[#10B981]/30 text-[#F1F3F7]'
-                }`}>
-                  <div className="leading-tight">
-                    Hello <span className="font-bold text-[#059669]">{formData.name}</span>! Here is your requested brochure.
-                  </div>
-
-                  <div className={`rounded p-2 flex items-center justify-between gap-1.5 font-mono-telemetry ${
-                    isLight ? 'bg-white border border-[#E2E8F0]' : 'bg-[#0E1015] border border-[#10B981]/40'
-                  }`}>
-                    <div className="flex items-center gap-1.5">
-                      <FileText className="w-3.5 h-3.5 text-[#059669] shrink-0" />
-                      <div>
-                        <div className={`text-[10px] font-bold truncate max-w-[90px] ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
-                          {(formData.project || '').includes('Solar') ? 'Solar_Quote.pdf' : (formData.project || '').includes('Hair') || (formData.project || '').includes('Clinic') ? 'Procedure_Guide.pdf' : (formData.project || '').includes('Audit') ? 'Pipeline_Spec.pdf' : 'Project_Brochure.pdf'}
-                        </div>
-                        <div className="text-[8px] text-[#64748B]">
-                          {(formData.project || '').includes('Solar') ? 'System Assessment' : (formData.project || '').includes('Hair') || (formData.project || '').includes('Clinic') ? 'Treatment Pricing' : (formData.project || '').includes('Audit') ? 'Architecture Spec' : 'Digital Floorplan'}
-                        </div>
-                      </div>
-                    </div>
-                    <span className="text-[8px] text-[#059669] bg-[#059669]/15 px-1.5 py-0.5 rounded font-bold">PDF</span>
-                  </div>
-
-                  <div className="flex items-center justify-between text-[8px] text-[#64748B] font-mono-telemetry pt-0.5">
-                    <span>Simulated Dispatch</span>
-                    <span className="text-[#059669]">Configurable API</span>
-                  </div>
-                </div>
-
-                <div className={`text-[9px] text-center font-mono-telemetry p-1.5 rounded ${
-                  isLight ? 'bg-white/80 text-[#64748B]' : 'bg-[#0E1015]/80 text-[#94A3B8]'
-                }`}>
-                  Requires Meta / AiSensy WABA Setup
-                </div>
-              </div>
+              <button
+                onClick={() => setMobileActiveChannel('whatsapp')}
+                className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-1 rounded-lg transition-all ${
+                  mobileActiveChannel === 'whatsapp'
+                    ? 'bg-[#059669] text-white shadow-sm'
+                    : isLight ? 'text-[#64748B] hover:text-[#0F172A]' : 'text-[#94A3B8] hover:text-white'
+                }`}
+              >
+                <MessageSquare className="w-3.5 h-3.5 fill-current" />
+                <span className="truncate">WhatsApp</span>
+              </button>
+              <button
+                onClick={() => setMobileActiveChannel('telegram')}
+                className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-1 rounded-lg transition-all ${
+                  mobileActiveChannel === 'telegram'
+                    ? isLight ? 'bg-[#0284C7] text-white shadow-sm' : 'bg-[#3B82F6] text-white shadow-sm'
+                    : isLight ? 'text-[#64748B] hover:text-[#0F172A]' : 'text-[#94A3B8] hover:text-white'
+                }`}
+              >
+                <Radio className="w-3.5 h-3.5" />
+                <span className="truncate">Telegram</span>
+              </button>
+              <button
+                onClick={() => setMobileActiveChannel('sheets')}
+                className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-1 rounded-lg transition-all ${
+                  mobileActiveChannel === 'sheets'
+                    ? isLight ? 'bg-[#0F172A] text-white shadow-sm' : 'bg-[#10B981] text-[#08090C] shadow-sm'
+                    : isLight ? 'text-[#64748B] hover:text-[#0F172A]' : 'text-[#94A3B8] hover:text-white'
+                }`}
+              >
+                <Database className="w-3.5 h-3.5" />
+                <span className="truncate">CRM Sheets</span>
+              </button>
             </div>
 
-            {/* Card 2: Desktop Telegram SLA Alert Mockup */}
-            <div className={`p-3.5 space-y-2.5 flex flex-col justify-between rounded border ${
-              isLight ? 'bg-white border-[#E2E8F0] shadow-sm' : 'telegram-desktop-frame'
-            }`}>
-              <div>
-                <div className={`flex items-center justify-between border-b pb-2 font-mono-telemetry ${isLight ? 'border-[#E2E8F0]' : 'border-[#1E222D]'}`}>
-                  <div className="flex items-center gap-1.5">
-                    <Radio className={`w-3.5 h-3.5 animate-pulse ${isLight ? 'text-[#D97706]' : 'text-[#F59E0B]'}`} />
-                    <span className={`text-[11px] font-bold ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>Telegram Sales Alert</span>
-                  </div>
-                  <span className={`text-[8px] px-1.5 py-0.5 rounded font-bold ${isLight ? 'bg-[#059669]/15 text-[#059669]' : 'bg-[#10B981]/15 text-[#10B981]'}`}>Sample Alert</span>
-                </div>
-
-                <div className={`mt-2.5 p-2.5 rounded border space-y-1 font-mono-telemetry text-[10px] ${
-                  isLight ? 'bg-[#F8FAFC] border-[#E2E8F0]' : 'bg-[#08090C] border-[#1E222D]'
-                }`}>
-                  <div className={`font-bold border-b pb-1 ${isLight ? 'text-[#0284C7] border-[#E2E8F0]' : 'text-[#3B82F6] border-[#1E222D]'}`}>
-                    NEW LEAD INBOUND
-                  </div>
-                  <div className={`space-y-0.5 ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
-                    <div>NAME: <span className={`font-bold truncate block ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>{formData.name}</span></div>
-                    <div>PHONE: <span className={isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}>{formData.phone}</span></div>
-                    <div>BUDGET: <span className={`font-bold ${isLight ? 'text-[#059669]' : 'text-[#10B981]'}`}>{currencyMode === 'USD' ? formData.budgetUSD : formData.budgetINR}</span></div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <button className={`w-full font-extrabold py-2 rounded text-[11px] font-mono-telemetry flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-sm text-white ${
-                  isLight ? 'bg-[#059669] hover:bg-[#047857]' : 'bg-[#10B981] hover:bg-[#059669] text-[#08090C]'
-                }`}>
-                  <PhoneCall className="w-3 h-3 fill-current" />
-                  <span>Call Lead (1-Click Link)</span>
-                </button>
-                <div className={`text-[9px] text-center font-mono-telemetry ${isLight ? 'text-[#64748B]' : 'text-[#767E8F]'}`}>
-                  Live alert verified in bottom form
-                </div>
-              </div>
+            {/* Active Mobile Mockup Card */}
+            <div>
+              {mobileActiveChannel === 'whatsapp' && renderWhatsAppCard()}
+              {mobileActiveChannel === 'telegram' && renderTelegramCard()}
+              {mobileActiveChannel === 'sheets' && renderSheetsCard()}
             </div>
 
-            {/* Card 3: Google Sheets Live CRM Auto-Sync Panel */}
-            <div className={`p-3.5 space-y-2.5 flex flex-col justify-between rounded border ${
-              isLight ? 'bg-white border-[#E2E8F0] shadow-sm' : 'telegram-desktop-frame'
-            }`}>
-              <div>
-                <div className={`flex items-center justify-between border-b pb-2 font-mono-telemetry ${isLight ? 'border-[#E2E8F0]' : 'border-[#1E222D]'}`}>
-                  <div className="flex items-center gap-1.5">
-                    <Database className={`w-3.5 h-3.5 ${isLight ? 'text-[#059669]' : 'text-[#10B981]'}`} />
-                    <span className={`text-[11px] font-bold ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>Google Sheets CRM</span>
-                  </div>
-                  <span className={`text-[8px] px-1.5 py-0.5 rounded font-bold ${isLight ? 'bg-[#059669]/15 text-[#059669]' : 'bg-[#10B981]/15 text-[#10B981]'}`}>Structured Row</span>
-                </div>
-
-                <div className={`mt-2.5 p-2.5 rounded border space-y-1 font-mono-telemetry text-[10px] ${
-                  isLight ? 'bg-[#F8FAFC] border-[#E2E8F0]' : 'bg-[#08090C] border-[#1E222D]'
-                }`}>
-                  <div className={`font-bold border-b pb-1 flex items-center justify-between ${
-                    isLight ? 'text-[#059669] border-[#E2E8F0]' : 'text-[#10B981] border-[#1E222D]'
-                  }`}>
-                    <span>SAMPLE 10-COLUMN ROW</span>
-                    <span className="text-[8px] text-[#64748B]">Auto Fields</span>
-                  </div>
-                  <div className={`space-y-0.5 ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
-                    <div>DATE / TIME: <span className={isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}>Auto-formatted (IST)</span></div>
-                    <div>NAME: <span className={`font-bold truncate block ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>{formData.name}</span></div>
-                    <div>PHONE: <span className="text-[#64748B]">{formData.phone}</span></div>
-                    <div>STATUS: <span className={`font-bold ${isLight ? 'text-[#059669]' : 'text-[#10B981]'}`}>NEW_INQUIRY</span></div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <div className={`p-2 rounded text-[9px] font-mono-telemetry text-center ${
-                  isLight ? 'bg-[#F1F5F9] border border-[#E2E8F0] text-[#64748B]' : 'bg-[#141720] border border-[#1E222D] text-[#94A3B8]'
-                }`}>
-                  10 Columns: Date, Day, Time, Contact &amp; Region
-                </div>
-                <div className={`text-[9px] text-center font-mono-telemetry ${isLight ? 'text-[#64748B]' : 'text-[#767E8F]'}`}>
-                  Live Sheet sync verified in bottom form
-                </div>
-              </div>
+            {/* Micro Channel Indicator Dots */}
+            <div className="flex items-center justify-center gap-2 pt-1 pb-1">
+              {[
+                { id: 'whatsapp', label: 'WhatsApp Delivery' },
+                { id: 'telegram', label: 'Telegram Alert' },
+                { id: 'sheets', label: 'Sheets CRM' }
+              ].map((ch) => (
+                <button
+                  key={ch.id}
+                  onClick={() => setMobileActiveChannel(ch.id)}
+                  className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                    mobileActiveChannel === ch.id
+                      ? 'w-7 bg-[#3B82F6]'
+                      : isLight ? 'w-2 bg-[#CBD5E1]' : 'w-2 bg-[#2E3648]'
+                  }`}
+                  title={ch.label}
+                />
+              ))}
             </div>
-
           </div>
 
           {/* Dual Tab Telemetry Drawer */}
