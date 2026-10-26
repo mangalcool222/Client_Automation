@@ -8,6 +8,7 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
   const [formData, setFormData] = useState({
     name: '',
     company: '',
+    website: '',
     phone: '',
     email: '',
     adSpend: '₹50,000 - ₹2,00,000 / month',
@@ -49,6 +50,8 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
           lead_name: formData.name,
           full_name: formData.name,
           company: formData.company || 'Direct Client Inquiry',
+          website: formData.website || '',
+          company_website: formData.website || '',
           lead_phone: phoneToSend,
           phone_number: phoneToSend,
           lead_email: formData.email,
@@ -215,6 +218,23 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
                   placeholder="e.g. rahul@apexrealty.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
+                    isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
+                  }`}
+                />
+              </div>
+
+              {/* Company Website / Portfolio URL */}
+              <div className="sm:col-span-2">
+                <label className={`text-xs font-bold block mb-1 flex items-center gap-1.5 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
+                  <Globe className="w-3.5 h-3.5 text-[#0284C7]" />
+                  Company Website / Portfolio URL
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g. apexrealty.com or https://apexrealty.com"
+                  value={formData.website}
+                  onChange={(e) => setFormData({ ...formData, website: e.target.value })}
                   className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
                     isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
                   }`}

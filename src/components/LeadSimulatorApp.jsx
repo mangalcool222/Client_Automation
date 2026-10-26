@@ -76,7 +76,7 @@ export default function LeadSimulatorApp() {
   const [activeTemplate, setActiveTemplate] = useState('dubai-usd');
   const [formData, setFormData] = useState(templates[0].data);
   const [currencyMode, setCurrencyMode] = useState('USD');
-  const [themeMode, setThemeMode] = useState('light'); // 'light' (default for real estate/clinics) | 'dark'
+  const [themeMode, setThemeMode] = useState('dark'); // 'dark' (default aligned with Jarvis Outbound OS) | 'light'
   const [pipelineState, setPipelineState] = useState('idle'); // idle | processing | complete
   const [activeNodeStep, setActiveNodeStep] = useState(0);
   const [logs, setLogs] = useState([]);
@@ -371,26 +371,24 @@ export default function LeadSimulatorApp() {
         isLight ? 'bg-white border-[#E2E8F0]' : 'bg-[#0E1015] border-[#1E222D]'
       }`}>
         <div className="flex items-center gap-3.5">
-          <div className={`w-10 h-10 rounded border flex items-center justify-center font-bold text-sm font-mono-telemetry ${
-            isLight ? 'bg-[#F1F5F9] border-[#CBD5E1] text-[#0F172A]' : 'bg-[#141720] border-[#2E3648] text-[#F1F3F7]'
-          }`}>
-            MS
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#10B981]/20 via-[#0EA5E9]/10 to-transparent border border-[#10B981]/30 flex items-center justify-center text-[#10B981] font-bold text-base shadow-sm">
+            ⚡
           </div>
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <h1 className={`font-extrabold text-base tracking-tight ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
-                MANGAL SOREN
+                TrackKaro AI
               </h1>
-              <span className={`text-[10px] font-mono-telemetry px-2 py-0.5 rounded border uppercase tracking-wider ${
-                isLight ? 'bg-[#F1F5F9] text-[#475569] border-[#CBD5E1]' : 'bg-[#1E222D] text-[#94A3B8] border-[#2E3648]'
+              <span className={`text-[10px] font-mono-telemetry px-2 py-0.5 rounded border uppercase tracking-wider font-bold ${
+                isLight ? 'bg-[#ECFDF5] text-[#059669] border-[#A7F3D0]' : 'bg-[#10B981]/10 text-[#10B981] border-[#10B981]/30'
               }`}>
-                Lead Automation &amp; GTM Workflows
+                Full-Stack Autonomous Revenue Engine
               </span>
             </div>
             <p className="text-[11px] text-[#64748B] font-mono-telemetry flex items-center gap-1.5 mt-0.5">
-              <span>TrackKaro Lead Routing Console</span>
+              <span>Inbound Speed-to-Lead OS</span>
               <span>•</span>
-              <span className={isLight ? 'text-[#059669]' : 'text-[#10B981]'}>Fully Managed Cloud Infrastructure</span>
+              <span className={isLight ? 'text-[#0284C7]' : 'text-[#38BDF8]'}>Architected by Mangal Soren (Founder &amp; GTM Architect)</span>
             </p>
           </div>
         </div>
@@ -486,6 +484,64 @@ export default function LeadSimulatorApp() {
         </div>
       </header>
 
+      {/* Dual-Engine Architecture Hub Switcher */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {/* Engine 01: Inbound Speed-to-Lead OS */}
+        <div className={`p-4 rounded-xl border flex items-center justify-between transition-all ${
+          isLight 
+            ? 'bg-[#ECFDF5] border-[#A7F3D0] shadow-sm' 
+            : 'bg-[#10B981]/5 border-[#10B981]/30 shadow-md'
+        }`}>
+          <div className="flex items-center gap-3">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse shrink-0"></span>
+            <div>
+              <div className="text-xs font-bold font-mono-telemetry flex items-center gap-2">
+                <span className={isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}>ENGINE 01: INBOUND SPEED-TO-LEAD OS</span>
+                <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider ${
+                  isLight ? 'bg-[#059669] text-white' : 'bg-[#10B981]/20 text-[#10B981]'
+                }`}>
+                  Live Simulator Below
+                </span>
+              </div>
+              <p className={`text-[11px] font-mono-telemetry mt-0.5 ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
+                15-Sec WhatsApp dispatch, Telegram sirens &amp; CRM sync for paid ads
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Engine 02: Jarvis Autonomous AI Outbound SDR */}
+        <a
+          href="https://jarvis.trackkaroai.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`p-4 rounded-xl border flex items-center justify-between transition-all group ${
+            isLight 
+              ? 'bg-white hover:bg-[#F8FAFC] border-[#CBD5E1] hover:border-[#0284C7]' 
+              : 'bg-[#0E1015] hover:bg-[#141720] border-[#1E222D] hover:border-[#38BDF8]/60'
+          }`}
+          title="Open TrackKaro Jarvis Autonomous AI Outbound SDR Engine"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-2.5 h-2.5 rounded-full bg-[#38BDF8] shrink-0"></div>
+            <div>
+              <div className="text-xs font-bold font-mono-telemetry flex items-center gap-1.5">
+                <span className={`group-hover:text-[#38BDF8] transition-colors ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
+                  ENGINE 02: JARVIS AUTONOMOUS AI SDR
+                </span>
+                <span className="text-[#38BDF8] text-[11px]">↗</span>
+              </div>
+              <p className="text-[11px] text-[#64748B] font-mono-telemetry mt-0.5">
+                23 buying signals, verified cold outreach &amp; automated meetings
+              </p>
+            </div>
+          </div>
+          <span className="text-[10px] font-mono-telemetry px-2.5 py-1 rounded bg-[#38BDF8]/10 text-[#38BDF8] border border-[#38BDF8]/30 group-hover:bg-[#38BDF8] group-hover:text-[#08090C] font-bold transition-all shrink-0">
+            Launch Jarvis ↗
+          </span>
+        </a>
+      </div>
+
       {/* Hero Container */}
       <div className={`telemetry-card p-6 sm:p-10 text-center space-y-6 transition-all border rounded-xl ${
         isLight ? 'bg-white border-[#E2E8F0] shadow-sm' : 'bg-[#0E1015] border-[#1E222D] shadow-xl'
@@ -505,20 +561,20 @@ export default function LeadSimulatorApp() {
         <h2 className={`text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight max-w-3xl mx-auto ${
           isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'
         }`}>
-          Stop Losing Inbound Leads to Slow Follow-Ups.
+          Stop Losing High-Ticket Leads to Slow Follow-Ups.
         </h2>
 
         {/* Punchy Client-First Hero Statement */}
         <p className={`text-xs sm:text-base font-mono-telemetry max-w-3xl mx-auto leading-relaxed ${
           isLight ? 'text-[#334155]' : 'text-[#CBD5E1]'
         }`}>
-          Connect your paid ads, website forms, and listing portals directly to your sales reps' phones. Instant Telegram audio alerts with 1-click dial buttons, automated WhatsApp brochure delivery, and centralized Google Sheets sync. Zero spreadsheet checking.
+          Connect paid ads, website forms, and listings directly to your sales reps' phones in under 15 seconds. Instant Telegram audio alerts with 1-click dial buttons, automated WhatsApp brochure delivery, and Google Sheets sync. Zero spreadsheet checking.
         </p>
 
         {/* Simulation Callout & Action CTAs */}
         <div className="pt-2 space-y-4">
           <p className={`text-xs font-mono-telemetry ${isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}`}>
-            Start with a live pipeline simulation below to see how the workflow is structured.
+            Test the live 15-second dispatch simulation below, or book an architecture audit.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
