@@ -2,6 +2,18 @@ import React, { useState } from 'react';
 import { Send, CheckCircle2, Building2, Phone, Mail, Globe, User, ShieldCheck, Zap, RefreshCw, DollarSign } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
+const COUNTRY_CODES = [
+  { code: '+91', flag: '🇮🇳', label: '🇮🇳 +91', digits: 10, placeholder: '98765 43210' },
+  { code: '+971', flag: '🇦🇪', label: '🇦🇪 +971', digits: 9, placeholder: '50 123 4567' },
+  { code: '+1', flag: '🇺🇸', label: '🇺🇸 +1', digits: 10, placeholder: '555 123 4567' },
+  { code: '+44', flag: '🇬🇧', label: '🇬🇧 +44', digits: 10, placeholder: '7911 123456' },
+  { code: '+966', flag: '🇸🇦', label: '🇸🇦 +966', digits: 9, placeholder: '50 123 4567' },
+  { code: '+65', flag: '🇸🇬', label: '🇸🇬 +65', digits: 8, placeholder: '8123 4567' },
+  { code: '+61', flag: '🇦🇺', label: '🇦🇺 +61', digits: 9, placeholder: '412 345 678' },
+  { code: '+49', flag: '🇩🇪', label: '🇩🇪 +49', digits: 10, placeholder: '1512 3456789' },
+  { code: '', flag: '🌐', label: '🌐 Other', digits: 15, placeholder: 'Phone number' },
+];
+
 export default function AgencyClientInquiryForm() {
   const [formData, setFormData] = useState({
     name: '',
@@ -13,7 +25,44 @@ export default function AgencyClientInquiryForm() {
     adSpend: '₹50,000 - ₹2,00,000 / month'
   });
 
+  const [selectedCountry, setSelectedCountry] = useState(COUNTRY_CODES[0]);
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+
+  const formatPhoneNumber = (val, country) => {
+    let digits = val.replace(/[^0-9]/g, '');
+    if (country.code && digits.length > country.digits) {
+      digits = digits.slice(0, country.digits);
+    }
+    if (country.code === '+91' || country.digits === 10) {
+      return digits.length > 5 ? `${digits.slice(0, 5)} ${digits.slice(5)}` : digits;
+    }
+    if (country.code === '+971' || country.code === '+966') {
+      if (digits.length > 5) return `${digits.slice(0, 2)} ${digits.slice(2, 5)} ${digits.slice(5)}`;
+      if (digits.length > 2) return `${digits.slice(0, 2)} ${digits.slice(2)}`;
+      return digits;
+    }
+    if (country.code === '+1') {
+      if (digits.length > 6) return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
+      if (digits.length > 3) return `${digits.slice(0, 3)} ${digits.slice(3)}`;
+      return digits;
+    }
+    return digits;
+  };
+
+  const handlePhoneChange = (e) => {
+    const raw = e.target.value;
+    if (raw.startsWith('+')) {
+      for (const c of COUNTRY_CODES) {
+        if (c.code && raw.startsWith(c.code)) {
+          setSelectedCountry(c);
+          const remainder = raw.slice(c.code.length).trim();
+          setFormData(prev => ({ ...prev, phone: formatPhoneNumber(remainder, c) }));
+          return;
+        }
+      }
+    }
+    setFormData(prev => ({ ...prev, phone: formatPhoneNumber(raw, selectedCountry) }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,17 +72,13 @@ export default function AgencyClientInquiryForm() {
     }
 
     const cleanDigits = formData.phone.replace(/[^0-9]/g, '');
-    if (!formData.phone.trim() || cleanDigits.length < 10 || cleanDigits.length > 15) {
-      alert('Please enter a valid WhatsApp Phone Number (10 to 15 digits, e.g. +91 98765 43210 or 9876543210).');
+    const minRequired = selectedCountry.code ? selectedCountry.digits : 8;
+    if (!cleanDigits || cleanDigits.length < minRequired) {
+      alert(`Please enter a valid ${selectedCountry.code ? selectedCountry.digits + '-digit' : ''} WhatsApp Phone Number.`);
       return;
     }
 
-    let phoneToSend = formData.phone.trim();
-    if (cleanDigits.length === 10) {
-      phoneToSend = `+91 ${cleanDigits.slice(0, 5)} ${cleanDigits.slice(5)}`;
-    } else if (cleanDigits.length === 12 && cleanDigits.startsWith('91')) {
-      phoneToSend = `+91 ${cleanDigits.slice(2, 7)} ${cleanDigits.slice(7)}`;
-    }
+    const phoneToSend = selectedCountry.code ? `${selectedCountry.code} ${cleanDigits}` : cleanDigits;
 
     setStatus('submitting');
 
@@ -150,21 +195,42 @@ export default function AgencyClientInquiryForm() {
                   <Phone className="w-3.5 h-3.5 text-[#059669]" />
                   WhatsApp Phone Number *
                 </label>
-                <input
-                  type="tel"
-                  required
-                  maxLength={18}
-                  placeholder="e.g. +91 98765 43210"
-                  value={formData.phone}
-                  onChange={(e) => {
-                    const sanitized = e.target.value.replace(/[^0-9+\s\-()]/g, '');
-                    setFormData({ ...formData, phone: sanitized });
-                  }}
-                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
-                />
-                <p className="text-[10px] text-[#7E8695] mt-1">
-                  10-digit number (with or without +91)
-                </p>
+                <div className="flex items-center rounded-xl border border-[#EBE3D5] bg-[#FAF8F5] focus-within:border-[#18191B] focus-within:bg-white transition-all shadow-xs overflow-hidden">
+                  <select
+                    value={selectedCountry.code}
+                    onChange={(e) => {
+                      const found = COUNTRY_CODES.find(c => c.code === e.target.value) || COUNTRY_CODES[0];
+                      setSelectedCountry(found);
+                      setFormData(prev => ({ ...prev, phone: formatPhoneNumber(prev.phone, found) }));
+                    }}
+                    className="border-r border-[#EBE3D5] bg-transparent text-[#18191B] text-xs font-semibold px-2.5 py-3 outline-none cursor-pointer"
+                  >
+                    {COUNTRY_CODES.map(c => (
+                      <option key={c.label} value={c.code}>{c.label}</option>
+                    ))}
+                  </select>
+                  <input
+                    type="tel"
+                    required
+                    placeholder={selectedCountry.placeholder}
+                    value={formData.phone}
+                    onChange={handlePhoneChange}
+                    className="w-full bg-transparent text-[#18191B] px-3 py-3 text-xs font-mono-telemetry focus:outline-none"
+                  />
+                  {formData.phone.replace(/[^0-9]/g, '').length === selectedCountry.digits && selectedCountry.code && (
+                    <span className="text-xs text-[#059669] font-bold pr-3">✓</span>
+                  )}
+                </div>
+                <div className="flex items-center justify-between mt-1 text-[10px] text-[#7E8695] font-mono-telemetry">
+                  <span>Direct line for WhatsApp delivery</span>
+                  {selectedCountry.code ? (
+                    <span className={formData.phone.replace(/[^0-9]/g, '').length === selectedCountry.digits ? 'text-[#059669] font-bold' : ''}>
+                      {formData.phone.replace(/[^0-9]/g, '').length}/{selectedCountry.digits} digits
+                    </span>
+                  ) : (
+                    <span>International format</span>
+                  )}
+                </div>
               </div>
             </div>
 
