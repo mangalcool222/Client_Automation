@@ -38,7 +38,7 @@ export default function RevenueLeakAudit() {
           }`}
         >
           <Zap className="w-3.5 h-3.5 text-[#10B981]" />
-          <span>TrackKaro (15s SLA)</span>
+          <span>TrackKaro (Instant Dispatch)</span>
         </button>
         <button
           onClick={() => setMobileTab('manual')}
@@ -90,10 +90,10 @@ export default function RevenueLeakAudit() {
           <div className="flex items-center justify-between border-b border-[#6EE7B7]/60 pb-3">
             <div className="flex items-center gap-2 text-[#065F46] font-bold text-sm">
               <CheckCircle2 className="w-4 h-4 shrink-0 text-[#059669]" />
-              <span>The TrackKaro Way (15s Revenue Engine)</span>
+              <span>The TrackKaro Way (Instant Ingestion)</span>
             </div>
             <span className="text-[10px] font-mono-telemetry font-bold px-2 py-0.5 rounded-full bg-white text-[#059669] border border-[#A7F3D0]">
-              ⚡ 15s DISPATCH SLA
+              ⚡ INSTANT DISPATCH
             </span>
           </div>
 
@@ -104,7 +104,7 @@ export default function RevenueLeakAudit() {
             </li>
             <li className="flex items-start gap-2.5">
               <span className="text-[#059669] font-bold text-sm shrink-0">✓</span>
-              <span><strong>Instant Telegram Siren:</strong> Sales team gets immediate sound alerts with 1-click call links in under 15 seconds.</span>
+              <span><strong>Instant Telegram Siren:</strong> Sales team gets immediate sound alerts with 1-click call links in real-time.</span>
             </li>
             <li className="flex items-start gap-2.5">
               <span className="text-[#059669] font-bold text-sm shrink-0">✓</span>
@@ -145,7 +145,7 @@ export default function RevenueLeakAudit() {
           <div className="rounded-2xl p-5 space-y-3 bg-[#ECFDF5] border border-[#A7F3D0] font-mono-telemetry">
             <div className="flex items-center gap-2 text-[#065F46] font-bold text-xs border-b border-[#6EE7B7]/60 pb-2">
               <CheckCircle2 className="w-4 h-4 shrink-0 text-[#059669]" />
-              <span>The TrackKaro Way (15s SLA)</span>
+              <span>The TrackKaro Way (Instant Dispatch)</span>
             </div>
             <ul className="space-y-2.5 text-xs text-[#065F46] leading-relaxed">
               <li className="flex items-start gap-2">
@@ -154,7 +154,7 @@ export default function RevenueLeakAudit() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#059669] font-bold">✓</span>
-                <span><strong>Telegram Siren:</strong> Sound alert with 1-click dial link in 15s.</span>
+                <span><strong>Telegram Siren:</strong> Sound alert with 1-click dial link instantly.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#059669] font-bold">✓</span>

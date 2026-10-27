@@ -14,7 +14,7 @@ export default function App() {
             <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse"></span>
             <span className="text-[#059669] font-bold uppercase tracking-wider text-[11px]">⚡ SYSTEM ACTIVE</span>
             <span className="text-[#CBD5E1] hidden sm:inline">•</span>
-            <span className="text-[#64748B] hidden sm:inline text-[11px]">15s SPEED-TO-LEAD ENGINE</span>
+            <span className="text-[#64748B] hidden sm:inline text-[11px]">REAL-TIME SPEED-TO-LEAD ENGINE</span>
             <span className="text-[#CBD5E1] hidden md:inline">•</span>
             <span className="text-[#0284C7] hidden md:inline text-[11px]">WHATSAPP &amp; TELEGRAM DISPATCH</span>
           </div>
@@ -68,11 +68,11 @@ export default function App() {
               <LinkedInIcon className="w-3.5 h-3.5 fill-[#0A66C2]" />
               <span>MANGAL SOREN</span>
             </a>
-            <span>• Lead Automation &amp; GTM Workflows</span>
+            <span>• TrackKaro AI</span>
           </div>
           <div className="text-[#18191B] font-bold bg-white px-3.5 py-1.5 rounded-full border border-[#DFD5C0] shadow-xs flex items-center gap-1.5">
             <Zap className="w-3.5 h-3.5 text-amber-500 fill-current" />
-            <span>Automated 15s Lead Dispatch Workflows</span>
+            <span>Automated Real-Time Lead Dispatch Workflows</span>
           </div>
         </div>
       </footer>

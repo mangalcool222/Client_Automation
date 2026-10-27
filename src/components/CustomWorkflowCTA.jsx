@@ -87,7 +87,7 @@ export default function CustomWorkflowCTA() {
           >
             Mangal Soren
           </a>
-          <span>• Founder &amp; GTM Automation Architect | TrackKaro AI</span>
+          <span>• TrackKaro AI</span>
         </div>
 
       </div>

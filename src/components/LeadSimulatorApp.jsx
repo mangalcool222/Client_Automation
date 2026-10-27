@@ -233,7 +233,7 @@ export default function LeadSimulatorApp() {
           </div>
         </div>
         <span className="text-[9px] bg-white/15 px-2 py-0.5 rounded-full font-mono-telemetry font-bold">
-          ⚡ 3.4s SLA
+          ⚡ Auto-Reply
         </span>
       </div>
 
@@ -271,7 +271,7 @@ export default function LeadSimulatorApp() {
         </div>
 
         <div className="text-[10px] text-center font-mono-telemetry py-1 px-2 rounded-full bg-white border border-[#EBE3D5] text-[#7E8695]">
-          ⚡ Buyer receives WhatsApp brochure within 15 seconds of ad lead
+          ⚡ Buyer receives WhatsApp brochure immediately upon ad submission
         </div>
       </div>
     </div>
@@ -329,7 +329,7 @@ export default function LeadSimulatorApp() {
           <span>Call Lead (1-Click Direct Link)</span>
         </a>
         <div className="text-[10px] text-center font-mono-telemetry text-[#7E8695]">
-          ⚡ Rep dials prospect in &lt;15 seconds while intent is at peak
+          ⚡ Rep dials prospect immediately while intent is at peak
         </div>
       </div>
     </div>
@@ -410,7 +410,7 @@ export default function LeadSimulatorApp() {
             <p className="text-[11px] text-[#64748B] font-mono-telemetry flex items-center gap-1.5 mt-0.5">
               <span>Inbound Speed-to-Lead OS</span>
               <span>•</span>
-              <span className={isLight ? 'text-[#0284C7]' : 'text-[#38BDF8]'}>Architected by Mangal Soren (Founder &amp; GTM Architect)</span>
+              <span className={isLight ? 'text-[#0284C7]' : 'text-[#38BDF8]'}>Mangal Soren • TrackKaro AI</span>
             </p>
           </div>
         </div>
@@ -522,7 +522,7 @@ export default function LeadSimulatorApp() {
               <span className="text-[#D97706] text-sm">↗</span>
             </h3>
             <p className="text-xs text-[#525866] mt-0.5 max-w-xl leading-relaxed">
-              While TrackKaro responds to incoming leads in 15 seconds, Jarvis autonomously finds verified decision-makers &amp; books qualified calls on autopilot.
+              While TrackKaro connects incoming leads in real-time, Jarvis autonomously finds verified decision-makers &amp; books qualified calls on autopilot.
             </p>
           </div>
         </div>
@@ -554,7 +554,7 @@ export default function LeadSimulatorApp() {
           </p>
           <div className="flex items-center justify-between w-full mt-2 pt-1 border-t border-slate-200">
             <span className="text-[9px] font-bold text-[#059669] bg-[#DCFCE7] px-2 py-0.5 rounded-full">
-              ⚡ Sent in 3.4s
+              ⚡ Instant Delivery
             </span>
             <span className="text-xs">💬</span>
           </div>
@@ -580,9 +580,9 @@ export default function LeadSimulatorApp() {
         {/* Positioning Pill Tag */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#ECFDF5] border border-[#A7F3D0] text-[#065F46] text-xs font-mono-telemetry font-bold shadow-xs">
           <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
-          <span className="uppercase tracking-wider">⚡ 15-SECOND SPEED-TO-LEAD SLA</span>
+          <span className="uppercase tracking-wider">REAL-TIME SPEED-TO-LEAD</span>
           <span>•</span>
-          <span>ZERO LEAKAGE</span>
+          <span>INSTANT DISPATCH</span>
         </div>
 
         {/* Big Bold Editorial Serif Headline (Weekday Style) */}
@@ -595,7 +595,7 @@ export default function LeadSimulatorApp() {
 
         {/* Friendly Hero Subtitle */}
         <p className="text-sm sm:text-base text-[#525866] max-w-2xl mx-auto leading-relaxed">
-          Connect your paid ads, website forms, and listing portals directly to your sales reps' phones in under 15 seconds. Instant WhatsApp brochure delivery, Telegram audio sirens with 1-click calls, and automatic CRM sync.
+          Connect your paid ads, website forms, and listing portals directly to your sales reps' phones in real-time. Instant WhatsApp brochure delivery, Telegram audio sirens with 1-click calls, and automatic CRM sync.
         </p>
 
         {/* Lively Weekday-Style Action CTAs */}
@@ -751,7 +751,7 @@ export default function LeadSimulatorApp() {
                   className="w-full font-bold py-3.5 rounded-full text-xs font-mono-telemetry flex items-center justify-center gap-2 cursor-wait border border-[#F59E0B] bg-[#FEF3C7] text-[#92400E] shadow-sm animate-pulse"
                 >
                   <RefreshCw className="w-4 h-4 text-[#D97706] animate-spin" />
-                  Simulating 15s Pipeline Flow...
+                  Simulating Real-Time Pipeline Flow...
                 </button>
               ) : pipelineState === 'complete' ? (
                 <button

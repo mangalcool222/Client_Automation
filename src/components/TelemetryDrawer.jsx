@@ -75,7 +75,7 @@ export default function TelemetryDrawer({ logs = [], formData = {}, currencyMode
             </button>
           )}
           <span className="font-mono-telemetry text-[11px] text-[#7E8695] hidden sm:inline font-semibold">
-            ⚡ 15s Cloud Ingest
+            ⚡ Real-Time Ingest
           </span>
         </div>
       </div>

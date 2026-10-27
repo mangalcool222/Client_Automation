@@ -4,7 +4,7 @@ import { Zap, Cpu, MessageSquare, Bell, Database, CheckCircle2 } from 'lucide-re
 const NODES = [
   { id: 'n1', num: '1', title: 'Ad Ingestion', subtitle: 'Meta / Google / Portal Webhook', icon: Zap, badge: '⚡ INSTANT' },
   { id: 'n2', num: '2', title: 'Lead Validation', subtitle: 'Auto-format (+91/+971) & Region', icon: Cpu, badge: 'AUTO CLEAN' },
-  { id: 'n3', num: '3', title: 'WhatsApp Dispatch', subtitle: 'Instant Brochure PDF (3.4s)', icon: MessageSquare, badge: '3.4s SLA' },
+  { id: 'n3', num: '3', title: 'WhatsApp Dispatch', subtitle: 'Instant Brochure Delivery', icon: MessageSquare, badge: 'AUTO REPLY' },
   { id: 'n4', num: '4', title: 'Telegram Siren', subtitle: 'Sound Alert + 1-Click Call', icon: Bell, badge: 'REP ALERT' },
   { id: 'n5', num: '5', title: 'Google Sheets CRM', subtitle: '10-Col Structured Row Sync', icon: Database, badge: 'AUTO SYNC' },
 ];

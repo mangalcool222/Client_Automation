@@ -97,7 +97,7 @@ export default function AgencyClientInquiryForm() {
         <div className="text-center space-y-2.5">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ECFDF5] border border-[#A7F3D0] text-[#065F46] font-mono-telemetry text-xs font-bold shadow-xs">
             <Zap className="w-3.5 h-3.5 fill-current text-[#10B981]" />
-            <span className="uppercase tracking-wider">⚡ 15-SECOND SPEED-TO-LEAD SETUP</span>
+            <span className="uppercase tracking-wider">LEAD CONVERSION ARCHITECTURE</span>
           </div>
 
           <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif-editorial font-extrabold text-[#18191B] tracking-tight">
@@ -273,7 +273,7 @@ export default function AgencyClientInquiryForm() {
                 ) : (
                   <>
                     <Send className="w-4 h-4 fill-current" />
-                    <span>Request 15s Workflow Consultation ⚡</span>
+                    <span>Request Workflow Consultation ⚡</span>
                   </>
                 )}
               </button>
