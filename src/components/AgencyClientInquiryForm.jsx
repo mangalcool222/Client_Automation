@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, Building2, Phone, User, ShieldCheck, Zap, RefreshCw, DollarSign } from 'lucide-react';
+import { Send, CheckCircle2, Building2, Phone, Mail, Globe, User, ShieldCheck, Zap, RefreshCw, DollarSign } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function AgencyClientInquiryForm() {
@@ -7,6 +7,8 @@ export default function AgencyClientInquiryForm() {
     name: '',
     phone: '',
     company: '',
+    email: '',
+    website: '',
     industry: 'Luxury Real Estate & Property Developers',
     adSpend: '₹50,000 - ₹2,00,000 / month'
   });
@@ -43,19 +45,19 @@ export default function AgencyClientInquiryForm() {
           lead_name: formData.name,
           full_name: formData.name,
           company: formData.company || 'Direct Client Inquiry',
-          website: '',
-          company_website: '',
+          website: formData.website || '',
+          company_website: formData.website || '',
           lead_phone: phoneToSend,
           phone_number: phoneToSend,
-          lead_email: '',
-          email: '',
+          lead_email: formData.email || '',
+          email: formData.email || '',
           industry: formData.industry || 'Luxury Real Estate',
           lead_source: 'Meta & Instagram Ads (Website Inbound)',
           ad_spend: formData.adSpend || '₹50,000 - ₹2,00,000 / month',
           monthly_ad_spend: formData.adSpend || '₹50,000 - ₹2,00,000 / month',
           workflow_goal: 'Complete Automated Setup (WhatsApp + Telegram + Sheets)',
           source_page: 'trackkaroai.com',
-          form_type: 'lean_high_converting_5_field',
+          form_type: 'qualified_b2b_inquiry_form',
           submission_time: new Date().toISOString()
         })
       });
@@ -103,7 +105,7 @@ export default function AgencyClientInquiryForm() {
           </h3>
 
           <p className="text-sm text-[#525866] max-w-lg mx-auto leading-relaxed">
-            Fill out 5 quick details below. Mangal will review your ad pipeline and connect on WhatsApp with a tailored architecture breakdown.
+            Fill out your details below. Mangal Soren will review your website and ad pipeline, then connect on WhatsApp with a tailored architecture breakdown.
           </p>
         </div>
 
@@ -112,7 +114,7 @@ export default function AgencyClientInquiryForm() {
             <CheckCircle2 className="w-12 h-12 mx-auto text-[#059669]" />
             <h4 className="text-2xl font-bold font-serif-editorial text-[#18191B]">Inquiry Received!</h4>
             <p className="text-xs sm:text-sm max-w-sm mx-auto font-mono-telemetry text-[#065F46]">
-              Details captured! Mangal Soren will review your lead flow and send you a direct WhatsApp audio/video response within minutes.
+              Details captured! Mangal Soren will review your lead flow and reach out directly on WhatsApp within minutes.
             </p>
             <button
               onClick={() => setStatus('idle')}
@@ -166,22 +168,55 @@ export default function AgencyClientInquiryForm() {
               </div>
             </div>
 
-            {/* Row 2: Company / Brand Name */}
+            {/* Row 2: Company / Brand Name & Email Address */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Company / Brand Name */}
+              <div>
+                <label className="text-xs font-bold block mb-1.5 text-[#18191B] flex items-center gap-1.5">
+                  <Building2 className="w-3.5 h-3.5 text-[#7E8695]" />
+                  Company / Brand Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g. Apex Realty / Growth Agency"
+                  value={formData.company}
+                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
+                />
+              </div>
+
+              {/* Email Address */}
+              <div>
+                <label className="text-xs font-bold block mb-1.5 text-[#18191B] flex items-center gap-1.5">
+                  <Mail className="w-3.5 h-3.5 text-[#2563EB]" />
+                  Work Email Address
+                </label>
+                <input
+                  type="email"
+                  placeholder="e.g. rahul@apexrealty.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
+                />
+              </div>
+            </div>
+
+            {/* Row 3: Company Website / Portfolio URL */}
             <div>
               <label className="text-xs font-bold block mb-1.5 text-[#18191B] flex items-center gap-1.5">
-                <Building2 className="w-3.5 h-3.5 text-[#7E8695]" />
-                Company / Brand Name
+                <Globe className="w-3.5 h-3.5 text-[#059669]" />
+                Company Website / Portfolio URL
               </label>
               <input
                 type="text"
-                placeholder="e.g. Apex Realty / Growth Agency"
-                value={formData.company}
-                onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                placeholder="e.g. apexrealty.com or https://apexrealty.com"
+                value={formData.website}
+                onChange={(e) => setFormData({ ...formData, website: e.target.value })}
                 className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
               />
             </div>
 
-            {/* Row 3: Industry & Monthly Ad Spend */}
+            {/* Row 4: Industry & Monthly Ad Spend */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Primary Industry / Niche */}
               <div>
