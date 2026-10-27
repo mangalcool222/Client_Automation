@@ -3,7 +3,7 @@ import {
   ArrowRight, Bot, CheckCircle2, Clock, Cpu, MessageSquare, Play, Send, 
   ShieldCheck, Sparkles, UserCheck, Zap, Radio, Database, Layers, 
   LayoutTemplate, Smartphone, RefreshCw, AlertCircle, Mail, User, Check, Copy,
-  FileText, ExternalLink, PhoneCall, CheckCheck, Building2, Building, Briefcase, Sun, Moon, Stethoscope
+  FileText, ExternalLink, PhoneCall, CheckCheck, Building2, Building, Briefcase, Sun, Stethoscope
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import LinkedInIcon from './LinkedInIcon';
@@ -76,7 +76,7 @@ export default function LeadSimulatorApp() {
   const [activeTemplate, setActiveTemplate] = useState('dubai-usd');
   const [formData, setFormData] = useState(templates[0].data);
   const [currencyMode, setCurrencyMode] = useState('USD');
-  const [themeMode, setThemeMode] = useState('light'); // 'light' (Weekday warm cream default) | 'dark'
+  const themeMode = 'light'; // Locked to Weekday warm cream aesthetic
   const [pipelineState, setPipelineState] = useState('idle'); // idle | processing | complete
   const [activeNodeStep, setActiveNodeStep] = useState(0);
   const [logs, setLogs] = useState([]);
@@ -91,14 +91,11 @@ export default function LeadSimulatorApp() {
     } catch (err) {}
   };
 
-  // Sync theme attribute to document body for global background transition
+  // Lock to warm editorial Weekday light mode
   useEffect(() => {
-    if (themeMode === 'light') {
-      document.body.classList.add('theme-light');
-    } else {
-      document.body.classList.remove('theme-light');
-    }
-  }, [themeMode]);
+    document.body.classList.add('theme-light');
+    document.body.classList.remove('theme-dark');
+  }, []);
 
   const handleSelectTemplate = (template) => {
     setActiveTemplate(template.id);
@@ -393,21 +390,8 @@ export default function LeadSimulatorApp() {
           </div>
         </div>
 
-        {/* Currency Switcher, Theme Switcher & Direct Contact */}
+        {/* Currency Switcher & Direct Contact */}
         <div className="flex items-center gap-3">
-          {/* Theme Toggle Button */}
-          <button
-            onClick={() => setThemeMode(themeMode === 'light' ? 'dark' : 'light')}
-            className={`px-3 py-1 rounded text-xs font-mono-telemetry font-bold transition-all border cursor-pointer flex items-center gap-1.5 ${
-              isLight 
-                ? 'bg-[#F1F5F9] text-[#0F172A] border-[#CBD5E1] hover:bg-[#E2E8F0]' 
-                : 'bg-[#141720] text-[#F1F3F7] border-[#2E3648] hover:bg-[#1E222D]'
-            }`}
-            title="Toggle between Luxury Architectural Light Mode and Industrial Carbon Dark Mode"
-          >
-            {isLight ? <Sun className="w-3.5 h-3.5 text-[#D97706]" /> : <Moon className="w-3.5 h-3.5 text-[#3B82F6]" />}
-            <span>{isLight ? 'Light Mode' : 'Dark Mode'}</span>
-          </button>
 
           {/* Currency Switcher */}
           <div className={`flex items-center p-1 rounded border ${isLight ? 'bg-[#F1F5F9] border-[#E2E8F0]' : 'bg-[#141720] border-[#1E222D]'}`}>
