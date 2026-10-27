@@ -83,7 +83,8 @@ export default function AgencyClientInquiryForm() {
     setStatus('submitting');
 
     try {
-      const response = await fetch('https://n8n.trackkaroai.com/webhook/gtm-agency-lead-inbound', {
+      // 1. Dispatch to n8n Webhook (for WhatsApp / Telegram / Google Sheets sync)
+      const n8nPromise = fetch('https://n8n.trackkaroai.com/webhook/gtm-agency-lead-inbound', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -101,35 +102,56 @@ export default function AgencyClientInquiryForm() {
           ad_spend: formData.adSpend || '₹50,000 - ₹2,00,000 / month',
           monthly_ad_spend: formData.adSpend || '₹50,000 - ₹2,00,000 / month',
           workflow_goal: 'Complete Automated Setup (WhatsApp + Telegram + Sheets)',
+          admin_notification_email: 'mangalsoren176@gmail.com',
           source_page: 'trackkaroai.com',
           form_type: 'qualified_b2b_inquiry_form',
           submission_time: new Date().toISOString()
         })
       });
 
-      if (response.ok || response.status === 200 || response.status === 201) {
-        setStatus('success');
-        try {
-          confetti({
-            particleCount: 90,
-            spread: 70,
-            origin: { y: 0.7 }
-          });
-        } catch (e) {}
+      // 2. Direct Instant Email Dispatch to mangalsoren176@gmail.com (FormSubmit AJAX)
+      const emailPromise = fetch('https://formsubmit.co/ajax/mangalsoren176@gmail.com', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `⚡ New TrackKaro Lead: ${formData.name} (${formData.company || 'Direct Client'})`,
+          _template: 'table',
+          'Lead Name': formData.name,
+          'Company': formData.company || 'Not Provided',
+          'WhatsApp Phone': phoneToSend,
+          'Work Email': formData.email || 'Not Provided',
+          'Website / Portfolio': formData.website || 'Not Provided',
+          'Industry / Niche': formData.industry,
+          'Est. Monthly Ad Spend': formData.adSpend,
+          'Source': 'TrackKaro AI — Consultation Form (trackkaroai.com)',
+          'Submitted At': new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+        })
+      });
 
-        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-          window.gtag('event', 'generate_lead', {
-            event_category: 'consultation_form',
-            event_label: formData.company || 'Client Inquiry',
-            industry: formData.industry,
-            value: 500
-          });
-        }
-      } else {
-        setStatus('success');
+      await Promise.allSettled([n8nPromise, emailPromise]);
+
+      setStatus('success');
+      try {
+        confetti({
+          particleCount: 90,
+          spread: 70,
+          origin: { y: 0.7 }
+        });
+      } catch (e) {}
+
+      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          event_category: 'consultation_form',
+          event_label: formData.company || 'Client Inquiry',
+          industry: formData.industry,
+          value: 500
+        });
       }
     } catch (err) {
-      console.log('Inquiry dispatch error:', err);
+      console.log('Inquiry dispatch settled:', err);
       setStatus('success');
     }
   };
