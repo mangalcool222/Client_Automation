@@ -484,63 +484,48 @@ export default function LeadSimulatorApp() {
         </div>
       </header>
 
-      {/* Dual-Engine Architecture Hub Switcher */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        {/* Engine 01: Inbound Speed-to-Lead OS */}
-        <div className={`p-4 rounded-xl border flex items-center justify-between transition-all ${
-          isLight 
-            ? 'bg-[#ECFDF5] border-[#A7F3D0] shadow-sm' 
-            : 'bg-[#10B981]/5 border-[#10B981]/30 shadow-md'
-        }`}>
-          <div className="flex items-center gap-3">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse shrink-0"></span>
-            <div>
-              <div className="text-xs font-bold font-mono-telemetry flex items-center gap-2">
-                <span className={isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}>ENGINE 01: INBOUND SPEED-TO-LEAD OS</span>
-                <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider ${
-                  isLight ? 'bg-[#059669] text-white' : 'bg-[#10B981]/20 text-[#10B981]'
-                }`}>
-                  Live Simulator Below
-                </span>
-              </div>
-              <p className={`text-[11px] font-mono-telemetry mt-0.5 ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
-                15-Sec WhatsApp dispatch, Telegram sirens &amp; CRM sync for paid ads
-              </p>
+      {/* Sleek Jarvis Outbound Spotlight Banner (Tareeqa 2) */}
+      <a
+        href="https://jarvis.trackkaroai.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`group p-4 sm:p-5 rounded-xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all duration-300 shadow-lg relative overflow-hidden ${
+          isLight
+            ? 'bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A] text-white border-[#334155] hover:border-[#38BDF8]'
+            : 'bg-gradient-to-r from-[#0B0F19] via-[#111827] to-[#0B0F19] text-[#F1F3F7] border-[#1E293B] hover:border-[#38BDF8]/60 hover:shadow-[0_0_25px_rgba(56,189,248,0.15)]'
+        }`}
+        title="Explore TrackKaro Jarvis Autonomous AI Outbound SDR"
+      >
+        <div className="flex items-center gap-3.5">
+          <div className="w-10 h-10 rounded-lg bg-[#38BDF8]/10 border border-[#38BDF8]/30 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+            <Bot className="w-5 h-5 text-[#38BDF8]" />
+          </div>
+          <div className="text-left">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-mono-telemetry px-2 py-0.5 rounded bg-[#38BDF8]/20 text-[#38BDF8] border border-[#38BDF8]/30 font-bold uppercase tracking-wider">
+                Autonomous B2B Outbound
+              </span>
+              <span className="text-[11px] font-mono-telemetry text-[#64748B] hidden md:inline">•</span>
+              <span className="text-[11px] font-mono-telemetry text-[#94A3B8] hidden md:inline">Sister Engine</span>
             </div>
+            <h3 className="text-sm font-bold text-white mt-1 group-hover:text-[#38BDF8] transition-colors flex items-center gap-1.5">
+              <span>Need Outbound Lead Gen Too? Meet Jarvis</span>
+              <span className="text-[#38BDF8] text-xs">↗</span>
+            </h3>
+            <p className="text-xs text-[#94A3B8] mt-0.5 max-w-xl">
+              While TrackKaro plugs leaks on incoming ad leads, Jarvis autonomously hunts B2B decision-makers, verifies mailboxes, and books qualified discovery calls 24/7.
+            </p>
           </div>
         </div>
 
-        {/* Engine 02: Jarvis Autonomous AI Outbound SDR */}
-        <a
-          href="https://jarvis.trackkaroai.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`p-4 rounded-xl border flex items-center justify-between transition-all group ${
-            isLight 
-              ? 'bg-white hover:bg-[#F8FAFC] border-[#CBD5E1] hover:border-[#0284C7]' 
-              : 'bg-[#0E1015] hover:bg-[#141720] border-[#1E222D] hover:border-[#38BDF8]/60'
-          }`}
-          title="Open TrackKaro Jarvis Autonomous AI Outbound SDR Engine"
-        >
-          <div className="flex items-center gap-3">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#38BDF8] shrink-0"></div>
-            <div>
-              <div className="text-xs font-bold font-mono-telemetry flex items-center gap-1.5">
-                <span className={`group-hover:text-[#38BDF8] transition-colors ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
-                  ENGINE 02: JARVIS AUTONOMOUS AI SDR
-                </span>
-                <span className="text-[#38BDF8] text-[11px]">↗</span>
-              </div>
-              <p className="text-[11px] text-[#64748B] font-mono-telemetry mt-0.5">
-                23 buying signals, verified cold outreach &amp; automated meetings
-              </p>
-            </div>
-          </div>
-          <span className="text-[10px] font-mono-telemetry px-2.5 py-1 rounded bg-[#38BDF8]/10 text-[#38BDF8] border border-[#38BDF8]/30 group-hover:bg-[#38BDF8] group-hover:text-[#08090C] font-bold transition-all shrink-0">
-            Launch Jarvis ↗
+        <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
+          <span className="px-4 py-2 rounded-lg bg-[#38BDF8] hover:bg-[#0284C7] text-[#08090C] font-mono-telemetry text-xs font-bold transition-all shadow-md group-hover:shadow-[0_0_15px_rgba(56,189,248,0.4)] flex items-center gap-1.5 cursor-pointer">
+            <Zap className="w-3.5 h-3.5 fill-current" />
+            <span>Launch Jarvis OS</span>
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
           </span>
-        </a>
-      </div>
+        </div>
+      </a>
 
       {/* Hero Container */}
       <div className={`telemetry-card p-6 sm:p-10 text-center space-y-6 transition-all border rounded-xl ${
