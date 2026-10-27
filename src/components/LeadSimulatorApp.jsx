@@ -76,7 +76,7 @@ export default function LeadSimulatorApp() {
   const [activeTemplate, setActiveTemplate] = useState('dubai-usd');
   const [formData, setFormData] = useState(templates[0].data);
   const [currencyMode, setCurrencyMode] = useState('USD');
-  const [themeMode, setThemeMode] = useState('dark'); // 'dark' (default aligned with Jarvis Outbound OS) | 'light'
+  const [themeMode, setThemeMode] = useState('light'); // 'light' (Weekday warm cream default) | 'dark'
   const [pipelineState, setPipelineState] = useState('idle'); // idle | processing | complete
   const [activeNodeStep, setActiveNodeStep] = useState(0);
   const [logs, setLogs] = useState([]);
@@ -484,109 +484,148 @@ export default function LeadSimulatorApp() {
         </div>
       </header>
 
-      {/* Sleek Jarvis Outbound Spotlight Banner (Tareeqa 2) */}
+      {/* Weekday-Inspired Lively Jarvis Outbound Banner */}
       <a
         href="https://jarvis.trackkaroai.com/"
         target="_blank"
         rel="noopener noreferrer"
-        className={`group p-4 sm:p-5 rounded-xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all duration-300 shadow-lg relative overflow-hidden ${
+        className={`group p-4 sm:p-5 rounded-2xl border-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all duration-300 shadow-sm relative overflow-hidden ${
           isLight
-            ? 'bg-gradient-to-r from-[#0F172A] via-[#1E293B] to-[#0F172A] text-white border-[#334155] hover:border-[#38BDF8]'
-            : 'bg-gradient-to-r from-[#0B0F19] via-[#111827] to-[#0B0F19] text-[#F1F3F7] border-[#1E293B] hover:border-[#38BDF8]/60 hover:shadow-[0_0_25px_rgba(56,189,248,0.15)]'
+            ? 'bg-gradient-to-r from-[#FFFDF7] via-[#FFFBEB] to-[#FEF3C7]/60 border-[#FDE68A] hover:border-[#F59E0B] hover:shadow-md'
+            : 'bg-[#111827] border-[#1F2937] hover:border-[#38BDF8]'
         }`}
         title="Explore TrackKaro Jarvis Autonomous AI Outbound SDR"
       >
-        <div className="flex items-center gap-3.5">
-          <div className="w-10 h-10 rounded-lg bg-[#38BDF8]/10 border border-[#38BDF8]/30 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-            <Bot className="w-5 h-5 text-[#38BDF8]" />
+        <div className="flex items-start sm:items-center gap-3.5">
+          <div className="w-12 h-12 rounded-2xl bg-amber-100 border border-amber-300 flex items-center justify-center text-2xl shadow-xs shrink-0 group-hover:scale-110 transition-transform">
+            🤖
           </div>
           <div className="text-left">
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-mono-telemetry px-2 py-0.5 rounded bg-[#38BDF8]/20 text-[#38BDF8] border border-[#38BDF8]/30 font-bold uppercase tracking-wider">
-                Autonomous B2B Outbound
+              <span className="text-[10px] font-mono-telemetry px-2.5 py-0.5 rounded-full bg-[#E0F2FE] text-[#0369A1] border border-[#BAE6FD] font-bold uppercase tracking-wider">
+                🎯 Autonomous B2B Outbound
               </span>
-              <span className="text-[11px] font-mono-telemetry text-[#64748B] hidden md:inline">•</span>
-              <span className="text-[11px] font-mono-telemetry text-[#94A3B8] hidden md:inline">Sister Engine</span>
+              <span className="text-[11px] text-[#92400E] font-bold hidden md:inline">•</span>
+              <span className="text-[11px] text-[#92400E] font-bold hidden md:inline">Sister Engine</span>
             </div>
-            <h3 className="text-sm font-bold text-white mt-1 group-hover:text-[#38BDF8] transition-colors flex items-center gap-1.5">
-              <span>Need Outbound Lead Gen Too? Meet Jarvis</span>
-              <span className="text-[#38BDF8] text-xs">↗</span>
+            <h3 className="text-base sm:text-lg font-serif-editorial font-bold text-[#18191B] mt-1 group-hover:text-[#D97706] transition-colors flex items-center gap-1.5">
+              <span>Need to hunt high-ticket clients too? Meet Jarvis</span>
+              <span className="text-[#D97706] text-sm">↗</span>
             </h3>
-            <p className="text-xs text-[#94A3B8] mt-0.5 max-w-xl">
-              While TrackKaro plugs leaks on incoming ad leads, Jarvis autonomously hunts B2B decision-makers, verifies mailboxes, and books qualified discovery calls 24/7.
+            <p className="text-xs text-[#525866] mt-0.5 max-w-xl leading-relaxed">
+              While TrackKaro responds to incoming leads in 15 seconds, Jarvis autonomously finds verified decision-makers &amp; books qualified calls on autopilot.
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
-          <span className="px-4 py-2 rounded-lg bg-[#38BDF8] hover:bg-[#0284C7] text-[#08090C] font-mono-telemetry text-xs font-bold transition-all shadow-md group-hover:shadow-[0_0_15px_rgba(56,189,248,0.4)] flex items-center gap-1.5 cursor-pointer">
-            <Zap className="w-3.5 h-3.5 fill-current" />
+          <span className="px-5 py-2.5 rounded-full bg-[#18191B] hover:bg-black text-white font-mono-telemetry text-xs font-bold transition-all shadow-md group-hover:scale-105 flex items-center gap-2 cursor-pointer">
             <span>Launch Jarvis OS</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            <span>🚀</span>
           </span>
         </div>
       </a>
 
-      {/* Hero Container */}
-      <div className={`telemetry-card p-6 sm:p-10 text-center space-y-6 transition-all border rounded-xl ${
-        isLight ? 'bg-white border-[#E2E8F0] shadow-sm' : 'bg-[#0E1015] border-[#1E222D] shadow-xl'
+      {/* Hero Container with Weekday-Inspired Lively Visuals */}
+      <div className={`relative p-8 sm:p-14 text-center space-y-6 transition-all border rounded-3xl overflow-hidden ${
+        isLight 
+          ? 'bg-white border-[#EBE3D5] shadow-lg shadow-amber-900/5' 
+          : 'bg-[#0E1015] border-[#1E222D] shadow-xl'
       }`}>
-        
-        {/* Positioning Pill Tag */}
-        <div className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded font-mono-telemetry text-xs border ${
-          isLight 
-            ? 'bg-[#ECFDF5] border-[#A7F3D0] text-[#059669]' 
-            : 'bg-[#12161F] border-[#1E222D] text-[#10B981]'
-        }`}>
-          <span className={`w-2 h-2 rounded-full animate-pulse ${isLight ? 'bg-[#059669]' : 'bg-[#10B981]'}`}></span>
-          <span className="font-bold uppercase tracking-wider">OMNICHANNEL LEAD ROUTING &amp; INSTANT SALES DISPATCH</span>
+
+        {/* Floating WhatsApp Card Sticker (Left Side) */}
+        <div className="hidden xl:flex flex-col items-start p-3.5 bg-[#FAF8F5] border border-[#E5E7EB] rounded-2xl shadow-xl -rotate-6 animate-float-slow absolute left-4 top-14 z-10 max-w-[210px] text-left pointer-events-none">
+          <div className="flex items-center gap-1.5 mb-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse"></span>
+            <span className="text-[10px] font-bold text-[#059669] uppercase font-mono-telemetry">Instant WhatsApp</span>
+            <span className="text-xs">✨</span>
+          </div>
+          <p className="text-[11px] font-medium text-[#18191B] leading-snug">
+            "Hello Alexander! Here is your requested luxury penthouse brochure 📄"
+          </p>
+          <div className="flex items-center justify-between w-full mt-2 pt-1 border-t border-slate-200">
+            <span className="text-[9px] font-bold text-[#059669] bg-[#DCFCE7] px-2 py-0.5 rounded-full">
+              ⚡ Sent in 3.4s
+            </span>
+            <span className="text-xs">💬</span>
+          </div>
         </div>
 
-        {/* Problem-First Headline */}
-        <h2 className={`text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight max-w-3xl mx-auto ${
-          isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'
-        }`}>
-          Stop Losing High-Ticket Leads to Slow Follow-Ups.
-        </h2>
+        {/* Floating Telegram Siren Card Sticker (Right Side) */}
+        <div className="hidden xl:flex flex-col items-start p-3.5 bg-[#FAF8F5] border border-[#E5E7EB] rounded-2xl shadow-xl rotate-6 animate-float-reverse absolute right-4 top-14 z-10 max-w-[210px] text-left pointer-events-none">
+          <div className="flex items-center gap-1.5 mb-1.5">
+            <span className="text-sm">🚨</span>
+            <span className="text-[10px] font-bold text-[#2563EB] uppercase font-mono-telemetry">Telegram Siren</span>
+          </div>
+          <p className="text-[11px] font-medium text-[#18191B] leading-snug">
+            "🔥 New $1.25M Penthouse Lead from Meta Ads!"
+          </p>
+          <div className="flex items-center justify-between w-full mt-2 pt-1 border-t border-slate-200">
+            <span className="text-[9px] font-bold text-[#2563EB] bg-[#DBEAFE] px-2 py-0.5 rounded-full flex items-center gap-1">
+              <span>📞 1-Click Dial</span>
+            </span>
+            <span className="text-xs">⚡</span>
+          </div>
+        </div>
 
-        {/* Punchy Client-First Hero Statement */}
-        <p className={`text-xs sm:text-base font-mono-telemetry max-w-3xl mx-auto leading-relaxed ${
-          isLight ? 'text-[#334155]' : 'text-[#CBD5E1]'
-        }`}>
-          Connect paid ads, website forms, and listings directly to your sales reps' phones in under 15 seconds. Instant Telegram audio alerts with 1-click dial buttons, automated WhatsApp brochure delivery, and Google Sheets sync. Zero spreadsheet checking.
+        {/* Positioning Pill Tag */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#ECFDF5] border border-[#A7F3D0] text-[#065F46] text-xs font-mono-telemetry font-bold shadow-xs">
+          <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
+          <span className="uppercase tracking-wider">⚡ 15-SECOND SPEED-TO-LEAD SLA</span>
+          <span>•</span>
+          <span>ZERO LEAKAGE</span>
+        </div>
+
+        {/* Big Bold Editorial Serif Headline (Weekday Style) */}
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif-editorial font-extrabold tracking-tight leading-[1.12] text-[#18191B] max-w-4xl mx-auto">
+          Respond pro-actively. <br />
+          <span className="text-[#D97706] underline decoration-[#FDE68A] decoration-wavy decoration-2">
+            Don't let high-ticket leads go cold.
+          </span>
+        </h1>
+
+        {/* Friendly Hero Subtitle */}
+        <p className="text-sm sm:text-base text-[#525866] max-w-2xl mx-auto leading-relaxed">
+          Connect your paid ads, website forms, and listing portals directly to your sales reps' phones in under 15 seconds. Instant WhatsApp brochure delivery, Telegram audio sirens with 1-click calls, and automatic CRM sync.
         </p>
 
-        {/* Simulation Callout & Action CTAs */}
-        <div className="pt-2 space-y-4">
-          <p className={`text-xs font-mono-telemetry ${isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}`}>
-            Test the live 15-second dispatch simulation below, or book an architecture audit.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+        {/* Lively Weekday-Style Action CTAs */}
+        <div className="pt-2 space-y-5">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5">
             <a
               href="#demo-section"
-              className="w-full sm:w-auto px-6 py-3 rounded text-xs font-mono-telemetry font-bold transition-all cursor-pointer shadow-sm bg-[#0284C7] hover:bg-[#0369A1] text-white flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-full text-sm font-bold transition-all cursor-pointer shadow-md bg-[#18191B] hover:bg-black text-white flex items-center justify-center gap-2 hover:scale-[1.02]"
             >
-              <Play className="w-3.5 h-3.5 fill-current" />
-              <span>Test the Demo</span>
+              <span>⚡ Test Live Simulation</span>
             </a>
 
             <a
-              href="#contact-form"
-              className={`w-full sm:w-auto px-6 py-3 rounded text-xs font-mono-telemetry font-bold transition-all cursor-pointer border flex items-center justify-center gap-2 ${
-                isLight 
-                  ? 'bg-white hover:bg-[#F1F5F9] text-[#0F172A] border-[#CBD5E1]' 
-                  : 'bg-[#141720] hover:bg-[#1E222D] text-[#F1F3F7] border-[#2E3648]'
-              }`}
+              href="https://wa.me/917979816557?text=Hi%20Mangal,%20I%20want%20to%20discuss%20a%20lead%20automation%20workflow%20for%20my%20business"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto px-7 py-3.5 rounded-full text-sm font-bold transition-all cursor-pointer border border-[#DFD5C0] bg-white hover:bg-[#FAF8F5] text-[#18191B] shadow-xs flex items-center justify-center gap-2 hover:scale-[1.02]"
             >
-              <MessageSquare className="w-3.5 h-3.5 text-[#059669]" />
-              <span>Discuss Your Lead Workflow</span>
+              <span>💬 Chat on WhatsApp</span>
             </a>
           </div>
 
-          {/* Subtle Infrastructure Proof */}
-          <div className={`text-[11px] font-mono-telemetry pt-2 flex items-center justify-center gap-1.5 ${isLight ? 'text-[#0369A1]' : 'text-[#38BDF8]'}`}>
-            <span>🛡️ Non-Invasive Integration: Connects parallel to your existing CRM &amp; Ads · Zero downtime · Nothing replaced</span>
+          {/* Social Proof Badges Bar (Weekday Backed By / Award Bar Style) */}
+          <div className="pt-4 border-t border-[#F3EFE6] flex flex-wrap items-center justify-center gap-4 text-xs font-mono-telemetry text-[#7E8695]">
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#EBE3D5]">
+              <span>🏆</span>
+              <span className="font-bold text-[#18191B]">#1 Speed-to-Lead</span>
+              <span>Architecture</span>
+            </div>
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#EBE3D5]">
+              <span>📈</span>
+              <span className="font-bold text-[#18191B]">391% Higher Conversion</span>
+              <span>(Harvard Study)</span>
+            </div>
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF8F5] border border-[#EBE3D5]">
+              <span>🛡️</span>
+              <span className="font-bold text-[#18191B]">Zero Disruption</span>
+              <span>to Existing CRM</span>
+            </div>
           </div>
         </div>
 

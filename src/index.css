@@ -2,7 +2,26 @@
 
 @layer base {
   :root {
-    /* Default Dark Theme: Industrial Carbon & Steel */
+    /* Warm Editorial / Weekday Inspired (Default) */
+    --canvas-base: #FAF8F5;
+    --surface-card: #FFFFFF;
+    --surface-raised: #F5EFE6;
+    --border-hairline: #EBE3D5;
+    --border-active: #DFD5C0;
+
+    --text-primary: #18191B;
+    --text-secondary: #4A5160;
+    --text-muted: #7E8695;
+    --font-serif: 'Fraunces', Georgia, serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --accent-emerald: #059669;
+    --accent-cobalt: #2563EB;
+    --accent-amber: #E5A800;
+  }
+
+  /* Optional Sleek Industrial Dark Theme */
+  .theme-dark {
     --canvas-base: #08090C;
     --surface-card: #0E1015;
     --surface-raised: #141720;
@@ -12,28 +31,10 @@
     --text-primary: #F1F3F7;
     --text-secondary: #94A3B8;
     --text-muted: #64748B;
-    --font-mono: 'JetBrains Mono', monospace;
 
     --accent-emerald: #10B981;
     --accent-cobalt: #3B82F6;
     --accent-amber: #F59E0B;
-  }
-
-  /* Luxury Architectural Light Theme */
-  .theme-light {
-    --canvas-base: #F8F9FA;
-    --surface-card: #FFFFFF;
-    --surface-raised: #F1F5F9;
-    --border-hairline: #E2E8F0;
-    --border-active: #CBD5E1;
-
-    --text-primary: #0F172A;
-    --text-secondary: #475569;
-    --text-muted: #64748B;
-
-    --accent-emerald: #059669;
-    --accent-cobalt: #0284C7;
-    --accent-amber: #D97706;
   }
 
   body {
@@ -44,6 +45,28 @@
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(1deg); }
+}
+
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(7px) rotate(-1deg); }
+}
+
+.animate-float-slow {
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 6s ease-in-out infinite;
+}
+
+.font-serif-editorial {
+  font-family: 'Fraunces', Georgia, serif;
 }
 
 /* Telemetry & Machined Panels */
