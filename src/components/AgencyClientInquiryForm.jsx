@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, Building2, Phone, Mail, User, ShieldCheck, Zap, RefreshCw, Sliders, Globe } from 'lucide-react';
+import { Send, CheckCircle2, Building2, Phone, User, ShieldCheck, Zap, RefreshCw, DollarSign } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function AgencyClientInquiryForm() {
   const [formData, setFormData] = useState({
     name: '',
-    company: '',
-    website: '',
     phone: '',
-    email: '',
-    adSpend: '₹50,000 - ₹2,00,000 / month',
+    company: '',
     industry: 'Luxury Real Estate & Property Developers',
-    leadSource: 'Meta & Instagram Ads',
-    workflowGoal: 'Instant Sales Alerts (Telegram / Mobile)'
+    adSpend: '₹50,000 - ₹2,00,000 / month'
   });
 
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
@@ -47,18 +43,19 @@ export default function AgencyClientInquiryForm() {
           lead_name: formData.name,
           full_name: formData.name,
           company: formData.company || 'Direct Client Inquiry',
-          website: formData.website || '',
-          company_website: formData.website || '',
+          website: '',
+          company_website: '',
           lead_phone: phoneToSend,
           phone_number: phoneToSend,
-          lead_email: formData.email,
-          email: formData.email,
+          lead_email: '',
+          email: '',
           industry: formData.industry || 'Luxury Real Estate',
-          lead_source: formData.leadSource || 'Meta & Instagram Ads',
+          lead_source: 'Meta & Instagram Ads (Website Inbound)',
           ad_spend: formData.adSpend || '₹50,000 - ₹2,00,000 / month',
           monthly_ad_spend: formData.adSpend || '₹50,000 - ₹2,00,000 / month',
-          workflow_goal: formData.workflowGoal || 'Instant Sales Alerts',
+          workflow_goal: 'Complete Automated Setup (WhatsApp + Telegram + Sheets)',
           source_page: 'trackkaroai.com',
+          form_type: 'lean_high_converting_5_field',
           submission_time: new Date().toISOString()
         })
       });
@@ -67,8 +64,8 @@ export default function AgencyClientInquiryForm() {
         setStatus('success');
         try {
           confetti({
-            particleCount: 80,
-            spread: 60,
+            particleCount: 90,
+            spread: 70,
             origin: { y: 0.7 }
           });
         } catch (e) {}
@@ -92,30 +89,30 @@ export default function AgencyClientInquiryForm() {
 
   return (
     <div id="contact-form" className="bg-white border border-[#EBE3D5] rounded-3xl p-6 sm:p-10 transition-all shadow-sm scroll-mt-24">
-      <div className="max-w-3xl mx-auto space-y-6">
+      <div className="max-w-2xl mx-auto space-y-6">
         
         {/* Header */}
         <div className="text-center space-y-2.5">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ECFDF5] border border-[#A7F3D0] text-[#065F46] font-mono-telemetry text-xs font-bold shadow-xs">
             <Zap className="w-3.5 h-3.5 fill-current text-[#10B981]" />
-            <span className="uppercase tracking-wider">TAILORED LEAD AUTOMATION SETUP</span>
+            <span className="uppercase tracking-wider">⚡ 15-SECOND SPEED-TO-LEAD SETUP</span>
           </div>
 
           <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif-editorial font-extrabold text-[#18191B] tracking-tight">
             Ready to Automate Lead Conversion in Your Business?
           </h3>
 
-          <p className="text-sm text-[#525866] max-w-xl mx-auto leading-relaxed">
-            Fill out your details below to map out a tailored 15-second lead response setup for your ad campaigns.
+          <p className="text-sm text-[#525866] max-w-lg mx-auto leading-relaxed">
+            Fill out 5 quick details below. Mangal will review your ad pipeline and connect on WhatsApp with a tailored architecture breakdown.
           </p>
         </div>
 
         {status === 'success' ? (
           <div className="p-8 rounded-2xl text-center space-y-4 bg-[#ECFDF5] border border-[#A7F3D0] text-[#065F46] shadow-xs">
             <CheckCircle2 className="w-12 h-12 mx-auto text-[#059669]" />
-            <h4 className="text-xl font-bold font-serif-editorial text-[#18191B]">Inquiry Received!</h4>
+            <h4 className="text-2xl font-bold font-serif-editorial text-[#18191B]">Inquiry Received!</h4>
             <p className="text-xs sm:text-sm max-w-sm mx-auto font-mono-telemetry text-[#065F46]">
-              Mangal Soren will review your lead sources and connect with you on WhatsApp within minutes.
+              Details captured! Mangal Soren will review your lead flow and send you a direct WhatsApp audio/video response within minutes.
             </p>
             <button
               onClick={() => setStatus('idle')}
@@ -126,11 +123,12 @@ export default function AgencyClientInquiryForm() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4 font-mono-telemetry">
+            
+            {/* Row 1: Full Name & WhatsApp Phone Number */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              
               {/* Full Name */}
               <div>
-                <label className="text-xs font-bold block mb-1 text-[#18191B] flex items-center gap-1.5">
+                <label className="text-xs font-bold block mb-1.5 text-[#18191B] flex items-center gap-1.5">
                   <User className="w-3.5 h-3.5 text-[#059669]" />
                   Your Full Name *
                 </label>
@@ -140,28 +138,13 @@ export default function AgencyClientInquiryForm() {
                   placeholder="e.g. Ramesh Kumar"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
-                />
-              </div>
-
-              {/* Company / Brand Name */}
-              <div>
-                <label className="text-xs font-bold block mb-1 text-[#18191B] flex items-center gap-1.5">
-                  <Building2 className="w-3.5 h-3.5 text-[#7E8695]" />
-                  Company / Brand Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. Apex Realty / Growth Agency"
-                  value={formData.company}
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
                 />
               </div>
 
               {/* WhatsApp Phone Number */}
               <div>
-                <label className="text-xs font-bold block mb-1 text-[#18191B] flex items-center gap-1.5">
+                <label className="text-xs font-bold block mb-1.5 text-[#18191B] flex items-center gap-1.5">
                   <Phone className="w-3.5 h-3.5 text-[#059669]" />
                   WhatsApp Phone Number *
                 </label>
@@ -175,55 +158,41 @@ export default function AgencyClientInquiryForm() {
                     const sanitized = e.target.value.replace(/[^0-9+\s\-()]/g, '');
                     setFormData({ ...formData, phone: sanitized });
                   }}
-                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
                 />
                 <p className="text-[10px] text-[#7E8695] mt-1">
-                  10-digit mobile number (with or without +91)
+                  10-digit number (with or without +91)
                 </p>
-              </div>
-
-              {/* Email Address */}
-              <div>
-                <label className="text-xs font-bold block mb-1 text-[#18191B] flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-[#2563EB]" />
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  placeholder="e.g. rahul@apexrealty.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
-                />
-              </div>
-
-              {/* Company Website / Portfolio URL */}
-              <div className="sm:col-span-2">
-                <label className="text-xs font-bold block mb-1 text-[#18191B] flex items-center gap-1.5">
-                  <Globe className="w-3.5 h-3.5 text-[#059669]" />
-                  Company Website / Portfolio URL
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. apexrealty.com or https://apexrealty.com"
-                  value={formData.website}
-                  onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
-                />
               </div>
             </div>
 
-            {/* Industry / Niche Selection & Primary Lead Source */}
+            {/* Row 2: Company / Brand Name */}
+            <div>
+              <label className="text-xs font-bold block mb-1.5 text-[#18191B] flex items-center gap-1.5">
+                <Building2 className="w-3.5 h-3.5 text-[#7E8695]" />
+                Company / Brand Name
+              </label>
+              <input
+                type="text"
+                placeholder="e.g. Apex Realty / Growth Agency"
+                value={formData.company}
+                onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
+              />
+            </div>
+
+            {/* Row 3: Industry & Monthly Ad Spend */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Primary Industry / Niche */}
               <div>
-                <label className="text-xs font-bold block mb-1 text-[#18191B] flex items-center gap-1.5">
+                <label className="text-xs font-bold block mb-1.5 text-[#18191B] flex items-center gap-1.5">
                   <Building2 className="w-3.5 h-3.5 text-[#D97706]" />
                   Primary Industry / Niche
                 </label>
                 <select
                   value={formData.industry}
                   onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
-                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs cursor-pointer"
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs cursor-pointer"
                 >
                   <option value="Luxury Real Estate & Property Developers">Luxury Real Estate &amp; Property Developers</option>
                   <option value="Aesthetic Clinics, MedSpas & Hair Restoration">Aesthetic Clinics, MedSpas &amp; Hair Restoration</option>
@@ -234,36 +203,16 @@ export default function AgencyClientInquiryForm() {
                 </select>
               </div>
 
+              {/* Monthly Ad Spend */}
               <div>
-                <label className="text-xs font-bold block mb-1 text-[#18191B] flex items-center gap-1.5">
-                  <Globe className="w-3.5 h-3.5 text-[#059669]" />
-                  Primary Lead Source
-                </label>
-                <select
-                  value={formData.leadSource}
-                  onChange={(e) => setFormData({ ...formData, leadSource: e.target.value })}
-                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs cursor-pointer"
-                >
-                  <option value="Meta & Instagram Ads">Meta &amp; Instagram Ads</option>
-                  <option value="Google Search & Performance Max">Google Search &amp; Performance Max</option>
-                  <option value="Real Estate Portals (Magicbricks, 99acres, Housing)">Real Estate Portals (Magicbricks, 99acres, Housing)</option>
-                  <option value="Clinic / Healthcare Directories (Practo, Justdial)">Clinic / Healthcare Directories (Practo, Justdial)</option>
-                  <option value="Website & Landing Page Forms">Website &amp; Landing Page Forms</option>
-                  <option value="Multiple / Omnichannel Sources">Multiple / Omnichannel Sources</option>
-                </select>
-              </div>
-            </div>
-
-            {/* Separated Dropdowns: Monthly Ad Spend & Consultation / Workflow Goal */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="text-xs font-bold block mb-1 text-[#18191B]">
-                  Est. Monthly Ad Spend / Volume
+                <label className="text-xs font-bold block mb-1.5 text-[#18191B] flex items-center gap-1.5">
+                  <DollarSign className="w-3.5 h-3.5 text-[#059669]" />
+                  Est. Monthly Ad Spend
                 </label>
                 <select
                   value={formData.adSpend}
                   onChange={(e) => setFormData({ ...formData, adSpend: e.target.value })}
-                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs cursor-pointer"
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs cursor-pointer"
                 >
                   <option value="₹50,000 - ₹2,00,000 / month">₹50,000 - ₹2,00,000 / month (Standard)</option>
                   <option value="₹2,00,000 - ₹10,00,000 / month">₹2,00,000 - ₹10,00,000 / month (High Growth)</option>
@@ -272,31 +221,14 @@ export default function AgencyClientInquiryForm() {
                   <option value="Not Running Paid Ads Yet">Not Running Paid Ads Yet</option>
                 </select>
               </div>
-
-              <div>
-                <label className="text-xs font-bold block mb-1 text-[#18191B] flex items-center gap-1.5">
-                  <Sliders className="w-3.5 h-3.5 text-[#059669]" />
-                  Primary Workflow Goal
-                </label>
-                <select
-                  value={formData.workflowGoal}
-                  onChange={(e) => setFormData({ ...formData, workflowGoal: e.target.value })}
-                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs cursor-pointer"
-                >
-                  <option value="Instant Sales Alerts (Telegram / Mobile)">Instant Sales Alerts (Telegram / Mobile)</option>
-                  <option value="Centralized Google Sheets / CRM Sync">Centralized Google Sheets / CRM Sync</option>
-                  <option value="WhatsApp Auto-Response & Brochure Dispatch">WhatsApp Auto-Response &amp; Brochure Setup</option>
-                  <option value="Complete Automated Setup (WhatsApp + Telegram + Sheets)">Complete Automated Setup (WhatsApp + Telegram + Sheets)</option>
-                </select>
-              </div>
             </div>
 
-            {/* Submit Button */}
+            {/* High-Converting Pill Submit Button */}
             <div className="pt-2">
               <button
                 type="submit"
                 disabled={status === 'submitting'}
-                className="w-full py-3.5 px-6 rounded-full text-xs font-mono-telemetry font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md text-white bg-[#059669] hover:bg-[#047857] hover:scale-[1.01]"
+                className="w-full py-4 px-6 rounded-full text-xs font-mono-telemetry font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md text-white bg-[#059669] hover:bg-[#047857] hover:scale-[1.01]"
               >
                 {status === 'submitting' ? (
                   <>
@@ -306,7 +238,7 @@ export default function AgencyClientInquiryForm() {
                 ) : (
                   <>
                     <Send className="w-4 h-4 fill-current" />
-                    <span>Request Workflow Consultation ⚡</span>
+                    <span>Request 15s Workflow Consultation ⚡</span>
                   </>
                 )}
               </button>
@@ -314,9 +246,9 @@ export default function AgencyClientInquiryForm() {
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[11px] text-[#7E8695] pt-1 gap-1">
               <span className="flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#059669]" /> Submissions are confidential and used solely for direct workflow consultation.
+                <ShieldCheck className="w-3.5 h-3.5 text-[#059669]" /> Direct WhatsApp response from Mangal Soren. Zero spam.
               </span>
-              <span className="font-semibold text-[#065F46] bg-[#ECFDF5] px-2 py-0.5 rounded-full">
+              <span className="font-semibold text-[#065F46] bg-[#ECFDF5] px-2.5 py-0.5 rounded-full">
                 n8n Cloud Engine: Connected
               </span>
             </div>
