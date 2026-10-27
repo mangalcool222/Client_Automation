@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { MessageSquare, Mail, Sparkles, ArrowRight, UserCheck, Copy, Check } from 'lucide-react';
 import LinkedInIcon from './LinkedInIcon';
 
-export default function CustomWorkflowCTA({ themeMode = 'light' }) {
-  const isLight = themeMode === 'light';
+export default function CustomWorkflowCTA() {
   const [copied, setCopied] = useState(false);
 
   const handleCopyEmail = (e) => {
@@ -15,38 +14,32 @@ export default function CustomWorkflowCTA({ themeMode = 'light' }) {
   };
 
   return (
-    <div className={`telemetry-card p-6 sm:p-8 rounded-xl transition-all border ${
-      isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] shadow-sm' : 'bg-[#12161F] border-[#1E222D] shadow-xl'
-    }`}>
-      <div className="max-w-3xl mx-auto text-center space-y-5">
+    <div className="bg-white border border-[#EBE3D5] rounded-3xl p-8 sm:p-12 transition-all shadow-sm">
+      <div className="max-w-3xl mx-auto text-center space-y-6">
         
         {/* Badge */}
-        <div className={`inline-flex items-center gap-2 px-3 py-1 rounded font-mono-telemetry text-xs border ${
-          isLight ? 'bg-white border-[#CBD5E1] text-[#0284C7]' : 'bg-[#0E1015] border-[#2E3648] text-[#3B82F6]'
-        }`}>
-          <Sparkles className="w-3.5 h-3.5 fill-current" />
-          <span className="font-bold uppercase tracking-wider">TAILORED AUTOMATION CONSULTATION</span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF8F5] border border-[#EBE3D5] font-mono-telemetry text-xs font-bold text-[#D97706] shadow-xs">
+          <Sparkles className="w-3.5 h-3.5 fill-current text-[#D97706]" />
+          <span className="uppercase tracking-wider">TAILORED GTM ARCHITECTURE</span>
         </div>
 
         {/* Heading */}
-        <h3 className={`text-xl sm:text-3xl font-extrabold tracking-tight ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
+        <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif-editorial font-extrabold text-[#18191B] tracking-tight">
           Need a Similar Workflow for Your Business?
         </h3>
 
         {/* Personal Quote */}
-        <blockquote className={`text-xs sm:text-sm font-mono-telemetry italic leading-relaxed max-w-2xl mx-auto p-4 rounded border ${
-          isLight ? 'bg-white border-[#E2E8F0] text-[#334155]' : 'bg-[#08090C] border-[#1E222D] text-[#CBD5E1]'
-        }`}>
-          “Tell me how your leads arrive today and what happens after someone submits an enquiry. I can help map out a practical automation workflow tailored for your exact sales process.”
+        <blockquote className="text-sm sm:text-base font-serif-editorial italic leading-relaxed max-w-2xl mx-auto p-5 rounded-2xl bg-[#FAF8F5] border border-[#EBE3D5] text-[#18191B]">
+          “Tell me how your leads arrive today and what happens after someone submits an enquiry. I will help map out a practical speed-to-lead automation tailored for your exact sales process.”
         </blockquote>
 
         {/* Engineer Identity & CTAs */}
-        <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3.5">
           <a
             href="https://wa.me/917979816557?text=Hi%20Mangal,%20I%20want%20to%20discuss%20mapping%20out%20a%20custom%20lead%20automation%20workflow%20for%20my%20business"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-5 py-3 rounded text-xs font-mono-telemetry font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md bg-[#059669] hover:bg-[#047857] text-white"
+            className="w-full sm:w-auto px-7 py-3.5 rounded-full text-xs font-mono-telemetry font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md bg-[#059669] hover:bg-[#047857] text-white hover:scale-[1.02]"
           >
             <MessageSquare className="w-4 h-4 fill-current" />
             <span>Discuss on WhatsApp</span>
@@ -57,52 +50,44 @@ export default function CustomWorkflowCTA({ themeMode = 'light' }) {
             href="https://www.linkedin.com/in/mangal-soren-1312ba31a/"
             target="_blank"
             rel="noopener noreferrer"
-            className={`w-full sm:w-auto px-5 py-3 rounded text-xs font-mono-telemetry font-bold flex items-center justify-center gap-2 transition-all cursor-pointer border ${
-              isLight 
-                ? 'bg-white hover:bg-[#F1F5F9] text-[#0A66C2] border-[#CBD5E1]' 
-                : 'bg-[#0E1015] hover:bg-[#1E222D] text-[#0A66C2] border-[#2E3648]'
-            }`}
+            className="w-full sm:w-auto px-6 py-3.5 rounded-full text-xs font-mono-telemetry font-bold flex items-center justify-center gap-2 transition-all cursor-pointer border border-[#EBE3D5] bg-white hover:bg-[#FAF8F5] text-[#0A66C2] shadow-xs hover:scale-[1.02]"
           >
             <LinkedInIcon className="w-4 h-4 fill-[#0A66C2]" />
             <span>Connect on LinkedIn</span>
           </a>
 
-          <a
-            href="mailto:mangal@trackkaroai.com?subject=Custom%20Workflow%20Consultation%20Inquiry"
+          <button
             onClick={handleCopyEmail}
-            className={`w-full sm:w-auto px-5 py-3 rounded text-xs font-mono-telemetry font-bold flex items-center justify-center gap-2 transition-all cursor-pointer border ${
-              isLight 
-                ? 'bg-white hover:bg-[#F1F5F9] text-[#0F172A] border-[#CBD5E1]' 
-                : 'bg-[#0E1015] hover:bg-[#1E222D] text-[#F1F3F7] border-[#2E3648]'
-            }`}
-            title="Click to email or copy: mangal@trackkaroai.com"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-full text-xs font-mono-telemetry font-bold flex items-center justify-center gap-2 transition-all cursor-pointer border border-[#EBE3D5] bg-white hover:bg-[#FAF8F5] text-[#18191B] shadow-xs hover:scale-[1.02]"
+            title="Click to copy: mangal@trackkaroai.com"
           >
             {copied ? (
               <>
-                <Check className="w-4 h-4 text-emerald-500" />
-                <span className="text-emerald-500">mangal@trackkaroai.com (Copied!)</span>
+                <Check className="w-4 h-4 text-[#059669]" />
+                <span className="text-[#059669] font-bold">mangal@trackkaroai.com (Copied!)</span>
               </>
             ) : (
               <>
-                <Mail className="w-4 h-4 text-[#0284C7]" />
+                <Mail className="w-4 h-4 text-[#2563EB]" />
                 <span>mangal@trackkaroai.com</span>
-                <Copy className="w-3.5 h-3.5 text-zinc-400 ml-0.5" />
+                <Copy className="w-3.5 h-3.5 text-[#7E8695] ml-0.5" />
               </>
             )}
-          </a>
+          </button>
         </div>
 
-        <div className="text-[11px] text-[#64748B] font-mono-telemetry flex items-center justify-center gap-1.5 pt-1">
-          <UserCheck className="w-3.5 h-3.5 text-[#059669]" />
+        {/* Founder Bio Line */}
+        <div className="text-xs text-[#7E8695] font-mono-telemetry flex items-center justify-center gap-2 pt-2">
+          <UserCheck className="w-4 h-4 text-[#059669]" />
           <a
             href="https://www.linkedin.com/in/mangal-soren-1312ba31a/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:underline hover:text-[#0A66C2] font-semibold"
+            className="hover:underline hover:text-[#0A66C2] font-bold text-[#18191B]"
           >
             Mangal Soren
           </a>
-          <span>• Lead Automation &amp; GTM Workflows</span>
+          <span>• Founder &amp; GTM Automation Architect | TrackKaro AI</span>
         </div>
 
       </div>

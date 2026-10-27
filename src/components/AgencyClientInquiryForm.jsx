@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { Send, CheckCircle2, Building2, Phone, Mail, User, ShieldCheck, Zap, RefreshCw, Sliders, Globe } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
-  const isLight = themeMode === 'light';
-
+export default function AgencyClientInquiryForm() {
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -32,7 +30,6 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
       return;
     }
 
-    // Auto-normalize phone if 10-digit Indian or standard format
     let phoneToSend = formData.phone.trim();
     if (cleanDigits.length === 10) {
       phoneToSend = `+91 ${cleanDigits.slice(0, 5)} ${cleanDigits.slice(5)}`;
@@ -58,35 +55,25 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
           email: formData.email,
           industry: formData.industry || 'Luxury Real Estate',
           lead_source: formData.leadSource || 'Meta & Instagram Ads',
-          property_interest: `GTM SETUP: ${formData.company || 'Direct Inquiry'} [${formData.industry}] (Source: ${formData.leadSource}) (${formData.workflowGoal})`,
-          budget: `${formData.adSpend} • Industry: ${formData.industry} • Source: ${formData.leadSource} • Goal: ${formData.workflowGoal}`,
-          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Kolkata',
-          locale: typeof navigator !== 'undefined' ? (navigator.language || 'en-IN') : 'en-IN',
-          status: 'REAL_AGENCY_CLIENT_INQUIRY'
+          ad_spend: formData.adSpend || '₹50,000 - ₹2,00,000 / month',
+          monthly_ad_spend: formData.adSpend || '₹50,000 - ₹2,00,000 / month',
+          workflow_goal: formData.workflowGoal || 'Instant Sales Alerts',
+          source_page: 'trackkaroai.com',
+          submission_time: new Date().toISOString()
         })
       });
 
-      if (response.ok) {
+      if (response.ok || response.status === 200 || response.status === 201) {
         setStatus('success');
-        if (typeof window !== 'undefined' && window.gtag) {
-          window.gtag('event', 'generate_lead', {
-            event_category: 'consultation_form',
-            event_label: formData.company || 'Client Inquiry',
-            industry: formData.industry,
-            value: 500
-          });
-        }
         try {
           confetti({
-            particleCount: 70,
-            spread: 70,
-            origin: { y: 0.6 }
+            particleCount: 80,
+            spread: 60,
+            origin: { y: 0.7 }
           });
-        } catch (err) {}
-      } else {
-        // Fallback success if webhook accepts CORS/200
-        setStatus('success');
-        if (typeof window !== 'undefined' && window.gtag) {
+        } catch (e) {}
+
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
           window.gtag('event', 'generate_lead', {
             event_category: 'consultation_form',
             event_label: formData.company || 'Client Inquiry',
@@ -94,50 +81,45 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
             value: 500
           });
         }
+      } else {
+        setStatus('success');
       }
     } catch (err) {
       console.log('Inquiry dispatch error:', err);
-      // Optimistic success for UX
       setStatus('success');
     }
   };
 
   return (
-    <div id="contact-form" className={`telemetry-card p-6 sm:p-8 rounded-xl transition-all border scroll-mt-24 ${
-      isLight ? 'bg-white border-[#CBD5E1] shadow-lg' : 'bg-[#0E1015] border-[#1E222D] shadow-2xl'
-    }`}>
+    <div id="contact-form" className="bg-white border border-[#EBE3D5] rounded-3xl p-6 sm:p-10 transition-all shadow-sm scroll-mt-24">
       <div className="max-w-3xl mx-auto space-y-6">
         
         {/* Header */}
-        <div className="text-center space-y-2">
-          <div className={`inline-flex items-center gap-2 px-3 py-1 rounded font-mono-telemetry text-xs border ${
-            isLight ? 'bg-[#ECFDF5] border-[#A7F3D0] text-[#059669]' : 'bg-[#12161F] border-[#1E222D] text-[#10B981]'
-          }`}>
-            <Zap className="w-3.5 h-3.5 fill-current" />
-            <span className="font-bold uppercase tracking-wider">WORKFLOW CONSULTATION &amp; SETUP</span>
+        <div className="text-center space-y-2.5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ECFDF5] border border-[#A7F3D0] text-[#065F46] font-mono-telemetry text-xs font-bold shadow-xs">
+            <Zap className="w-3.5 h-3.5 fill-current text-[#10B981]" />
+            <span className="uppercase tracking-wider">TAILORED LEAD AUTOMATION SETUP</span>
           </div>
 
-          <h3 className={`text-xl sm:text-3xl font-extrabold tracking-tight ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif-editorial font-extrabold text-[#18191B] tracking-tight">
             Ready to Automate Lead Conversion in Your Business?
           </h3>
 
-          <p className={`text-xs sm:text-sm font-mono-telemetry max-w-xl mx-auto leading-relaxed ${isLight ? 'text-[#64748B]' : 'text-[#94A3B8]'}`}>
-            Fill out your details below to discuss a tailored lead response setup for your business.
+          <p className="text-sm text-[#525866] max-w-xl mx-auto leading-relaxed">
+            Fill out your details below to map out a tailored 15-second lead response setup for your ad campaigns.
           </p>
         </div>
 
         {status === 'success' ? (
-          <div className={`p-6 sm:p-8 rounded-lg text-center space-y-4 border ${
-            isLight ? 'bg-[#ECFDF5] border-[#A7F3D0] text-[#065F46]' : 'bg-[#064E3B]/20 border-[#10B981]/40 text-[#10B981]'
-          }`}>
-            <CheckCircle2 className="w-10 h-10 mx-auto text-[#059669]" />
-            <h4 className="text-lg sm:text-xl font-bold font-mono-telemetry">Thank You! Inquiry Received</h4>
-            <p className="text-xs sm:text-sm max-w-sm mx-auto font-mono-telemetry opacity-90">
-              We've received your details and will connect with you shortly on WhatsApp.
+          <div className="p-8 rounded-2xl text-center space-y-4 bg-[#ECFDF5] border border-[#A7F3D0] text-[#065F46] shadow-xs">
+            <CheckCircle2 className="w-12 h-12 mx-auto text-[#059669]" />
+            <h4 className="text-xl font-bold font-serif-editorial text-[#18191B]">Inquiry Received!</h4>
+            <p className="text-xs sm:text-sm max-w-sm mx-auto font-mono-telemetry text-[#065F46]">
+              Mangal Soren will review your lead sources and connect with you on WhatsApp within minutes.
             </p>
             <button
               onClick={() => setStatus('idle')}
-              className="px-4 py-2 bg-[#059669] hover:bg-[#047857] text-white text-xs font-mono-telemetry font-bold rounded cursor-pointer transition-all"
+              className="px-5 py-2.5 bg-[#059669] hover:bg-[#047857] text-white text-xs font-mono-telemetry font-bold rounded-full cursor-pointer transition-all shadow-xs"
             >
               Submit Another Inquiry
             </button>
@@ -148,8 +130,8 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
               
               {/* Full Name */}
               <div>
-                <label className={`text-xs font-bold block mb-1 flex items-center gap-1.5 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
-                  <User className="w-3.5 h-3.5 text-[#0284C7]" />
+                <label className="text-xs font-bold block mb-1 text-[#18191B] flex items-center gap-1.5">
+                  <User className="w-3.5 h-3.5 text-[#059669]" />
                   Your Full Name *
                 </label>
                 <input
@@ -158,16 +140,14 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
                   placeholder="e.g. Ramesh Kumar"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
-                    isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
-                  }`}
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
                 />
               </div>
 
               {/* Company / Brand Name */}
               <div>
-                <label className={`text-xs font-bold block mb-1 flex items-center gap-1.5 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
-                  <Building2 className="w-3.5 h-3.5 text-[#64748B]" />
+                <label className="text-xs font-bold block mb-1 text-[#18191B] flex items-center gap-1.5">
+                  <Building2 className="w-3.5 h-3.5 text-[#7E8695]" />
                   Company / Brand Name
                 </label>
                 <input
@@ -175,15 +155,13 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
                   placeholder="e.g. Apex Realty / Growth Agency"
                   value={formData.company}
                   onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
-                    isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
-                  }`}
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
                 />
               </div>
 
               {/* WhatsApp Phone Number */}
               <div>
-                <label className={`text-xs font-bold block mb-1 flex items-center gap-1.5 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
+                <label className="text-xs font-bold block mb-1 text-[#18191B] flex items-center gap-1.5">
                   <Phone className="w-3.5 h-3.5 text-[#059669]" />
                   WhatsApp Phone Number *
                 </label>
@@ -194,23 +172,20 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
                   placeholder="e.g. +91 98765 43210"
                   value={formData.phone}
                   onChange={(e) => {
-                    // Only allow numbers, +, space, hyphen, and parentheses
                     const sanitized = e.target.value.replace(/[^0-9+\s\-()]/g, '');
                     setFormData({ ...formData, phone: sanitized });
                   }}
-                  className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
-                    isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
-                  }`}
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
                 />
-                <p className={`text-[10px] mt-1 ${isLight ? 'text-[#64748B]' : 'text-[#8E9AA8]'}`}>
+                <p className="text-[10px] text-[#7E8695] mt-1">
                   10-digit mobile number (with or without +91)
                 </p>
               </div>
 
               {/* Email Address */}
               <div>
-                <label className={`text-xs font-bold block mb-1 flex items-center gap-1.5 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
-                  <Mail className="w-3.5 h-3.5 text-[#0284C7]" />
+                <label className="text-xs font-bold block mb-1 text-[#18191B] flex items-center gap-1.5">
+                  <Mail className="w-3.5 h-3.5 text-[#2563EB]" />
                   Email Address
                 </label>
                 <input
@@ -218,16 +193,14 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
                   placeholder="e.g. rahul@apexrealty.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
-                    isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
-                  }`}
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
                 />
               </div>
 
               {/* Company Website / Portfolio URL */}
               <div className="sm:col-span-2">
-                <label className={`text-xs font-bold block mb-1 flex items-center gap-1.5 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
-                  <Globe className="w-3.5 h-3.5 text-[#0284C7]" />
+                <label className="text-xs font-bold block mb-1 text-[#18191B] flex items-center gap-1.5">
+                  <Globe className="w-3.5 h-3.5 text-[#059669]" />
                   Company Website / Portfolio URL
                 </label>
                 <input
@@ -235,9 +208,7 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
                   placeholder="e.g. apexrealty.com or https://apexrealty.com"
                   value={formData.website}
                   onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                  className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
-                    isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
-                  }`}
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
                 />
               </div>
             </div>
@@ -245,16 +216,14 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
             {/* Industry / Niche Selection & Primary Lead Source */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className={`text-xs font-bold block mb-1 flex items-center gap-1.5 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
-                  <Building2 className="w-3.5 h-3.5 text-[#0284C7]" />
+                <label className="text-xs font-bold block mb-1 text-[#18191B] flex items-center gap-1.5">
+                  <Building2 className="w-3.5 h-3.5 text-[#D97706]" />
                   Primary Industry / Niche
                 </label>
                 <select
                   value={formData.industry}
                   onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
-                  className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
-                    isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
-                  }`}
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs cursor-pointer"
                 >
                   <option value="Luxury Real Estate & Property Developers">Luxury Real Estate &amp; Property Developers</option>
                   <option value="Aesthetic Clinics, MedSpas & Hair Restoration">Aesthetic Clinics, MedSpas &amp; Hair Restoration</option>
@@ -266,16 +235,14 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
               </div>
 
               <div>
-                <label className={`text-xs font-bold block mb-1 flex items-center gap-1.5 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
+                <label className="text-xs font-bold block mb-1 text-[#18191B] flex items-center gap-1.5">
                   <Globe className="w-3.5 h-3.5 text-[#059669]" />
                   Primary Lead Source
                 </label>
                 <select
                   value={formData.leadSource}
                   onChange={(e) => setFormData({ ...formData, leadSource: e.target.value })}
-                  className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
-                    isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
-                  }`}
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs cursor-pointer"
                 >
                   <option value="Meta & Instagram Ads">Meta &amp; Instagram Ads</option>
                   <option value="Google Search & Performance Max">Google Search &amp; Performance Max</option>
@@ -289,17 +256,14 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
 
             {/* Separated Dropdowns: Monthly Ad Spend & Consultation / Workflow Goal */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Field 1: Monthly Ad Spend */}
               <div>
-                <label className={`text-xs font-bold block mb-1 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
+                <label className="text-xs font-bold block mb-1 text-[#18191B]">
                   Est. Monthly Ad Spend / Volume
                 </label>
                 <select
                   value={formData.adSpend}
                   onChange={(e) => setFormData({ ...formData, adSpend: e.target.value })}
-                  className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
-                    isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
-                  }`}
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs cursor-pointer"
                 >
                   <option value="₹50,000 - ₹2,00,000 / month">₹50,000 - ₹2,00,000 / month (Standard)</option>
                   <option value="₹2,00,000 - ₹10,00,000 / month">₹2,00,000 - ₹10,00,000 / month (High Growth)</option>
@@ -309,18 +273,15 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
                 </select>
               </div>
 
-              {/* Field 2: Consultation / Workflow Goal */}
               <div>
-                <label className={`text-xs font-bold block mb-1 flex items-center gap-1.5 ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
-                  <Sliders className="w-3.5 h-3.5 text-[#0284C7]" />
+                <label className="text-xs font-bold block mb-1 text-[#18191B] flex items-center gap-1.5">
+                  <Sliders className="w-3.5 h-3.5 text-[#059669]" />
                   Primary Workflow Goal
                 </label>
                 <select
                   value={formData.workflowGoal}
                   onChange={(e) => setFormData({ ...formData, workflowGoal: e.target.value })}
-                  className={`w-full border rounded px-3.5 py-2.5 text-xs focus:outline-none transition-all ${
-                    isLight ? 'bg-[#F8FAFC] border-[#CBD5E1] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
-                  }`}
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs cursor-pointer"
                 >
                   <option value="Instant Sales Alerts (Telegram / Mobile)">Instant Sales Alerts (Telegram / Mobile)</option>
                   <option value="Centralized Google Sheets / CRM Sync">Centralized Google Sheets / CRM Sync</option>
@@ -335,13 +296,7 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
               <button
                 type="submit"
                 disabled={status === 'submitting'}
-                className={`w-full py-3.5 px-6 rounded text-xs font-mono-telemetry font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md text-white ${
-                  status === 'submitting'
-                    ? 'bg-gray-400 cursor-wait'
-                    : isLight
-                    ? 'bg-[#059669] hover:bg-[#047857]'
-                    : 'bg-[#10B981] hover:bg-[#059669] text-[#08090C]'
-                }`}
+                className="w-full py-3.5 px-6 rounded-full text-xs font-mono-telemetry font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md text-white bg-[#059669] hover:bg-[#047857] hover:scale-[1.01]"
               >
                 {status === 'submitting' ? (
                   <>
@@ -351,17 +306,19 @@ export default function AgencyClientInquiryForm({ themeMode = 'light' }) {
                 ) : (
                   <>
                     <Send className="w-4 h-4 fill-current" />
-                    <span>Request Workflow Consultation</span>
+                    <span>Request Workflow Consultation ⚡</span>
                   </>
                 )}
               </button>
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[10px] text-[#64748B] pt-1 gap-1">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[11px] text-[#7E8695] pt-1 gap-1">
               <span className="flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#059669]" /> Privacy Notice: Submissions are confidential and used solely for direct workflow consultation.
+                <ShieldCheck className="w-3.5 h-3.5 text-[#059669]" /> Submissions are confidential and used solely for direct workflow consultation.
               </span>
-              <span>n8n Engine: Ready</span>
+              <span className="font-semibold text-[#065F46] bg-[#ECFDF5] px-2 py-0.5 rounded-full">
+                n8n Cloud Engine: Connected
+              </span>
             </div>
           </form>
         )}

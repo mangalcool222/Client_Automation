@@ -213,148 +213,173 @@ export default function LeadSimulatorApp() {
     setLogs([]);
   };
 
-  const isLight = themeMode === 'light';
+  const isLight = true;
 
-  // Output Mockup Card Renderers
+  // Output Mockup Card Renderers (Polished Weekday & Real-World Aesthetics)
   const renderWhatsAppCard = () => (
-    <div className={`p-3.5 space-y-2.5 flex flex-col justify-between min-h-[360px] rounded border ${
-      isLight ? 'bg-[#E5DDD5] border-[#CBD5E1]' : 'phone-glass-frame'
-    }`}>
-      <div className={`rounded p-2 border flex items-center justify-between font-mono-telemetry ${
-        isLight ? 'bg-white border-[#E2E8F0] shadow-sm' : 'bg-[#0E1015] border-[#1E222D]'
-      }`}>
-        <div className="flex items-center gap-1.5">
-          <div className="w-6 h-6 rounded bg-[#059669]/20 border border-[#059669]/30 flex items-center justify-center text-[#059669] font-bold text-[10px]">
+    <div className="p-4 flex flex-col justify-between min-h-[380px] rounded-2xl border border-[#A7F3D0] bg-[#FAF8F5] shadow-sm relative overflow-hidden">
+      {/* WhatsApp Header Bar */}
+      <div className="bg-[#075E54] text-white rounded-xl p-2.5 flex items-center justify-between shadow-xs">
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-xs">
             TK
           </div>
           <div>
-            <div className={`text-[11px] font-bold truncate max-w-[100px] ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>TrackKaro Systems</div>
-            <div className="text-[9px] text-[#059669]">WhatsApp Integration</div>
+            <div className="text-xs font-bold flex items-center gap-1">
+              <span>TrackKaro AI</span>
+              <span className="text-[10px] text-[#A7F3D0]">✓</span>
+            </div>
+            <div className="text-[9px] text-[#D1FAE5]">Verified WhatsApp Business</div>
           </div>
         </div>
-        <span className={`text-[8px] px-1.5 py-0.5 rounded ${isLight ? 'bg-[#F1F5F9] text-[#64748B]' : 'bg-[#141720] text-[#767E8F]'}`}>Configurable Module</span>
+        <span className="text-[9px] bg-white/15 px-2 py-0.5 rounded-full font-mono-telemetry font-bold">
+          ⚡ 3.4s SLA
+        </span>
       </div>
 
-      <div className="space-y-2 py-1 flex-1 flex flex-col justify-end">
-        <div className={`rounded p-2.5 text-[11px] space-y-2 shadow-sm ${
-          isLight ? 'bg-[#DCF8C6] border border-[#BBF7D0] text-[#0F172A]' : 'bg-[#0b141a] border border-[#10B981]/30 text-[#F1F3F7]'
-        }`}>
-          <div className="leading-tight">
-            Hello <span className="font-bold text-[#059669]">{formData.name}</span>! Here is your requested brochure.
-          </div>
+      {/* Chat Message Bubble */}
+      <div className="space-y-2 py-3 flex-1 flex flex-col justify-end">
+        <div className="bg-[#DCF8C6] border border-[#BBF7D0] rounded-2xl rounded-tl-sm p-3.5 text-xs text-[#18191B] shadow-xs space-y-2.5">
+          <p className="leading-snug">
+            Hello <span className="font-bold text-[#065F46]">{formData.name}</span>! Here is your requested luxury floorplan brochure 📄
+          </p>
 
-          <div className={`rounded p-2 flex items-center justify-between gap-1.5 font-mono-telemetry ${
-            isLight ? 'bg-white border border-[#E2E8F0]' : 'bg-[#0E1015] border border-[#10B981]/40'
-          }`}>
-            <div className="flex items-center gap-1.5">
-              <FileText className="w-3.5 h-3.5 text-[#059669] shrink-0" />
-              <div>
-                <div className={`text-[10px] font-bold truncate max-w-[90px] ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
-                  {(formData.project || '').includes('Solar') ? 'Solar_Quote.pdf' : (formData.project || '').includes('Hair') || (formData.project || '').includes('Clinic') ? 'Procedure_Guide.pdf' : (formData.project || '').includes('Audit') ? 'Pipeline_Spec.pdf' : 'Project_Brochure.pdf'}
+          {/* PDF Card */}
+          <div className="bg-white border border-[#A7F3D0] rounded-xl p-2.5 flex items-center justify-between gap-2 shadow-xs">
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="w-8 h-8 rounded-lg bg-[#FEF2F2] border border-[#FECACA] flex items-center justify-center text-[#DC2626] font-bold text-xs shrink-0">
+                PDF
+              </div>
+              <div className="truncate">
+                <div className="text-[11px] font-bold text-[#18191B] truncate">
+                  {(formData.project || '').includes('Solar') ? 'Solar_Assessment_Quote.pdf' : (formData.project || '').includes('Hair') || (formData.project || '').includes('Clinic') ? 'Aesthetic_Treatment_Guide.pdf' : (formData.project || '').includes('Agency') ? 'B2B_Automation_Deck.pdf' : 'Penthouse_Brochure_2026.pdf'}
                 </div>
-                <div className="text-[8px] text-[#64748B]">
-                  {(formData.project || '').includes('Solar') ? 'System Assessment' : (formData.project || '').includes('Hair') || (formData.project || '').includes('Clinic') ? 'Treatment Pricing' : (formData.project || '').includes('Audit') ? 'Architecture Spec' : 'Digital Floorplan'}
+                <div className="text-[9px] text-[#7E8695]">
+                  Digital Spec • 3.2 MB
                 </div>
               </div>
             </div>
-            <span className="text-[8px] text-[#059669] bg-[#059669]/15 px-1.5 py-0.5 rounded font-bold">PDF</span>
+            <span className="text-[10px] text-[#059669] bg-[#ECFDF5] px-2 py-1 rounded-md font-bold font-mono-telemetry shrink-0">
+              ✓ Ready
+            </span>
           </div>
 
-          <div className="flex items-center justify-between text-[8px] text-[#64748B] font-mono-telemetry pt-0.5">
-            <span>Simulated Dispatch</span>
-            <span className="text-[#059669]">Configurable API</span>
+          <div className="flex items-center justify-between text-[10px] text-[#525866] pt-1">
+            <span className="font-mono-telemetry text-[#059669] font-bold">Auto-dispatched via Meta Cloud API</span>
+            <span className="font-mono-telemetry font-bold text-[#059669]">10:42 AM ✓✓</span>
           </div>
         </div>
 
-        <div className={`text-[9px] text-center font-mono-telemetry p-1.5 rounded ${
-          isLight ? 'bg-white/80 text-[#64748B]' : 'bg-[#0E1015]/80 text-[#94A3B8]'
-        }`}>
-          Requires Meta / AiSensy WABA Setup
+        <div className="text-[10px] text-center font-mono-telemetry py-1 px-2 rounded-full bg-white border border-[#EBE3D5] text-[#7E8695]">
+          ⚡ Buyer receives WhatsApp brochure within 15 seconds of ad lead
         </div>
       </div>
     </div>
   );
 
   const renderTelegramCard = () => (
-    <div className={`p-3.5 space-y-2.5 flex flex-col justify-between min-h-[360px] rounded border ${
-      isLight ? 'bg-white border-[#E2E8F0] shadow-sm' : 'telegram-desktop-frame'
-    }`}>
+    <div className="p-4 flex flex-col justify-between min-h-[380px] rounded-2xl border border-[#BFDBFE] bg-[#FAF8F5] shadow-sm relative overflow-hidden">
       <div>
-        <div className={`flex items-center justify-between border-b pb-2 font-mono-telemetry ${isLight ? 'border-[#E2E8F0]' : 'border-[#1E222D]'}`}>
-          <div className="flex items-center gap-1.5">
-            <Radio className={`w-3.5 h-3.5 animate-pulse ${isLight ? 'text-[#D97706]' : 'text-[#F59E0B]'}`} />
-            <span className={`text-[11px] font-bold ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>Telegram Sales Alert</span>
+        {/* Telegram Header */}
+        <div className="bg-[#0284C7] text-white rounded-xl p-2.5 flex items-center justify-between shadow-xs">
+          <div className="flex items-center gap-2">
+            <span className="text-sm">✈️</span>
+            <div>
+              <div className="text-xs font-bold">Telegram Sales Siren</div>
+              <div className="text-[9px] text-[#BAE6FD]">Instant Audio Alert to Reps</div>
+            </div>
           </div>
-          <span className={`text-[8px] px-1.5 py-0.5 rounded font-bold ${isLight ? 'bg-[#059669]/15 text-[#059669]' : 'bg-[#10B981]/15 text-[#10B981]'}`}>Sample Alert</span>
+          <span className="text-[9px] bg-white/20 px-2 py-0.5 rounded-full font-mono-telemetry font-bold">
+            🚨 SIREN LIVE
+          </span>
         </div>
 
-        <div className={`mt-2.5 p-2.5 rounded border space-y-1 font-mono-telemetry text-[10px] ${
-          isLight ? 'bg-[#F8FAFC] border-[#E2E8F0]' : 'bg-[#08090C] border-[#1E222D]'
-        }`}>
-          <div className={`font-bold border-b pb-1 ${isLight ? 'text-[#0284C7] border-[#E2E8F0]' : 'text-[#3B82F6] border-[#1E222D]'}`}>
-            NEW LEAD INBOUND
+        {/* Telegram Inbound Lead Card */}
+        <div className="mt-3 p-3.5 bg-white border border-[#DBEAFE] rounded-xl shadow-xs space-y-2">
+          <div className="flex items-center justify-between border-b border-[#EFF6FF] pb-1.5">
+            <span className="text-[10px] font-bold text-[#2563EB] font-mono-telemetry uppercase tracking-wider flex items-center gap-1">
+              <span>🔥</span> HIGH-INTENT LEAD INBOUND
+            </span>
+            <span className="text-[9px] text-[#7E8695] font-mono-telemetry">Just now</span>
           </div>
-          <div className={`space-y-0.5 ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
-            <div>NAME: <span className={`font-bold truncate block ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>{formData.name}</span></div>
-            <div>PHONE: <span className={isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}>{formData.phone}</span></div>
-            <div>BUDGET: <span className={`font-bold ${isLight ? 'text-[#059669]' : 'text-[#10B981]'}`}>{currencyMode === 'USD' ? formData.budgetUSD : formData.budgetINR}</span></div>
+          
+          <div className="space-y-1 text-xs">
+            <div className="text-[#525866]">
+              Name: <span className="font-bold text-[#18191B]">{formData.name}</span>
+            </div>
+            <div className="text-[#525866]">
+              Phone: <span className="font-bold text-[#2563EB]">{formData.phone}</span>
+            </div>
+            <div className="text-[#525866]">
+              Project: <span className="font-medium text-[#18191B]">{formData.project}</span>
+            </div>
+            <div className="text-[#525866]">
+              Budget: <span className="font-bold text-[#059669] bg-[#ECFDF5] px-1.5 py-0.5 rounded text-[11px]">{currencyMode === 'USD' ? formData.budgetUSD : formData.budgetINR}</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="space-y-1.5">
-        <button className={`w-full font-extrabold py-2.5 rounded text-[11px] font-mono-telemetry flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-sm text-white ${
-          isLight ? 'bg-[#059669] hover:bg-[#047857]' : 'bg-[#10B981] hover:bg-[#059669] text-[#08090C]'
-        }`}>
+      <div className="space-y-2 pt-2">
+        <a
+          href={`tel:${formData.phone.replace(/[^0-9+]/g, '')}`}
+          className="w-full font-extrabold py-3 rounded-full text-xs font-mono-telemetry flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm text-white bg-[#059669] hover:bg-[#047857] hover:scale-[1.02]"
+        >
           <PhoneCall className="w-3.5 h-3.5 fill-current" />
-          <span>Call Lead (1-Click Link)</span>
-        </button>
-        <div className={`text-[9px] text-center font-mono-telemetry ${isLight ? 'text-[#64748B]' : 'text-[#767E8F]'}`}>
-          Live alert verified in bottom form
+          <span>Call Lead (1-Click Direct Link)</span>
+        </a>
+        <div className="text-[10px] text-center font-mono-telemetry text-[#7E8695]">
+          ⚡ Rep dials prospect in &lt;15 seconds while intent is at peak
         </div>
       </div>
     </div>
   );
 
   const renderSheetsCard = () => (
-    <div className={`p-3.5 space-y-2.5 flex flex-col justify-between min-h-[360px] rounded border ${
-      isLight ? 'bg-white border-[#E2E8F0] shadow-sm' : 'telegram-desktop-frame'
-    }`}>
+    <div className="p-4 flex flex-col justify-between min-h-[380px] rounded-2xl border border-[#BBF7D0] bg-[#FAF8F5] shadow-sm relative overflow-hidden">
       <div>
-        <div className={`flex items-center justify-between border-b pb-2 font-mono-telemetry ${isLight ? 'border-[#E2E8F0]' : 'border-[#1E222D]'}`}>
-          <div className="flex items-center gap-1.5">
-            <Database className={`w-3.5 h-3.5 ${isLight ? 'text-[#059669]' : 'text-[#10B981]'}`} />
-            <span className={`text-[11px] font-bold ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>Google Sheets CRM</span>
+        {/* Google Sheets Header */}
+        <div className="bg-[#107C41] text-white rounded-xl p-2.5 flex items-center justify-between shadow-xs">
+          <div className="flex items-center gap-2">
+            <Database className="w-4 h-4 text-white" />
+            <div>
+              <div className="text-xs font-bold">Google Sheets CRM</div>
+              <div className="text-[9px] text-[#A7F3D0]">Auto 10-Column Append</div>
+            </div>
           </div>
-          <span className={`text-[8px] px-1.5 py-0.5 rounded font-bold ${isLight ? 'bg-[#059669]/15 text-[#059669]' : 'bg-[#10B981]/15 text-[#10B981]'}`}>Structured Row</span>
+          <span className="text-[9px] bg-white/20 px-2 py-0.5 rounded-full font-mono-telemetry font-bold">
+            📊 SHEET SYNC
+          </span>
         </div>
 
-        <div className={`mt-2.5 p-2.5 rounded border space-y-1 font-mono-telemetry text-[10px] ${
-          isLight ? 'bg-[#F8FAFC] border-[#E2E8F0]' : 'bg-[#08090C] border-[#1E222D]'
-        }`}>
-          <div className={`font-bold border-b pb-1 flex items-center justify-between ${
-            isLight ? 'text-[#059669] border-[#E2E8F0]' : 'text-[#10B981] border-[#1E222D]'
-          }`}>
-            <span>SAMPLE 10-COLUMN ROW</span>
-            <span className="text-[8px] text-[#64748B]">Auto Fields</span>
+        {/* Miniature Spreadsheet Table */}
+        <div className="mt-3 bg-white border border-[#E5E7EB] rounded-xl shadow-xs overflow-hidden">
+          <div className="grid grid-cols-4 bg-[#F0FDF4] border-b border-[#E5E7EB] text-[9px] font-mono-telemetry font-bold text-[#065F46] p-2">
+            <span>TIME</span>
+            <span>PROSPECT</span>
+            <span>PHONE</span>
+            <span>STATUS</span>
           </div>
-          <div className={`space-y-0.5 ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
-            <div>DATE / TIME: <span className={isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}>Auto-formatted (IST)</span></div>
-            <div>NAME: <span className={`font-bold truncate block ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>{formData.name}</span></div>
-            <div>PHONE: <span className="text-[#64748B]">{formData.phone}</span></div>
-            <div>STATUS: <span className={`font-bold ${isLight ? 'text-[#059669]' : 'text-[#10B981]'}`}>NEW_INQUIRY</span></div>
+          <div className="grid grid-cols-4 text-[10px] font-mono-telemetry p-2.5 items-center gap-1 border-b border-slate-100 bg-white">
+            <span className="text-[#525866]">10:42 AM</span>
+            <span className="font-bold text-[#18191B] truncate">{formData.name}</span>
+            <span className="text-[#0284C7] truncate">{formData.phone}</span>
+            <span className="text-[9px] font-bold text-[#059669] bg-[#DCFCE7] px-1 py-0.5 rounded text-center">
+              QUALIFIED
+            </span>
+          </div>
+          <div className="p-2 text-[9px] font-mono-telemetry text-[#7E8695] bg-[#FAF8F5]">
+            Columns: Timestamp, Lead Source, Ad Campaign, Investment, Rep Assigned
           </div>
         </div>
       </div>
 
-      <div className="space-y-1">
-        <div className={`p-2 rounded text-[9px] font-mono-telemetry text-center ${
-          isLight ? 'bg-[#F1F5F9] border border-[#E2E8F0] text-[#64748B]' : 'bg-[#141720] border border-[#1E222D] text-[#94A3B8]'
-        }`}>
-          10 Columns: Date, Day, Time, Contact &amp; Region
+      <div className="space-y-2 pt-2">
+        <div className="p-2.5 rounded-xl text-[10px] font-mono-telemetry text-center bg-white border border-[#EBE3D5] text-[#525866]">
+          Zero CRM disruption: Connects alongside HubSpot, Salesforce, Zoho or Excel
         </div>
-        <div className={`text-[9px] text-center font-mono-telemetry ${isLight ? 'text-[#64748B]' : 'text-[#767E8F]'}`}>
-          Live Sheet sync verified in bottom form
+        <div className="text-[10px] text-center font-mono-telemetry text-[#7E8695]">
+          ⚡ Live row append with zero duplicate entries
         </div>
       </div>
     </div>
@@ -615,23 +640,24 @@ export default function LeadSimulatorApp() {
 
         {/* Sample Preset Selector */}
         <div className="pt-2 max-w-4xl mx-auto">
-          <div className={`text-[10px] font-mono-telemetry uppercase tracking-wider mb-2 ${isLight ? 'text-[#64748B]' : 'text-[#64748B]'}`}>
+          <div className="text-[11px] font-mono-telemetry uppercase tracking-wider mb-2.5 text-[#7E8695] font-bold">
             Select Sample Preset Payload:
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5">
             {templates.map((tpl) => {
               const TplIcon = tpl.icon;
+              const isActive = activeTemplate === tpl.id;
               return (
                 <button
                   key={tpl.id}
                   onClick={() => handleSelectTemplate(tpl)}
-                  className={`px-3 py-2.5 rounded text-xs font-mono-telemetry font-bold transition-all border cursor-pointer flex items-center justify-center gap-1.5 ${
-                    activeTemplate === tpl.id
-                      ? isLight ? 'bg-[#F1F5F9] text-[#0F172A] border-[#0284C7]' : 'bg-[#141720] text-[#F1F3F7] border-[#3B82F6]'
-                      : isLight ? 'bg-[#F8FAFC] text-[#64748B] border-[#E2E8F0] hover:text-[#0F172A]' : 'bg-[#0E1015] text-[#64748B] border-[#1E222D] hover:border-[#2E3648] hover:text-[#F1F3F7]'
+                  className={`px-3.5 py-3 rounded-xl text-xs font-mono-telemetry font-bold transition-all cursor-pointer flex items-center justify-center gap-2 border shadow-xs ${
+                    isActive
+                      ? 'bg-[#18191B] text-white border-[#18191B] scale-[1.02]'
+                      : 'bg-white text-[#525866] border-[#EBE3D5] hover:bg-[#FAF8F5] hover:border-[#DFD5C0] hover:text-[#18191B]'
                   }`}
                 >
-                  <TplIcon className={`w-3.5 h-3.5 ${isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}`} />
+                  <TplIcon className={`w-4 h-4 ${isActive ? 'text-[#F59E0B]' : 'text-[#059669]'}`} />
                   <span className="truncate">{tpl.name}</span>
                 </button>
               );
@@ -648,20 +674,20 @@ export default function LeadSimulatorApp() {
         
         {/* Left Column: Input Form */}
         <div className="lg:col-span-4 space-y-4">
-          <div className={`telemetry-card p-5 space-y-4 transition-all ${isLight ? 'bg-white border-[#E2E8F0]' : 'bg-[#0E1015] border-[#1E222D]'}`}>
-            <div className={`flex items-center justify-between border-b pb-3 ${isLight ? 'border-[#E2E8F0]' : 'border-[#1E222D]'}`}>
+          <div className="bg-white border border-[#EBE3D5] rounded-2xl p-5 sm:p-6 space-y-4 shadow-sm transition-all">
+            <div className="flex items-center justify-between border-b border-[#F3EFE6] pb-3">
               <div>
-                <span className={`text-xs font-bold flex items-center gap-2 font-mono-telemetry ${isLight ? 'text-[#0F172A]' : 'text-[#F1F3F7]'}`}>
-                  <Zap className={`w-4 h-4 ${isLight ? 'text-[#0284C7]' : 'text-[#3B82F6]'}`} />
+                <span className="text-xs font-bold flex items-center gap-2 font-mono-telemetry text-[#18191B]">
+                  <Zap className="w-4 h-4 text-[#D97706] fill-current" />
                   INTERACTIVE PIPELINE SIMULATION
                 </span>
-                <span className={`text-[10px] font-mono-telemetry block mt-0.5 leading-tight ${isLight ? 'text-[#475569]' : 'text-[#94A3B8]'}`}>
-                  Simulate lead routing on-screen. See how incoming lead data triggers normalization, sales alerts, and CRM sync.
+                <span className="text-[11px] text-[#525866] block mt-1 leading-snug">
+                  Simulate lead routing live. See how incoming lead data triggers phone siren, WhatsApp brochure &amp; CRM sync.
                 </span>
               </div>
               <button
                 onClick={handleClearForm}
-                className={`text-[10px] font-mono-telemetry underline cursor-pointer ${isLight ? 'text-[#64748B] hover:text-[#0F172A]' : 'text-[#64748B] hover:text-[#F1F3F7]'}`}
+                className="text-[11px] font-mono-telemetry text-[#7E8695] hover:text-[#18191B] underline cursor-pointer shrink-0"
               >
                 Reset
               </button>
@@ -669,46 +695,40 @@ export default function LeadSimulatorApp() {
 
             <div className="space-y-3 font-mono-telemetry">
               <div>
-                <label className={`text-[11px] block mb-1 ${isLight ? 'text-[#475569]' : 'text-[#767E8F]'}`}>Prospect Name</label>
+                <label className="text-[11px] font-bold block mb-1 text-[#18191B]">Prospect Name</label>
                 <input
                   type="text"
                   placeholder="e.g. Alexander Wright"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className={`w-full border rounded px-3 py-2 text-xs focus:outline-none transition-all ${
-                    isLight ? 'bg-[#F8FAFC] border-[#E2E8F0] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
-                  }`}
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
                 />
               </div>
 
               <div>
-                <label className={`text-[11px] block mb-1 ${isLight ? 'text-[#475569]' : 'text-[#767E8F]'}`}>WhatsApp Phone Number</label>
+                <label className="text-[11px] font-bold block mb-1 text-[#18191B]">WhatsApp Phone Number</label>
                 <input
                   type="text"
                   placeholder="e.g. +971 50 000 9999"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className={`w-full border rounded px-3 py-2 text-xs focus:outline-none transition-all ${
-                    isLight ? 'bg-[#F8FAFC] border-[#E2E8F0] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
-                  }`}
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
                 />
               </div>
 
               <div>
-                <label className={`text-[11px] block mb-1 ${isLight ? 'text-[#475569]' : 'text-[#767E8F]'}`}>Project / Enquiry Topic</label>
+                <label className="text-[11px] font-bold block mb-1 text-[#18191B]">Project / Enquiry Topic</label>
                 <input
                   type="text"
                   placeholder="e.g. Dubai Marina Luxury Off-Plan Penthouse"
                   value={formData.project}
                   onChange={(e) => setFormData({ ...formData, project: e.target.value })}
-                  className={`w-full border rounded px-3 py-2 text-xs focus:outline-none transition-all ${
-                    isLight ? 'bg-[#F8FAFC] border-[#E2E8F0] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
-                  }`}
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
                 />
               </div>
 
               <div>
-                <label className={`text-[11px] block mb-1 ${isLight ? 'text-[#475569]' : 'text-[#767E8F]'}`}>Stated Investment Range</label>
+                <label className="text-[11px] font-bold block mb-1 text-[#18191B]">Stated Investment Range</label>
                 <input
                   type="text"
                   placeholder="e.g. $850,000 - $1.5M"
@@ -718,9 +738,7 @@ export default function LeadSimulatorApp() {
                       ? setFormData({ ...formData, budgetUSD: e.target.value })
                       : setFormData({ ...formData, budgetINR: e.target.value })
                   }
-                  className={`w-full border rounded px-3 py-2 text-xs focus:outline-none transition-all ${
-                    isLight ? 'bg-[#F8FAFC] border-[#E2E8F0] text-[#0F172A] focus:border-[#0284C7]' : 'bg-[#08090C] border-[#1E222D] text-[#F1F3F7] focus:border-[#3B82F6]'
-                  }`}
+                  className="w-full border border-[#EBE3D5] bg-[#FAF8F5] text-[#18191B] rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#18191B] focus:bg-white transition-all shadow-xs"
                 />
               </div>
             </div>
@@ -730,31 +748,25 @@ export default function LeadSimulatorApp() {
               {pipelineState === 'processing' ? (
                 <button
                   disabled
-                  className={`w-full font-bold py-3 rounded text-xs font-mono-telemetry flex items-center justify-center gap-2 cursor-wait border ${
-                    isLight ? 'bg-[#F1F5F9] text-[#64748B] border-[#E2E8F0]' : 'bg-[#141720] text-[#767E8F] border-[#1E222D]'
-                  }`}
+                  className="w-full font-bold py-3.5 rounded-full text-xs font-mono-telemetry flex items-center justify-center gap-2 cursor-wait border border-[#F59E0B] bg-[#FEF3C7] text-[#92400E] shadow-sm animate-pulse"
                 >
                   <RefreshCw className="w-4 h-4 text-[#D97706] animate-spin" />
-                  Simulating Pipeline Flow...
+                  Simulating 15s Pipeline Flow...
                 </button>
               ) : pipelineState === 'complete' ? (
                 <button
                   onClick={handleReset}
-                  className={`w-full font-bold py-3 rounded text-xs font-mono-telemetry flex items-center justify-center gap-2 transition-all cursor-pointer border ${
-                    isLight ? 'bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#0F172A] border-[#CBD5E1]' : 'bg-[#141720] hover:bg-[#1E222D] text-white border-[#2E3648]'
-                  }`}
+                  className="w-full font-bold py-3.5 rounded-full text-xs font-mono-telemetry flex items-center justify-center gap-2 transition-all cursor-pointer border border-[#DFD5C0] bg-white hover:bg-[#FAF8F5] text-[#18191B] shadow-sm"
                 >
-                  Reset Simulation Session
+                  <span>🔄 Reset Simulation Session</span>
                 </button>
               ) : (
                 <button
                   onClick={handleTriggerPipeline}
-                  className={`w-full font-bold py-3 rounded text-xs font-mono-telemetry flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm text-white ${
-                    isLight ? 'bg-[#0284C7] hover:bg-[#0369A1] border border-[#0284C7]' : 'bg-[#3B82F6] hover:bg-[#2563EB] border border-[#3B82F6]/50'
-                  }`}
+                  className="w-full font-bold py-3.5 rounded-full text-xs font-mono-telemetry flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md text-white bg-[#18191B] hover:bg-black hover:scale-[1.02]"
                 >
-                  <Play className="w-4 h-4 fill-current" />
-                  Run Pipeline Simulation
+                  <Play className="w-4 h-4 fill-current text-[#F59E0B]" />
+                  <span>⚡ Run Pipeline Simulation</span>
                 </button>
               )}
             </div>
